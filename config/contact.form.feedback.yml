@@ -1,0 +1,14 @@
+uuid: c67bdd70-ab5b-46fa-8408-c7dc60c48b70
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: vymHlgJy26BuI5GGj9-IXjwR3dRC5C0tij4BpWJnoqw
+id: feedback
+label: 'Website feedback'
+recipients:
+  - joshua.scott.feinstein@gmail.com
+reply: ''
+weight: 0
+message: 'Your message has been sent.'
+redirect: ''
