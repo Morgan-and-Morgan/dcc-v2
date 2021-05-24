@@ -1,0 +1,16 @@
+.block-we-megamenu-blockheader-navigation {
+  .region-we-mega-menu {
+    .we-mega-menu-ul {
+      .dropdown-menu {
+        position: static;
+        .we-mega-menu-li {
+          .we-mega-menu-submenu {
+            width: 100%;
+            left: 0;
+            right: 0;
+          }
+        }
+      }
+    }
+  }
+}

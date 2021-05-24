@@ -1,0 +1,166 @@
+.node-type-page {
+  background: #FFFFFF;
+  font-family: 'Open Sans Condensed', sans-serif;
+  #main-wrapper {
+    #main {
+      .main-content {
+        section {
+          .region-content {
+            article {
+              font-weight: 400;
+              /*HEADINGS*/
+              h1 {
+                color: #D43F3A !important;
+                font-size: 30px !important;
+                font-weight: 700 !important;
+              }
+              h2 {
+                color: #1A384E !important;
+                font-size: 24px !important;
+                font-weight: 700 !important;
+                margin-top:17px !important;
+                margin-bottom: 10px;
+              }
+              h3 {
+                color: #4C99C0 !important;
+                font-size: 21px !important;
+                margin-top: 20px;
+                margin-bottom: 10px;
+              }
+              h4 {
+                font-size: 18px !important;
+              }
+              h6 {
+                color: #1A384E !important;
+                font-size: 14px!important;
+                font-weight: 700 !important;
+              }
+              ul.checked{
+                list-style:none;
+              }
+              ul.checked li{
+                background: url(/wp-content/themes/dcc/images/check.png) 0 3px no-repeat;
+                padding-left:20px;
+                font-weight:bold;
+                color:#1D4B64;
+              }
+              .alignleft {}
+              .alignright {}
+              .aligncenter {}
+              p {
+                margin: 0 0 10px;
+              }
+
+              /* Responsive images */
+              .entry-content img,
+              .comment-content img,
+              .widget img {
+                max-width: 100%; /* Fluid images for posts, comments, and widgets */
+              }
+              img[class*="align"],
+              img[class*="wp-image-"],
+              img[class*="attachment-"] {
+                height: auto; /* Make sure images with WordPress-added height and width attributes are scaled correctly */
+              }
+              img.size-full,
+              img.size-large,
+              img.header-image,
+              img.wp-post-image {
+                max-width: 100%;
+                height: auto; /* Make sure images with WordPress-added height and width attributes are scaled correctly */
+              }
+
+              /* Make sure videos and embeds fit their containers */
+              embed,
+              iframe,
+              object,
+              video {
+                max-width: 100%;
+              }
+              .entry-content .twitter-tweet-rendered {
+                max-width: 100% !important; /* Override the Twitter embed fixed width */
+              }
+
+              /* Images */
+              .alignleft {
+                float: left;
+              }
+              .alignright {
+                float: right;
+              }
+              .aligncenter {
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+              }
+              .entry-content img,
+              .comment-content img,
+              .widget img,
+              img.header-image,
+              .author-avatar img,
+              img.wp-post-image {
+                /* Add fancy borders to all WordPress-added images but not things like badges and icons and the like */
+                border-radius: 3px;
+                box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+              }
+              .wp-caption {
+                max-width: 100%; /* Keep wide captions from overflowing their container. */
+                padding: 4px;
+              }
+              .wp-caption .wp-caption-text,
+              .gallery-caption,
+              .entry-caption {
+                font-style: italic;
+                font-size: 12px;
+                font-size: 0.857142857rem;
+                line-height: 2;
+                color: #757575;
+              }
+              img.wp-smiley,
+              .rsswidget img {
+                border: 0;
+                border-radius: 0;
+                box-shadow: none;
+                margin-bottom: 0;
+                margin-top: 0;
+                padding: 0;
+              }
+              .entry-content dl.gallery-item {
+                margin: 0;
+              }
+              .gallery-item a,
+              .gallery-caption {
+                width: 90%;
+              }
+              .gallery-item a {
+                display: block;
+              }
+              .gallery-caption a {
+                display: inline;
+              }
+              .gallery-columns-1 .gallery-item a {
+                max-width: 100%;
+                width: auto;
+              }
+              .gallery .gallery-icon img {
+                height: auto;
+                max-width: 90%;
+                padding: 5%;
+              }
+              .gallery-columns-1 .gallery-icon img {
+                padding: 3%;
+              }
+            }
+          }
+        }
+      }
+      .sidebar {
+        aside {
+          .region-sidebar {
+
+          }
+        }
+      }
+    }
+  }
+}

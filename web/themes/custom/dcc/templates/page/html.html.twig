@@ -1,0 +1,133 @@
+{##}
+{#/**#}
+{# * @file#}
+{# * Theme override for the basic structure of a single Drupal page.#}
+{# *#}
+{# * Variables:#}
+{# * - logged_in: A flag indicating if user is logged in.#}
+{# * - root_path: The root path of the current page (e.g., node, admin, user).#}
+{# * - node_type: The content type for the current node, if the page is a node.#}
+{# * - head_title: List of text elements that make up the head_title variable.#}
+{# *   May contain one or more of the following:#}
+{# *   - title: The title of the page.#}
+{# *   - name: The name of the site.#}
+{# *   - slogan: The slogan of the site.#}
+{# * - page_top: Initial rendered markup. This should be printed before 'page'.#}
+{# * - page: The rendered page markup.#}
+{# * - page_bottom: Closing rendered markup. This variable should be printed after#}
+{# *   'page'.#}
+{# * - db_offline: A flag indicating if the database is offline.#}
+{# * - placeholder_token: The token for generating head, css, js and js-bottom#}
+{# *   placeholders.#}
+{# *#}
+{# * @see template_preprocess_html()#}
+{# */#}
+{##}
+{#{% set body_classes = [#}
+{#  logged_in ? 'user-logged-in',#}
+{#  not root_path ? 'path-frontpage home' : 'path-' ~ root_path|clean_class,#}
+{#  node_type ? 'page-node-type-' ~ node_type|clean_class,#}
+{#  db_offline ? 'db-offline',#}
+{#] %}#}
+{#<!DOCTYPE html>#}
+{#<html{{ html_attributes }}>#}
+{#<head>#}
+{#  <head-placeholder token="{{ placeholder_token }}">#}
+{#    <title>{{ head_title|safe_join(' | ') }}</title>#}
+{#    <css-placeholder token="{{ placeholder_token }}">#}
+{#      <js-placeholder token="{{ placeholder_token }}">#}
+{#        <!-- Globals -->#}
+{#        <!-- ctm -->#}
+{#        <script type="text/javascript" src="//72535.tctm.co/t.js"></script>#}
+{#        <script>#}
+{#          window.MM = window.MM || {};#}
+{#          window.MM.forms = window.MM.forms || [];#}
+{#        </script>#}
+{#        <!-- End Global -->#}
+
+{#        <link#}
+{#          href="https://fonts.googleapis.com/css?family=Open+Sans:ital,wght@0,300;0,400;1,300;1,400;1,600&display=swap"#}
+{#          rel="stylesheet">#}
+
+{#        <!--  Open Sans Font -->#}
+{#        <link rel="preconnect" href="https://fonts.gstatic.com">#}
+{#        #}{##}{# <link href="https://fonts.googleapis.com/css?family=Open+Sans%3A300italic%2C400italic%2C600italic%2C300%2C400%2C600&subset=latin%2Clatin-ext&display=fallback&ver=5.6.2" rel="stylesheet"> #}
+{#        <link#}
+{#          href="https://fonts.googleapis.com/css?family=Open+Sans:ital,wght@0,300;0,400;1,300;1,400;1,600&display=swap"#}
+{#          rel="stylesheet">#}
+{#        <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800&display=swap"#}
+{#              rel="stylesheet">#}
+{#        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"#}
+{#              integrity="sha512-yHknP1/AwR+yx26cB1y0cjvQUMvEa2PFzt1c9LlS4pRQ5NOTZFWbhBig+X9G9eYW/8m0/4OXNx8pxJ6z57x0dw=="#}
+{#              crossorigin="anonymous"/>#}
+{#        <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"#}
+{#                integrity="sha512-XtmMtDEcNz2j7ekrtHvOVR4iwwaD6o/FUJe6+Zq+HgcCsk3kj4uSQQR8weQ2QVj1o0Pk6PwYLohm206ZzNfubg=="#}
+{#                crossorigin="anonymous"></script>#}
+{#        </head>#}
+{#<body{{ attributes.addClass(body_classes) }}>#}
+
+{##}
+{#Keyboard navigation/accessibility link to main content section in#}
+{#page.html.twig.#}
+{##}
+{#<a href="#main-content" class="visually-hidden focusable skip-link">#}
+{#  {{ 'Skip to main content'|t }}#}
+{#</a>#}
+{#{{ page_top }}#}
+{#{{ page }}#}
+{#{{ page_bottom }}#}
+{#<js-bottom-placeholder token="{{ placeholder_token }}">#}
+{#</body>#}
+{#</html>#}
+
+{#
+/**
+ * @file
+ * Default theme implementation for the basic structure of a single Drupal page.
+ *
+ * Variables:
+ * - logged_in: A flag indicating if user is logged in.
+ * - root_path: The root path of the current page (e.g., node, admin, user).
+ * - node_type: The content type for the current node, if the page is a node.
+ * - head_title: List of text elements that make up the head_title variable.
+ *   May contain one or more of the following:
+ *   - title: The title of the page.
+ *   - name: The name of the site.
+ *   - slogan: The slogan of the site.
+ * - page_top: Initial rendered markup. This should be printed before 'page'.
+ * - page: The rendered page markup.
+ * - page_bottom: Closing rendered markup. This variable should be printed after
+ *   'page'.
+ * - db_offline: A flag indicating if the database is offline.
+ * - placeholder_token: The token for generating head, css, js and js-bottom
+ *   placeholders.
+ *
+ * @see template_preprocess_html()
+ *
+ * @ingroup themeable
+ */
+#}
+<!DOCTYPE html>
+<html{{ html_attributes }}>
+<head>
+  {# CTM #}
+  <script async="" src="//150646.tctm.co/t.js"></script>
+  <head-placeholder token="{{ placeholder_token }}">
+    <title>{{ head_title|safe_join(' | ') }}</title>
+    <css-placeholder token="{{ placeholder_token }}">
+      <js-placeholder token="{{ placeholder_token }}">
+        </head>
+<body{{ attributes }}>
+{#
+Keyboard navigation/accessibility link to main content section in
+page.html.twig.
+#}
+<a href="#main-content" class="visually-hidden focusable">
+  {{ 'Skip to main content'|t }}
+</a>
+{{ page_top }}
+{{ page }}
+{{ page_bottom }}
+<js-bottom-placeholder token="{{ placeholder_token }}">
+</body>
+</html>

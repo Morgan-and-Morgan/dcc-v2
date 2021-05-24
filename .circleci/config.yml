@@ -249,18 +249,35 @@ jobs:
       - run:
           name: run composer lock updater
           command: set -e && terminus project:clu $TERMINUS_SITE
+  npmbuild_and_persist:
+    docker:
+      - image: node:10.15.3
+    steps:
+      - checkout
+      - run:
+          name: install npm dependencies in a custom Drupal  theme
+          command: cd web/themes/custom/dcc && npm ci
+      - run:
+          name: Compile Assets
+          command: cd web/themes/custom/dcc && npm run build
+      - persist_to_workspace:
+          root: .
+          paths:
+            - web/themes/custom/dcc/dist
 
 workflows:
   version: 2
   build_deploy_and_test:
     jobs:
+      - npmbuild_and_persist
       - configure_env_vars
-      - static_tests
+      # - static_tests
       - build_php
       - deploy_to_pantheon:
           requires:
-            - static_tests
+            # - static_tests
             - build_php
+            - npmbuild_and_persist
       - visual_regression_test:
           requires:
             - configure_env_vars
@@ -269,18 +286,21 @@ workflows:
             branches:
               ignore:
                 - master
-      - behat_test:
-          requires:
-            - deploy_to_pantheon
-            - visual_regression_test
+            # - behat_test:
+            # requires:
+            # - deploy_to_pantheon
+            # - visual_regression_test
 
   scheduled_update_check:
     triggers:
-       - schedule:
-           cron: "0 0 * * *"
-           filters:
-             branches:
+      - schedule:
+          cron: "0 0 * * *"
+          filters:
+            branches:
               only:
                 - master
     jobs:
       - composer_lock_updater
+
+orbs:
+  pantheon: pantheon-systems/pantheon@0.5.1

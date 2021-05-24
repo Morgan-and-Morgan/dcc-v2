@@ -1,4 +1,4 @@
-uuid: c67bdd70-ab5b-46fa-8408-c7dc60c48b70
+uuid: 1839afc8-9ed9-4c30-8a94-7329976154ed
 langcode: en
 status: true
 dependencies: {  }
@@ -7,7 +7,7 @@ _core:
 id: feedback
 label: 'Website feedback'
 recipients:
-  - joshua.scott.feinstein@gmail.com
+  - developers@forthepeople.com
 reply: ''
 weight: 0
 message: 'Your message has been sent.'

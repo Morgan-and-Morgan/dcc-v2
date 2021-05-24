@@ -1,10 +1,11 @@
-uuid: 0b1fa1c6-6dda-4168-9034-544b13479e75
+uuid: cdb201bc-9c2f-470d-b1d6-72a7dbd7fc06
 langcode: en
 status: true
 dependencies:
   config:
     - field.field.node.article.body
     - field.field.node.article.comment
+    - field.field.node.article.field_featured_image
     - field.field.node.article.field_image
     - field.field.node.article.field_tags
     - image.style.thumbnail
@@ -12,6 +13,7 @@ dependencies:
   module:
     - comment
     - image
+    - media_library
     - path
     - text
 _core:
@@ -43,6 +45,13 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_featured_image:
+    type: media_library_widget
+    weight: 121
+    settings:
+      media_types: {  }
+    third_party_settings: {  }
+    region: content
   field_image:
     type: image_image
     weight: 4

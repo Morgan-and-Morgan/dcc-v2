@@ -1,0 +1,25 @@
+{
+  "name": "dcc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "sass:build": "gulp sass:build",
+    "sass:watch": "gulp sass:watch",
+    "js:build": "gulp js:build",
+    "js:watch": "gulp js:watch",
+    "dev": "gulp assets:watch",
+    "build": "gulp assets:build"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "ejs-loader": "^0.3.0",
+    "gulp": "^4.0.2",
+    "gulp-cli": "^2.3.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-sass": "^4.1.0",
+    "gulp-sourcemaps": "^2.6.5",
+    "webpack-stream": "^5.2.1"
+  }
+}

@@ -1,0 +1,20 @@
+uuid: c14ae96d-3e10-497b-840a-b1a5c5474ef2
+langcode: en
+status: true
+dependencies:
+  theme:
+    - dcc
+_core:
+  default_config_hash: 13GQpeITIJsp1kyPniXtWZfyFH87vb1xxJCHifL4UeE
+id: dcc_local_actions
+theme: dcc
+region: content
+weight: -20
+provider: null
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: 'Primary admin actions'
+  provider: core
+  label_display: '0'
+visibility: {  }

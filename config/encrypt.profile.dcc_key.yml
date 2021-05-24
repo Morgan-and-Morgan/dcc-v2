@@ -1,0 +1,13 @@
+uuid: 08486427-b633-4802-a8e6-7711ca671a97
+langcode: en
+status: true
+dependencies:
+  config:
+    - key.key.dcc_key
+  module:
+    - real_aes
+id: dcc_key
+label: 'DCC key'
+encryption_method: real_aes
+encryption_key: dcc_key
+encryption_method_configuration: {  }

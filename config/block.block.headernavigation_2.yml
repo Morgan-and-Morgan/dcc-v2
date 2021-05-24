@@ -1,0 +1,20 @@
+uuid: 7d1a938e-9ce9-461b-81b1-a9c40cdbde98
+langcode: en
+status: true
+dependencies:
+  module:
+    - we_megamenu
+  theme:
+    - dcc
+id: headernavigation_2
+theme: dcc
+region: navigation
+weight: 0
+provider: null
+plugin: 'we_megamenu_block:header-navigation'
+settings:
+  id: 'we_megamenu_block:header-navigation'
+  label: 'Header Navigation'
+  provider: we_megamenu
+  label_display: '0'
+visibility: {  }

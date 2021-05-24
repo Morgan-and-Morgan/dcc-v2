@@ -1,11 +1,11 @@
-uuid: 7b45872a-1acd-4a26-af9d-00dfafa69268
-name: dcc-v2
-mail: joshua.scott.feinstein@gmail.com
+uuid: edb7698a-75ee-4ded-9743-e39a12bdd252
+name: 'Disability Care Center'
+mail: developers@forthepeople.com
 slogan: ''
 page:
   403: ''
   404: ''
-  front: /node
+  front: /node/1
 admin_compact_mode: false
 weight_select_max: 100
 langcode: en

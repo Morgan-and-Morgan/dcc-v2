@@ -1,0 +1,39 @@
+<?php
+
+/**
+ * @file
+ * Bootstrap sub-theme.
+ *
+ * Place your custom PHP code in this file.
+ */
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function dcc_theme_suggestions_page_alter(array &$suggestions, array $variables) {
+  if (\Drupal::routeMatch()->getParameter('node')) {
+    $node = \Drupal::routeMatch()->getParameter('node');
+    $contentTypeName = $node->bundle();
+    $current_uri = \Drupal::request()->getRequestUri();
+    $clean_uri = preg_replace("~/~", "", $current_uri); //removes all slashes from uri
+    $suggestions[] = 'page__' . preg_replace("~-~", "_", $clean_uri); //replaces hyphens with underscores
+    $suggestions[] = 'page__type__' . $contentTypeName;
+  }
+}
+
+/**
+ * Implements hook_preprocess_html().
+ */
+function dcc_preprocess_html(&$variables)
+{
+  $current_path = \Drupal::service('path.current')->getPath();
+  $current_path = \Drupal::service('path.current')->getPath();
+  $path_alias = \Drupal::service('path.alias_manager')->getAliasByPath($current_path);
+  $path_alias = ltrim($path_alias, '/');
+  $variables['attributes']['class'][] = 'path-' . \Drupal\Component\Utility\Html::cleanCssIdentifier($path_alias);
+  if (isset($variables['node_type'])) {
+    // Add node-TYPE class to the <body> element.
+    $variables['attributes']['class'][] = 'node-type-' . $variables['node_type'];
+  }
+}

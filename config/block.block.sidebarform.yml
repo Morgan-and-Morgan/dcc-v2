@@ -1,0 +1,34 @@
+uuid: 13da5738-097c-4630-8204-66b1d33b9eb8
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:61c2d4f0-f1cd-49a1-8f35-e91d4b7451c6'
+  module:
+    - block_content
+    - node
+  theme:
+    - dcc
+id: sidebarform
+theme: dcc
+region: sidebar
+weight: 0
+provider: null
+plugin: 'block_content:61c2d4f0-f1cd-49a1-8f35-e91d4b7451c6'
+settings:
+  id: 'block_content:61c2d4f0-f1cd-49a1-8f35-e91d4b7451c6'
+  label: 'Sidebar form'
+  provider: block_content
+  label_display: '0'
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  node_type:
+    id: node_type
+    bundles:
+      article: article
+      page: page
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'

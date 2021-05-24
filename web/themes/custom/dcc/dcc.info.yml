@@ -1,0 +1,16 @@
+name: Disability Care Center
+type: theme
+description: DCC subtheme
+core: 8.x
+libraries:
+  - dcc/global-styling
+  - dcc/bootstrap_cdn
+# Defines the base theme
+base theme: bootstrap4
+regions:
+  header: 'Header'
+  navigation: 'Navigation'
+  content: 'Main content'
+  sidebar: 'Sidebar'
+  footer_first: 'Footer 1'
+  footer_second: 'Footer 2'

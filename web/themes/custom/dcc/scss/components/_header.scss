@@ -1,0 +1,123 @@
+header {
+  #topheader {
+    background: url(/themes/custom/dcc/images/topBG.png) top left no-repeat;
+    background-size: cover;
+    width: 100%;
+    display: block;
+  }
+  #logo {
+    padding: 35px 0 26px 0;
+  }
+  #uppernav {
+    list-style: none;
+    width: 100%;
+    float: left;
+    display: block;
+    margin-top: 20px;
+    margin-left:-10px !important;
+  }
+  #uppernav li {
+    float: left;
+    display: block;
+    margin-right:5px;
+    padding-right:5px;
+    padding-left:5px;
+    border-left: 1px solid #054667;
+    text-align: center;
+    font-size:12px;
+  }
+  #uppernav li:first-child {
+    border-left: none;
+  }
+  #uppernav li a {
+    color: #FFF;
+  }
+  .navbar {
+    margin-bottom: 0px;
+    border-bottom:0px !important;
+    border-top:0px !important;
+  }
+  nav {
+    background: #3a5c7b !important;
+  }
+  nav a {
+    color: #fff !important;
+    /*font-size: 19px;*/
+    font-size: 15px;
+    border-left: 1px solid #255178;
+  }
+  nav ul li:first-child a {
+    border-left: none;
+  }
+  nav a:hover,
+  nav .current_page_parent a,
+  nav .current_page_ancestor a,
+  nav .current-page-ancestor a,
+  nav .current-menu-item a{
+    background: #fff !important;
+    color:#3A5C7B !important;
+  }
+  nav a:hover{
+    text-decoration:underline !important;
+  }
+  .nav > li > a {
+    padding: 15px 0 15px 0 !important;
+
+  }
+  /* SUBNAV */
+  nav li ul {
+    display:none;
+    background: #1A384E !important;
+    position:absolute;
+    width:100%;
+    border-radius:0 0 1px 1px;
+  }
+  nav li:hover ul {
+    display:block;
+  }
+  nav li ul li {
+    margin:0px 0;
+  }
+  nav li ul li a{
+    padding:10px 0;
+    color: #fff !important;
+    font-size:14px !important;
+    display:block;
+  }
+  nav li ul li:last-child{
+    margin:0px 0 20px 0 !important;
+  }
+  nav li ul li a:hover{
+    color: #FFF !important;
+    text-decoration:none;
+  }
+  nav li:hover ul li a{
+    border-left: none !important;
+  }
+
+  .btn-danger {
+    width: 80%;
+    padding: 5px 0 0px 0;
+    margin: 10px 40px;
+    border: 1px solid #FFF;
+    border-radius: 1px;
+  }
+  .btn-danger p {
+    margin: 0 0 10px;
+  }
+  .btn-danger span {
+    font-size: 22px;
+    font-weight: 400 !important;
+  }
+  .btn-primary {
+    margin-top:20px;
+    background:#1A384E !important;
+    border-radius: 1px;
+  }
+  .scholarbuttons .btn-danger {
+    width:60%;
+    padding:20px;
+    margin:20px 20% 40px 20%;
+  }
+
+}

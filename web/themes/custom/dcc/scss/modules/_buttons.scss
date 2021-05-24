@@ -1,0 +1,48 @@
+@mixin btn-plain($background: $dark-turquoise, $color: $text-white, $font-size: 18px, $padding: 0 0 0 30px) {
+  @include signika-600($font-size);
+  color: $color;
+  text-decoration: none;
+  background: $background;
+  padding: $padding;
+  text-transform: uppercase;
+}
+
+@mixin btn-with-arrow($background: $dark-btg) {
+  @include signika-600(18px);
+  color: $text-white;
+  text-decoration: none;
+  background: $background;
+  padding: 0px 0px 0px 30px;
+  text-transform: uppercase;
+
+  &:after {
+    display: inline-block;
+    content: ">";
+    background: $text-blue;
+    padding: 18px;
+    margin-left: 25px;
+  }
+}
+
+@mixin btn-with-arrow($background: $dark-turquoise, $color: $text-white, $font-size: 18px) {
+  @include btn-plain($background, $color, $font-size);
+
+  &:after {
+    display: inline-block;
+    content: ">";
+    background: $dark-btg;
+    padding: 18px;
+    margin-left: 25px;
+  }
+}
+
+@mixin form-button($background: $dark-btg) {
+  font-family: 'Signika' !important;
+  font-weight: 600 !important;
+  font-size: 18px !important;
+  color: $text-white !important;
+  text-decoration: none !important;
+  background: $background !important;
+  padding: 20px !important;
+  text-transform: uppercase !important;
+}

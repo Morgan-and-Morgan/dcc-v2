@@ -10,6 +10,7 @@
 /drush/Commands/
 /vendor/
 /web/core/
+/web/libraries/
 /web/modules/contrib/
 /web/modules/README.txt
 /web/themes/contrib/
@@ -114,3 +115,10 @@ Thumbs.db
 # SASS #
 ##########
 .sass-cache
+
+# Node js modules #
+##########
+node_modules
+
+# JS & CSS compiled in custom theme #
+web/themes/custom/*/dist

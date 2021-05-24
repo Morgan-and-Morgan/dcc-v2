@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css?family=Signika:300,600');
+@import url('https://fonts.googleapis.com/css?family=Asap+Condensed:400,400i,600,600i');
+
+@mixin font($font-weight: 300, $font-size: '22pt', $font-family: 'Signika') {
+  font-family: $font-family;
+  font-weight: $font-weight;
+  font-size: $font-size;
+}
+
+@mixin signika($font-size, $font-weight) {
+  @include font($font-weight, $font-size, $font-family: 'Signika');
+}
+
+@mixin asap-condensed($font-size, $font-weight) {
+  @include font($font-weight, $font-size, $font-family: 'Asap Condensed');
+}
+
+@mixin signika-300($font-size) {
+  @include signika($font-size, $font-weight: 300);
+}
+
+@mixin signika-600($font-size) {
+  @include signika($font-size, $font-weight: 600);
+}
+
+@mixin asap-condensed-400($font-size) {
+  @include asap-condensed($font-size, $font-weight: 400);
+}
+
+@mixin asap-condensed-400-italic($font-size) {
+  @include asap-condensed($font-size, $font-weight: 400i);
+}
+
+@mixin asap-condensed-600($font-size) {
+  @include asap-condensed($font-size, $font-weight: 600);
+}
+
+@mixin asap-condensed-600-italic($font-size) {
+  @include asap-condensed($font-size, $font-weight: 600);
+  font-style: italic;
+}

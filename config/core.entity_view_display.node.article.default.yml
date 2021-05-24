@@ -1,4 +1,4 @@
-uuid: 2070fcd7-91c4-4afd-b435-ce1f3224f6e8
+uuid: 09515ba4-146f-4af5-87e2-3d4f4ac34f71
 langcode: en
 status: true
 dependencies:
@@ -6,6 +6,7 @@ dependencies:
     - core.entity_view_display.comment.comment.default
     - field.field.node.article.body
     - field.field.node.article.comment
+    - field.field.node.article.field_featured_image
     - field.field.node.article.field_image
     - field.field.node.article.field_tags
     - image.style.large
@@ -38,6 +39,15 @@ content:
       view_mode: default
       pager_id: 0
     third_party_settings: {  }
+  field_featured_image:
+    type: entity_reference_entity_view
+    weight: 111
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    region: content
   field_image:
     type: image
     weight: -1
