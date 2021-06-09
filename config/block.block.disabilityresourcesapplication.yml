@@ -1,0 +1,31 @@
+uuid: e5925d71-4b72-44a6-88c5-f562115b791b
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:9c0c1720-65af-492a-b0ea-ce4142b6662d'
+  module:
+    - block_content
+    - system
+  theme:
+    - dcc
+id: disabilityresourcesapplication
+theme: dcc
+region: content
+weight: 0
+provider: null
+plugin: 'block_content:9c0c1720-65af-492a-b0ea-ce4142b6662d'
+settings:
+  id: 'block_content:9c0c1720-65af-492a-b0ea-ce4142b6662d'
+  label: 'Disability Resources application'
+  provider: block_content
+  label_display: '0'
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    pages: ''
+    negate: true
+    context_mapping: {  }

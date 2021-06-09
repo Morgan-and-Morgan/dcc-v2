@@ -4,8 +4,12 @@ status: true
 dependencies:
   config:
     - field.field.node.page.body
+    - field.field.node.page.field_featured_image
+    - field.field.node.page.field_meta_tags
     - node.type.page
   module:
+    - media_library
+    - metatag
     - path
     - text
 _core:
@@ -30,6 +34,27 @@ content:
     weight: 10
     region: content
     settings: {  }
+    third_party_settings: {  }
+  field_featured_image:
+    weight: 122
+    settings:
+      media_types: {  }
+    third_party_settings: {  }
+    type: media_library_widget
+    region: content
+  field_meta_tags:
+    weight: 121
+    settings:
+      sidebar: true
+    third_party_settings: {  }
+    type: metatag_firehose
+    region: content
+  langcode:
+    type: language_select
+    weight: 2
+    region: content
+    settings:
+      include_locked: true
     third_party_settings: {  }
   path:
     type: path

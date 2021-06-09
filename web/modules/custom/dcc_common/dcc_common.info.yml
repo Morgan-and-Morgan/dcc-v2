@@ -1,0 +1,9 @@
+name: DCC
+description: 'DCC common module'
+type: module
+core: 8.x
+version: 1.0
+package: DCC
+core_version_requirement: ^8 || ^9
+project: 'dcc_common'
+

@@ -2,11 +2,14 @@
 @import "components/header";
 @import "components/footer";
 @import "components/sidebar_form";
+@import "components/nav_menu";
 
 
 // Pages
 @import "pages/front";
 @import "pages/basic_page";
+@import "pages/page_404";
+@import "pages/article";
 
 
 

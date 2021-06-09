@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d8ac46500215336a130172d565e58487",
+    "content-hash": "40f3dd4efa59aeaf1d0a8996cc63a8f2",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1713,6 +1713,54 @@
             }
         },
         {
+            "name": "drupal/config_delete",
+            "version": "1.17.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/config_delete.git",
+                "reference": "8.x-1.17"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/config_delete-8.x-1.17.zip",
+                "reference": "8.x-1.17",
+                "shasum": "3213000ffee27fb2595d419457e5a0e8182a1308"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-1.17",
+                    "datestamp": "1585809608",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Goran Nikolovski",
+                    "homepage": "https://gorannikolovski.com",
+                    "email": "goran@gorannikolovski.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Delete configuration items from the UI.",
+            "homepage": "https://www.drupal.org/project/config_delete",
+            "support": {
+                "source": "https://git.drupalcode.org/project/config_delete",
+                "issues": "https://www.drupal.org/project/issues/config_delete",
+                "email": "goran@gorannikolovski.com"
+            }
+        },
+        {
             "name": "drupal/config_devel",
             "version": "1.8.0",
             "source": {
@@ -2409,6 +2457,52 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/ctools",
                 "issues": "https://www.drupal.org/project/issues/ctools"
+            }
+        },
+        {
+            "name": "drupal/custom_sql_migrate_source_plugin",
+            "version": "1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/custom_sql_migrate_source_plugin.git",
+                "reference": "8.x-1.2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/custom_sql_migrate_source_plugin-8.x-1.2.zip",
+                "reference": "8.x-1.2",
+                "shasum": "6c3ce7500c0f6653a40e20871397d0493941e435"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9",
+                "drupal/migrate_plus": "*",
+                "drupal/migrate_tools": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-1.2",
+                    "datestamp": "1605884313",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Project has not opted into security advisory coverage!"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "ccx105",
+                    "homepage": "https://www.drupal.org/user/3157639"
+                }
+            ],
+            "description": "Migrations of content via custom SQL string.",
+            "homepage": "https://www.drupal.org/project/custom_sql_migrate_source_plugin",
+            "support": {
+                "source": "https://git.drupalcode.org/project/custom_sql_migrate_source_plugin"
             }
         },
         {
@@ -3210,6 +3304,68 @@
             }
         },
         {
+            "name": "drupal/honeypot",
+            "version": "2.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/honeypot.git",
+                "reference": "2.0.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/honeypot-2.0.1.zip",
+                "reference": "2.0.1",
+                "shasum": "c29d248c0fdcdf733a31b9214355acfa73716632"
+            },
+            "require": {
+                "drupal/core": "^8.0 || ^9.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "2.0.1",
+                    "datestamp": "1597855128",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Jeff Geerling",
+                    "homepage": "https://www.drupal.org/user/213194",
+                    "email": "geerlingguy@mac.com"
+                },
+                {
+                    "name": "geerlingguy",
+                    "homepage": "https://www.drupal.org/user/389011"
+                },
+                {
+                    "name": "vijaycs85",
+                    "homepage": "https://www.drupal.org/user/93488"
+                }
+            ],
+            "description": "Mitigates spam form submissions using the honeypot method.",
+            "homepage": "https://www.drupal.org/project/honeypot",
+            "keywords": [
+                "deterrent",
+                "form",
+                "honeypot",
+                "honeytrap",
+                "php",
+                "spam"
+            ],
+            "support": {
+                "source": "https://git.drupalcode.org/project/honeypot",
+                "issues": "https://www.drupal.org/project/issues/honeypot"
+            }
+        },
+        {
             "name": "drupal/image_widget_crop",
             "version": "2.3.0",
             "source": {
@@ -3664,6 +3820,60 @@
             }
         },
         {
+            "name": "drupal/menu_link_clone",
+            "version": "3.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/menu_link_clone.git",
+                "reference": "8.x-3.2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/menu_link_clone-8.x-3.2.zip",
+                "reference": "8.x-3.2",
+                "shasum": "c8d2babc7c367e70910bb7c8c78f44d36d8184ea"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9",
+                "drupal/entity_clone": "^1.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-3.2",
+                    "datestamp": "1583388236",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "heykarthikwithu",
+                    "homepage": "https://www.drupal.org/user/2833651"
+                },
+                {
+                    "name": "nitvirus",
+                    "homepage": "https://www.drupal.org/user/965290"
+                },
+                {
+                    "name": "vsujeetkumar",
+                    "homepage": "https://www.drupal.org/user/3200879"
+                }
+            ],
+            "description": "Allows clone the menu items.",
+            "homepage": "https://www.drupal.org/project/menu_link_clone",
+            "support": {
+                "source": "https://cgit.drupalcode.org/menu_link_clone",
+                "issues": "https://www.drupal.org/project/issues/menu_link_clone"
+            }
+        },
+        {
             "name": "drupal/menus_attribute",
             "version": "1.1.0",
             "source": {
@@ -3890,36 +4100,32 @@
         },
         {
             "name": "drupal/migrate_tools",
-            "version": "5.0.0",
+            "version": "4.5.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/migrate_tools.git",
-                "reference": "8.x-5.0"
+                "reference": "8.x-4.5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/migrate_tools-8.x-5.0.zip",
-                "reference": "8.x-5.0",
-                "shasum": "b7c91aa6f7de9d6d548f65f83c8736e47e5926a1"
+                "url": "https://ftp.drupal.org/files/projects/migrate_tools-8.x-4.5.zip",
+                "reference": "8.x-4.5",
+                "shasum": "06390b359bf53c50a30f2d6dc4c7542bfb1fe7ca"
             },
             "require": {
-                "drupal/core": "^8.8 | ^9",
-                "drupal/migrate_plus": "^5",
-                "php": ">=7.1"
+                "drupal/core": "^8 || ^9",
+                "drupal/migrate_plus": "^4 || ^5"
             },
             "require-dev": {
-                "drupal/migrate_plus": "^5",
-                "drupal/migrate_source_csv": "^3",
+                "drupal/migrate_plus": "4.x-dev",
+                "drupal/migrate_source_csv": "^2.2",
                 "drush/drush": "^10"
-            },
-            "suggest": {
-                "drush/drush": "^9 || ^10"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-5.0",
-                    "datestamp": "1588260531",
+                    "version": "8.x-4.5",
+                    "datestamp": "1574693285",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -3937,22 +4143,20 @@
             ],
             "authors": [
                 {
-                    "name": "Mike Ryan",
-                    "homepage": "https://www.drupal.org/u/mikeryan",
-                    "role": "Maintainer"
+                    "name": "drupalspoons",
+                    "homepage": "https://www.drupal.org/user/3647684"
                 },
                 {
-                    "name": "Lucas Hedding",
-                    "homepage": "https://www.drupal.org/u/heddn",
-                    "role": "Maintainer"
+                    "name": "mikeryan",
+                    "homepage": "https://www.drupal.org/user/4420"
                 }
             ],
             "description": "Tools to assist in developing and running migrations.",
             "homepage": "http://drupal.org/project/migrate_tools",
             "support": {
-                "source": "https://git.drupalcode.org/project/migrate_tools",
-                "issues": "https://www.drupal.org/project/issues/migrate_tools",
-                "slack": "#migrate"
+                "source": "http://cgit.drupalcode.org/migrate_tools",
+                "issues": "http://drupal.org/project/migrate_tools",
+                "irc": "irc://irc.freenode.org/drupal-migrate"
             }
         },
         {
@@ -4442,6 +4646,74 @@
             }
         },
         {
+            "name": "drupal/sfweb2lead_webform",
+            "version": "5.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/sfweb2lead_webform.git",
+                "reference": "8.x-5.2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/sfweb2lead_webform-8.x-5.2.zip",
+                "reference": "8.x-5.2",
+                "shasum": "5c94f1c2cd8388f864cccdc6ad86804107a596ba"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9",
+                "drupal/webform": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-5.2",
+                    "datestamp": "1607525088",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "AaronBauman",
+                    "homepage": "https://www.drupal.org/user/384578"
+                },
+                {
+                    "name": "chriscalip",
+                    "homepage": "https://www.drupal.org/user/210499"
+                },
+                {
+                    "name": "dago.aceves",
+                    "homepage": "https://www.drupal.org/user/198090"
+                },
+                {
+                    "name": "jrb",
+                    "homepage": "https://www.drupal.org/user/352123"
+                },
+                {
+                    "name": "markdorison",
+                    "homepage": "https://www.drupal.org/user/346106"
+                },
+                {
+                    "name": "rklawson",
+                    "homepage": "https://www.drupal.org/user/386645"
+                },
+                {
+                    "name": "stony",
+                    "homepage": "https://www.drupal.org/user/513916"
+                }
+            ],
+            "homepage": "https://www.drupal.org/project/sfweb2lead_webform",
+            "support": {
+                "source": "https://git.drupalcode.org/project/sfweb2lead_webform"
+            }
+        },
+        {
             "name": "drupal/shortcode",
             "version": "2.0.0",
             "source": {
@@ -4924,6 +5196,117 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/we_megamenu",
                 "issues": "https://www.drupal.org/project/issues/we_megamenu"
+            }
+        },
+        {
+            "name": "drupal/webform",
+            "version": "6.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/webform.git",
+                "reference": "6.0.3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/webform-6.0.3.zip",
+                "reference": "6.0.3",
+                "shasum": "b75f79e26b5d58f4a9e047131f63c482bdaa5593"
+            },
+            "require": {
+                "drupal/core": "^8.8 || ^9"
+            },
+            "require-dev": {
+                "drupal/address": "~1.0",
+                "drupal/bootstrap": "~3.0",
+                "drupal/captcha": "~1.0",
+                "drupal/chosen": "~3.0",
+                "drupal/clientside_validation": "~3.0",
+                "drupal/clientside_validation_jquery": "*",
+                "drupal/devel": "~3.0",
+                "drupal/entity": "~1.0",
+                "drupal/entity_print": "~2.0",
+                "drupal/gnode": "*",
+                "drupal/group": "1.0",
+                "drupal/jquery_ui": "~1.0",
+                "drupal/jquery_ui_checkboxradio": "~1.0",
+                "drupal/jquery_ui_datepicker": "~1.0",
+                "drupal/lingotek": "~3.0",
+                "drupal/mailsystem": "~4.0",
+                "drupal/paragraphs": "~1.0",
+                "drupal/select2": "~1.0",
+                "drupal/smtp": "~1.0",
+                "drupal/styleguide": "~1.0",
+                "drupal/telephone_validation": "~2.0",
+                "drupal/token": "~1.0",
+                "drupal/variationcache": "~1.0",
+                "drupal/webform_access": "*",
+                "drupal/webform_attachment": "*",
+                "drupal/webform_clientside_validation": "*",
+                "drupal/webform_devel": "*",
+                "drupal/webform_entity_print": "*",
+                "drupal/webform_group": "*",
+                "drupal/webform_node": "*",
+                "drupal/webform_options_limit": "*",
+                "drupal/webform_scheduled_email": "*",
+                "drupal/webform_share": "*",
+                "drupal/webform_ui": "*"
+            },
+            "suggest": {
+                "drupal/jquery_ui_checkboxradio": "Provides jQuery UI Checkboxradio library. Required by the Webform jQueryUI Buttons module. The Webform jQueryUI Buttons module is deprecated because jQueryUI is no longer maintained.",
+                "drupal/jquery_ui_datepicker": "Provides jQuery UI Datepicker library. Required to support datepickers. The Webform jQueryUI Datepicker module is deprecated because jQueryUI is no longer maintained."
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "6.0.3",
+                    "datestamp": "1620250254",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                },
+                "drush": {
+                    "services": {
+                        "drush.services.yml": "^9"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Jacob Rockowitz (jrockowitz)",
+                    "homepage": "https://www.drupal.org/u/jrockowitz",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Alexander Trotsenko (bucefal91)",
+                    "homepage": "https://www.drupal.org/u/bucefal91",
+                    "role": "Co-maintainer"
+                },
+                {
+                    "name": "Contributors",
+                    "homepage": "https://www.drupal.org/node/7404/committers",
+                    "role": "Contributor"
+                },
+                {
+                    "name": "quicksketch",
+                    "homepage": "https://www.drupal.org/user/35821"
+                },
+                {
+                    "name": "torotil",
+                    "homepage": "https://www.drupal.org/user/865256"
+                }
+            ],
+            "description": "Enables the creation of webforms and questionnaires.",
+            "homepage": "https://drupal.org/project/webform",
+            "support": {
+                "source": "https://git.drupalcode.org/project/webform",
+                "issues": "https://www.drupal.org/project/issues/webform?version=8.x",
+                "docs": "https://www.drupal.org/docs/8/modules/webform",
+                "forum": "https://drupal.stackexchange.com/questions/tagged/webform"
             }
         },
         {

@@ -1,0 +1,31 @@
+uuid: e3be0802-e167-473e-9d6d-fb4ffa4bca5c
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:dec3422b-7135-4ef6-b221-e558034e54d1'
+  module:
+    - block_content
+    - system
+  theme:
+    - dcc
+id: medicalqualificationsapplication
+theme: dcc
+region: content
+weight: 0
+provider: null
+plugin: 'block_content:dec3422b-7135-4ef6-b221-e558034e54d1'
+settings:
+  id: 'block_content:dec3422b-7135-4ef6-b221-e558034e54d1'
+  label: 'Medical Qualifications application'
+  provider: block_content
+  label_display: '0'
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    pages: ''
+    negate: true
+    context_mapping: {  }

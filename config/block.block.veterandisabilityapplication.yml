@@ -1,0 +1,31 @@
+uuid: d1ff8087-7ca0-4fab-94b5-4dffa2bca7b6
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:bd14adc7-817a-488b-82f1-a608888c5513'
+  module:
+    - block_content
+    - system
+  theme:
+    - dcc
+id: veterandisabilityapplication
+theme: dcc
+region: content
+weight: 0
+provider: null
+plugin: 'block_content:bd14adc7-817a-488b-82f1-a608888c5513'
+settings:
+  id: 'block_content:bd14adc7-817a-488b-82f1-a608888c5513'
+  label: 'Veteran Disability application'
+  provider: block_content
+  label_display: visible
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    pages: ''
+    negate: true
+    context_mapping: {  }

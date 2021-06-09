@@ -1,0 +1,31 @@
+uuid: 48908324-4a40-4973-9a92-24cf7768bf65
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:f9a50867-65db-488f-b47a-d77447beb901'
+  module:
+    - block_content
+    - system
+  theme:
+    - dcc
+id: socialsecuritydisabilityapplication
+theme: dcc
+region: content
+weight: 0
+provider: null
+plugin: 'block_content:f9a50867-65db-488f-b47a-d77447beb901'
+settings:
+  id: 'block_content:f9a50867-65db-488f-b47a-d77447beb901'
+  label: 'Social Security Disability application'
+  provider: block_content
+  label_display: '0'
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    pages: ''
+    negate: true
+    context_mapping: {  }

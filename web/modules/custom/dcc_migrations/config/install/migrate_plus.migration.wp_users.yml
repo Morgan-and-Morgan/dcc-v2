@@ -1,0 +1,19 @@
+id: wp_users
+label: WP Users
+migration_group: dcc
+source:
+  plugin: wordpress_users
+  key: migrate
+destination:
+  plugin: entity:user
+process:
+  uid: ID
+  name: user_login
+  pass: user_pass
+  mail: user_email
+  created:
+    plugin: date_to_timestamp
+    source: user_registered
+  status:
+    plugin: default_value
+    default_value: 1

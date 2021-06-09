@@ -7,6 +7,7 @@ dependencies:
   module:
     - block_content
     - node
+    - system
   theme:
     - dcc
 id: sidebarform
@@ -32,3 +33,8 @@ visibility:
     negate: false
     context_mapping:
       node: '@node.node_route_context:node'
+  request_path:
+    id: request_path
+    pages: "/disability-resources\r\n/disability-resources/disability-guide\r\n/medical-qualifications\r\n/social-security-disability\r\n/social-security-disability/qualify\r\n/social-security-disability/apply\r\n/social-security-disability/appeal-denial\r\n"
+    negate: true
+    context_mapping: {  }

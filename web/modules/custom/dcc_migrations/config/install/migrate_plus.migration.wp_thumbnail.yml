@@ -1,0 +1,39 @@
+id: wp_thumbnail
+label: WP Thumbnails
+migration_group: dcc
+source:
+  plugin: custom_sql_query
+  key: migrate
+  keys:
+    - id
+  type: integer
+  sql_query: "SELECT meta_value AS filename, post_id, guid, id, post_mime_type
+    FROM wp_posts p, wp_postmeta pm
+    WHERE p.id = pm.post_id
+    AND p.post_type = 'attachment'
+    AND meta_key = '_wp_attached_file'
+    AND p.post_mime_type IN ('image/jpeg', 'image/png')"
+  constants:
+    source_base_path: https://www.classaction.com/wp-content/uploads
+    uri_file: 'public://wp-thumbnails'
+process:
+  filename: filename
+  psf_destination_full_path:
+      -
+        plugin: concat
+        delimiter: /
+        source:
+          - constants/uri_file
+          - filename
+      -
+        plugin: urlencode
+  uri:
+    plugin: file_copy
+    source:
+      - guid
+      - '@psf_destination_full_path'
+destination:
+  plugin: 'entity:file'
+migration_dependencies:
+  required: {}
+  optional: {}

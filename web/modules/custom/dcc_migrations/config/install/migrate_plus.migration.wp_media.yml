@@ -1,0 +1,31 @@
+id: wp_media
+migration_group: dcc
+label: 'WP Media'
+source:
+  plugin: custom_sql_query
+  key: migrate
+  sql_query: "SELECT meta_value AS filename, post_id, guid, id, post_mime_type
+                  FROM wp_posts p, wp_postmeta pm
+                  WHERE p.id = pm.post_id
+                  AND p.post_type = 'attachment'
+                  AND meta_key = '_wp_attached_file'
+                  AND p.post_mime_type IN ('image/jpeg', 'image/png')"
+  keys:
+    - id
+  type: integer
+process:
+  field_media_image/target_id:
+    -
+      plugin: migration_lookup
+      migration: wp_thumbnail
+      source: id
+    -
+      plugin: skip_on_empty
+      method: row
+  alt:
+    plugin: alt_by_image_id
+    source: id
+  field_media_image/alt: '@alt'
+destination:
+  plugin: 'entity:media'
+  default_bundle: image

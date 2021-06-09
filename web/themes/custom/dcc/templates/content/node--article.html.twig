@@ -103,7 +103,9 @@
 
   <div{{ content_attributes.addClass('node__content') }}>
     <h1>{{ label.0 }}</h1>
-    {{ content }}
+    {{ node.field_featured_image|view }}
+    <p class="article-by">Article By: Disability Care Center</p>
+    {{ node.body|view }}
   </div>
 
 </article>

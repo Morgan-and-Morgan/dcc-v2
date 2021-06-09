@@ -1,0 +1,26 @@
+name: DCC Migration Module
+description: Module that will store all migrations.
+package: Migration
+type: module
+version: 1.0
+core: 8.x
+config_devel:
+  install:
+    - migrate_plus.migration_group.dcc
+    - migrate_plus.migration.wp_users
+    - migrate_plus.migration.wp_thumbnail
+    - migrate_plus.migration.wp_media
+    - migrate_plus.migration.dcc_page
+#    - migrate_plus.migration.dcc_taxonomy
+#    - migrate_plus.migration.dcc_product_categories
+#    - migrate_plus.migration.dcc_side_effects
+#    - migrate_plus.migration.dcc_blog_post
+#    - migrate_plus.migration.dcc_products
+#    - migrate_plus.migration.dcc_blog_post_banner
+#    - migrate_plus.migration.dcc_hero_banner
+#    - migrate_plus.migration.page_banner
+#    - migrate_plus.migration.dcc_lawsuits
+#    - migrate_plus.migration.dcc_settlements
+#    - migrate_plus.migration.dcc_attorneys
+#    - migrate_plus.migration.dcc_side_popup
+#    - migrate_plus.migration.product_types

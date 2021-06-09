@@ -1,18 +1,25 @@
-.node-type-page {
+.node-type-article {
   background: #FFFFFF;
   font-family: 'Open Sans Condensed', sans-serif;
   #main-wrapper {
+    padding-top: 20px;
     #main {
       .main-content {
         section {
           .region-content {
             article {
               font-weight: 400;
+              .field--name-field-featured-image {
+                float: left;
+                margin-right: 15px;
+              }
               /*HEADINGS*/
               h1 {
                 color: #D43F3A !important;
                 font-size: 30px !important;
                 font-weight: 700 !important;
+                margin-top: 20px !important;
+                margin-bottom: 10px !important;
               }
               h2 {
                 color: #1A384E !important;

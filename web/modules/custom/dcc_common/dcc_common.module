@@ -1,0 +1,11 @@
+<?php
+
+function dcc_common_editor_js_settings_alter(array &$settings) {
+
+  foreach (array_keys($settings['editor']['formats']) as $text_format_id) {
+    if ($settings['editor']['formats'][$text_format_id]['editor'] === 'ckeditor') {
+      $settings['editor']['formats'][$text_format_id]['editorSettings']['customConfig'] =
+        base_path() . drupal_get_path('module', 'dcc_common') . '/js/ckeditor_config.js';
+    }
+  }
+}

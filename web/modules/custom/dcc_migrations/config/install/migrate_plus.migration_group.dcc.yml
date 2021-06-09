@@ -1,0 +1,14 @@
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - dcc_migrations
+id: dcc
+label: 'dcc migration'
+description: 'Migrations for dcc.com content'
+source_type: Wordpress
+module: null
+shared_configuration:
+  source:
+    key: migrate
