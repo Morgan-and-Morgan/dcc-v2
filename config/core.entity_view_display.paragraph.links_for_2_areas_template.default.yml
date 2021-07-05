@@ -1,0 +1,36 @@
+uuid: f2f9549f-7113-4c78-ab67-44f360c20f87
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.links_for_2_areas_template.field_link_to_content
+    - field.field.paragraph.links_for_2_areas_template.field_short_info
+    - paragraphs.paragraphs_type.links_for_2_areas_template
+  module:
+    - link
+    - text
+id: paragraph.links_for_2_areas_template.default
+targetEntityType: paragraph
+bundle: links_for_2_areas_template
+mode: default
+content:
+  field_link_to_content:
+    weight: 2
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+  field_short_info:
+    weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+hidden: {  }

@@ -1,0 +1,31 @@
+uuid: 99ea9ceb-e99d-40f0-86aa-d7f41ecc5d56
+langcode: en
+status: true
+dependencies:
+  module:
+    - context_entity_field
+name: ssi_form_layout
+label: 'SSI Form layout'
+group: dcc
+description: ''
+requireAllConditions: true
+disabled: false
+conditions:
+  'entity_field:node':
+    id: 'entity_field:node'
+    field_name: field_page_template
+    field_state: value
+    field_value: ssi_form
+    context_mapping:
+      node: '@node.node_route_context:node'
+    negate: 0
+reactions:
+  page_template_suggestions:
+    id: page_template_suggestions
+    suggestions: page__disability_ssi_form
+    saved: false
+  body_class:
+    id: body_class
+    body_class: page-ssi
+    saved: false
+weight: -3

@@ -1,0 +1,46 @@
+uuid: 44031a5f-5f1c-49cf-8dba-85d06b4558c2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_disability_links
+    - paragraphs.paragraphs_type.5_areas
+    - paragraphs.paragraphs_type.links_for_2_areas_template
+  module:
+    - entity_reference_revisions
+id: paragraph.5_areas.field_disability_links
+field_name: field_disability_links
+entity_type: paragraph
+bundle: 5_areas
+label: 'Disability Links'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      links_for_2_areas_template: links_for_2_areas_template
+    target_bundles_drag_drop:
+      2_areas:
+        weight: 7
+        enabled: false
+      4_areas:
+        weight: 8
+        enabled: false
+      4_areas_with_form:
+        weight: 9
+        enabled: false
+      5_areas:
+        weight: 10
+        enabled: false
+      6_areas:
+        weight: 11
+        enabled: false
+      links_for_2_areas_template:
+        enabled: true
+        weight: 12
+field_type: entity_reference_revisions

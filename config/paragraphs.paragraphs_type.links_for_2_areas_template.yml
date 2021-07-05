@@ -1,0 +1,10 @@
+uuid: 793d2333-06a3-47d4-a0f5-45d6024b8e1d
+langcode: en
+status: true
+dependencies: {  }
+id: links_for_2_areas_template
+label: 'Links for 2 areas template'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

@@ -1,0 +1,29 @@
+uuid: 04a1e785-9d17-4a0a-bda1-396108744baa
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+name: disability_ss_layout
+label: 'Disability SS layout'
+group: dcc
+description: ''
+requireAllConditions: true
+disabled: false
+conditions:
+  request_path:
+    id: request_path
+    pages: /ss
+    negate: false
+    uuid: fdb2f795-c8cd-4dd5-b267-ab34489fecfe
+    context_mapping: {  }
+reactions:
+  page_template_suggestions:
+    id: page_template_suggestions
+    suggestions: page__disability_ss
+    saved: false
+  body_class:
+    id: body_class
+    body_class: page-ss
+    saved: false
+weight: -4

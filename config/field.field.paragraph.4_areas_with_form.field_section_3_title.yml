@@ -1,0 +1,19 @@
+uuid: a1ea7b7f-2d91-43af-a079-637842cbb3cf
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_section_3_title
+    - paragraphs.paragraphs_type.4_areas_with_form
+id: paragraph.4_areas_with_form.field_section_3_title
+field_name: field_section_3_title
+entity_type: paragraph
+bundle: 4_areas_with_form
+label: 'Section 3 Title'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,31 @@
+uuid: 5fcbde5c-ab24-45ea-b17b-c074abfe2171
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_2_areas
+    - node.type.page
+    - paragraphs.paragraphs_type.2_areas
+  module:
+    - entity_reference_revisions
+id: node.page.field_2_areas
+field_name: field_2_areas
+entity_type: node
+bundle: page
+label: '2 Areas'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      2_areas: 2_areas
+    target_bundles_drag_drop:
+      2_areas:
+        enabled: true
+        weight: 2
+field_type: entity_reference_revisions

@@ -1,0 +1,10 @@
+uuid: d417ad83-8050-4236-bfad-f6696d07f755
+langcode: en
+status: true
+dependencies: {  }
+id: 4_areas
+label: '4 Areas'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

@@ -1,0 +1,33 @@
+{% set classes = [
+  'paragraph',
+  'paragraph--type--' ~ paragraph.bundle|clean_class,
+  view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+  not paragraph.isPublished() ? 'paragraph--unpublished'
+] %}
+{% block paragraph %}
+  <div{{ attributes.addClass(classes) }}>
+    {% block content %}
+    <main
+      style="background:url('{{ paragraph.field_section_1_bg|file_url }}') top left no-repeat fixed; background-size: cover; padding-top:55px; margin-top:-20px;">
+      <div class="container">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+          <div style="padding-bottom:30px;" id="maincopy" class="col-lg-12 col-md-12 col-sm-12 col-12">
+            <h1 style="text-align: center;">{{ nodetitle }}</h1>
+            <span class="largerfont"><p style="text-align: center;">{{ paragraph.field_section_1_text.value|raw }}</p></span>
+          </div>
+        </div>
+      </div>
+      <div id="lightbluesection" style="margin-bottom:0px; padding-bottom:0px;">
+        <div class="container">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="row" style="padding:0 20px 20px 20px;">
+              <p>{{ paragraph.field_section_2_text.value|raw }}</p>
+            </div>
+            {{ content.field_disability_links }}
+          </div>
+        </div>
+      </div>
+    </main>
+    {% endblock %}
+  </div>
+{% endblock paragraph %}

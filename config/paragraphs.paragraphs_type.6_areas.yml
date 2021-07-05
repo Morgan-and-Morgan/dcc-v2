@@ -1,0 +1,10 @@
+uuid: be8168ef-e20a-405c-baae-1a8db512b265
+langcode: en
+status: true
+dependencies: {  }
+id: 6_areas
+label: '6 Areas'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

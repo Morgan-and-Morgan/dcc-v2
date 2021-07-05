@@ -1,0 +1,9 @@
+uuid: cc69e7ef-adb3-4864-a8f1-cd0e6cf0cd77
+langcode: en
+status: true
+dependencies: {  }
+id: state_codes_short_
+label: 'State codes (Short)'
+category: Geographic
+likert: false
+options: "AK: AK\nAL: AL\nAZ: AZ\nAR: AR\nCA: CA\nCO: CO\nCT: CT\nDE: DE\nFL: FL\nGA: GA\nHI: HI\nID: ID\nIL: IL\nIN: IN\nIA: IA\nKS: KS\nKY: KY\nLA: LA\nME: ME\nMD: MD\nMA: MA\nMI: MI\nMN: MN\nMS: MS\nMO: MO\nMT: MT\nNE: NE\nNV: NV\nNH: NH\nNJ: NJ\nNM: NM\nNY: NY\nNC: NC\nND: ND\nOH: OH\nOK: OK\nOR: OR\nPA: PA\nRI: RI\nSC: SC\nSD: SD\nTN: TN\nTX: TX\nUT: UT\nVT: VT\nVA: VA\nWA: WA\nWV: WV\nWI: WI\nWY: WY"

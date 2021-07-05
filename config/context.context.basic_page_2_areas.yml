@@ -1,0 +1,40 @@
+uuid: b53d6b1a-8de5-4b0f-bf46-06393636837b
+langcode: en
+status: true
+dependencies:
+  module:
+    - context_entity_field
+    - ctools
+name: basic_page_2_areas
+label: 'Basic Page - 2 Areas'
+group: basic_page
+description: 'Basic Page - 2 Areas'
+requireAllConditions: true
+disabled: false
+conditions:
+  'entity_field:node':
+    id: 'entity_field:node'
+    field_name: field_page_template
+    field_state: value
+    field_value: 2_areas
+    context_mapping:
+      node: '@node.node_route_context:node'
+    negate: 0
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    bundles:
+      page: page
+    negate: false
+    uuid: 7d0d8082-c8c0-4c0f-bc5a-84f5d8a2d915
+    context_mapping:
+      node: '@node.node_route_context:node'
+reactions:
+  page_template_suggestions:
+    id: page_template_suggestions
+    suggestions: page__2_areas
+    saved: false
+  body_class:
+    id: body_class
+    body_class: page-template-2-areas
+    saved: false
+weight: 0

@@ -136,37 +136,14 @@
           </div>
 
           <div class="col-sm-5 col-12">
-
-            <div class="gf_browser_chrome gform_wrapper" id="gform_wrapper_1">
-              <form method="post" enctype="multipart/form-data" id="gform_1" action="/">
-                <div class="gform_heading">
-                  <h3 class="gform_title">Disability Claim Help</h3>
-                  <span class="gform_description"></span>
-                </div>
-              </form>
+            <div class="webform-wrapper">
+              <div class="form_heading">
+                <h3 class="form_title">Disability Claim Help</h3>
+                <span class="form_description"></span>
+              </div>
+              {{ drupal_entity('webform', 'disability_claim_help') }}
             </div>
-            <script
-              type="text/javascript"> jQuery(document).bind('gform_post_render', function (event, formId, currentPage) {
-                if (formId == 1) {
-                  if (typeof Placeholders != 'undefined') {
-                    Placeholders.enable();
-                  }
-                  if (!/(android)/i.test(navigator.userAgent)) {
-                    jQuery('#input_1_4').mask('(999) 999-9999').bind('keypress', function (e) {
-                      if (e.which == 13) {
-                        jQuery(this).blur();
-                      }
-                    });
-                  }
-                }
-              });
-              jQuery(document).bind('gform_post_conditional_logic', function (event, formId, fields, isInit) {
-              });</script>
-            <script type="text/javascript"> jQuery(document).ready(function () {
-                jQuery(document).trigger('gform_post_render', [1, 1])
-              }); </script>
           </div>
-
         </div>
       </div>
     </div>
@@ -289,7 +266,7 @@
       <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 col-12">
           <p style="text-align:center; font-size:11px; padding-bottom:10px; margin-top:-55px;">
-            ©2021. All Rights Reserved.<br>
+            ©{{ 'now' | date('Y') }}. All Rights Reserved.<br>
             20 North Orange Ave, Suite 1600, Orlando, FL 32801<br><br>
             This site is designed to be accessible to and usable by people with and without disabilities.<br>
             Please <a style="font-size: 11px; color:#4C9AC1 !important; text-decoration:underline;" href="/contact-us">contact

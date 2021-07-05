@@ -1,0 +1,23 @@
+uuid: 89b1817a-1bc6-44a3-b13d-ad76c21a541c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_link_to_content
+    - paragraphs.paragraphs_type.links_for_2_areas_template
+  module:
+    - link
+id: paragraph.links_for_2_areas_template.field_link_to_content
+field_name: field_link_to_content
+entity_type: paragraph
+bundle: links_for_2_areas_template
+label: 'Link to Content'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 1
+  title: 1
+field_type: link

@@ -4,14 +4,44 @@ status: true
 dependencies:
   config:
     - field.field.node.page.body
+    - field.field.node.page.field_2_areas
+    - field.field.node.page.field_4_areas
+    - field.field.node.page.field_4_areas_with_form
+    - field.field.node.page.field_5_areas
+    - field.field.node.page.field_6_areas
     - field.field.node.page.field_featured_image
     - field.field.node.page.field_meta_tags
+    - field.field.node.page.field_page_template
+    - field.field.node.page.field_ss_ssi_webform
     - node.type.page
   module:
+    - field_group
+    - field_states_ui
     - media_library
     - metatag
+    - paragraphs
     - path
     - text
+    - webform
+third_party_settings:
+  field_group:
+    group_template:
+      children:
+        - field_2_areas
+        - field_4_areas
+        - field_4_areas_with_form
+        - field_5_areas
+        - field_6_areas
+      parent_name: ''
+      weight: 8
+      format_type: fieldset
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+        required_fields: true
+      label: Template
 _core:
   default_config_hash: AD_lefuYmjsKeH3OQApsyP_nLj6ZnGaALznLQSQ0Z_o
 id: node.page.default
@@ -21,44 +51,209 @@ mode: default
 content:
   body:
     type: text_textarea_with_summary
-    weight: 31
+    weight: 9
     region: content
     settings:
       rows: 9
-      summary_rows: 3
       placeholder: ''
+      summary_rows: 3
       show_summary: false
-    third_party_settings: {  }
+    third_party_settings:
+      field_states_ui:
+        form:
+          type: ''
+          list: ''
   created:
     type: datetime_timestamp
-    weight: 10
+    weight: 3
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_2_areas:
+    type: entity_reference_paragraphs
+    weight: 9
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: 2_areas
+    third_party_settings:
+      field_states_ui:
+        form:
+          type: ''
+          list: ''
+          add: Add
+        field_states:
+          ded3fb20-4209-4192-a547-dd949065467c:
+            uuid: ded3fb20-4209-4192-a547-dd949065467c
+            id: visible
+            data:
+              target: field_page_template
+              comparison: value
+              value: 2_areas
+              submit:
+                save: Add
+                cancel: Cancel
+    region: content
+  field_4_areas:
+    type: entity_reference_paragraphs
+    weight: 10
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: ''
+    third_party_settings:
+      field_states_ui:
+        field_states:
+          ea9fa651-3c2a-42a5-9e66-734bcfc554c3:
+            uuid: ea9fa651-3c2a-42a5-9e66-734bcfc554c3
+            id: visible
+            data:
+              target: field_page_template
+              comparison: value
+              value: 4_areas
+              submit:
+                save: Add
+                cancel: Cancel
+    region: content
+  field_4_areas_with_form:
+    type: entity_reference_paragraphs
+    weight: 11
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: 4_areas_with_form
+    third_party_settings:
+      field_states_ui:
+        form:
+          type: ''
+          list:
+            374cb452-6a8d-4fdb-9245-62561d1d1388:
+              operations:
+                edit: Edit
+                delete: Delete
+          add: Add
+        field_states:
+          374cb452-6a8d-4fdb-9245-62561d1d1388:
+            uuid: 374cb452-6a8d-4fdb-9245-62561d1d1388
+            id: visible
+            data:
+              target: field_page_template
+              comparison: value
+              value: 4_areas_with_form
+              submit: 'Add Cancel'
+    region: content
+  field_5_areas:
+    type: entity_reference_paragraphs
+    weight: 12
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: 5_areas
+    third_party_settings:
+      field_states_ui:
+        form:
+          type: ''
+          list:
+            57424cef-38ed-4970-8a13-090ce3c91430:
+              operations:
+                edit: Edit
+                delete: Delete
+          add: Add
+        field_states:
+          57424cef-38ed-4970-8a13-090ce3c91430:
+            uuid: 57424cef-38ed-4970-8a13-090ce3c91430
+            id: visible
+            data:
+              target: field_page_template
+              comparison: value
+              value: 5_areas
+              submit: 'Add Cancel'
+    region: content
+  field_6_areas:
+    type: entity_reference_paragraphs
+    weight: 13
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: 6_areas
+    third_party_settings:
+      field_states_ui:
+        form:
+          type: ''
+          list:
+            42371879-787f-497a-be91-2f24239bb8a6:
+              operations:
+                edit: Edit
+                delete: Delete
+          add: Add
+        field_states:
+          42371879-787f-497a-be91-2f24239bb8a6:
+            uuid: 42371879-787f-497a-be91-2f24239bb8a6
+            id: visible
+            data:
+              target: field_page_template
+              comparison: value
+              value: 6_areas
+              submit: 'Add Cancel'
+    region: content
   field_featured_image:
-    weight: 122
+    weight: 13
     settings:
       media_types: {  }
     third_party_settings: {  }
     type: media_library_widget
     region: content
   field_meta_tags:
-    weight: 121
+    weight: 11
     settings:
       sidebar: true
     third_party_settings: {  }
     type: metatag_firehose
     region: content
+  field_page_template:
+    weight: 7
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_ss_ssi_webform:
+    weight: 12
+    settings:
+      default_data: true
+      webforms: {  }
+    third_party_settings:
+      field_states_ui:
+        form:
+          type: ''
+          list: ''
+          add: Add
+    type: webform_entity_reference_select
+    region: content
   langcode:
     type: language_select
-    weight: 2
+    weight: 1
     region: content
     settings:
       include_locked: true
     third_party_settings: {  }
   path:
     type: path
-    weight: 30
+    weight: 6
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -66,26 +261,26 @@ content:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 15
+    weight: 4
     region: content
     third_party_settings: {  }
   status:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 120
+    weight: 10
     region: content
     third_party_settings: {  }
   sticky:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 16
+    weight: 5
     region: content
     third_party_settings: {  }
   title:
     type: string_textfield
-    weight: -5
+    weight: 0
     region: content
     settings:
       size: 60
@@ -93,7 +288,7 @@ content:
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 5
+    weight: 2
     region: content
     settings:
       match_operator: CONTAINS

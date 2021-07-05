@@ -1,0 +1,10 @@
+uuid: 0c8143a9-d1f9-44ac-a635-f746211e1778
+langcode: en
+status: true
+dependencies: {  }
+id: 2_areas
+label: '2 Areas'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

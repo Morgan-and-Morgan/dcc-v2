@@ -1,0 +1,29 @@
+uuid: 6875a5b3-52d3-41a4-bf45-e147adadd5aa
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+name: disability_ssi_layout
+label: 'Disability SSI layout'
+group: dcc
+description: ''
+requireAllConditions: true
+disabled: false
+conditions:
+  request_path:
+    id: request_path
+    pages: /ssi
+    negate: false
+    uuid: fdb2f795-c8cd-4dd5-b267-ab34489fecfe
+    context_mapping: {  }
+reactions:
+  page_template_suggestions:
+    id: page_template_suggestions
+    suggestions: page__disability_ssi
+    saved: false
+  body_class:
+    id: body_class
+    body_class: page-ssi
+    saved: false
+weight: -5

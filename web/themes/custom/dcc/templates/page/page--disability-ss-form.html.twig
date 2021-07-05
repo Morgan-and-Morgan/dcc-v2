@@ -1,0 +1,102 @@
+<div id="page-wrapper">
+  <div id="page">
+    <header>
+      <div id="topheader">
+        <div class="container">
+          <div class="row pl-0 pr-0">
+            <div id="logo" class="col-lg-6 col-md-12 col-sm-12 col-12">
+              <a href="/"><img class="img-responsive" src="/themes/custom/dcc/images/ss/logo.png"></a>
+            </div>
+            <div id="blank" class="col-lg-3 col-md-3 d-lg-block d-none"></div>
+            <div id="topnavs" class="col-lg-3 col-md-12 col-sm-12 col-12">
+              <p id="abovephone"><strong>Qualify For Disability</strong></p>
+              <button class="btn btn-danger btn-lg" type="button">
+                <p><img src="/themes/custom/dcc/images/ss/phoneicon.png"><span>(888) 504-0035</span></p>
+              </button>
+              <p id="belowphone"><strong>Nationwide Benefits</strong></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div class="container">
+        <div id="maincopy" class="col-lg-12 col-md-12 col-sm-12 col-12">
+          <div class="ss-webform-wrapper">
+            {% if node.field_ss_ssi_webform.value.0.target_id %}
+              {{ drupal_entity('webform', node.field_ss_ssi_webform.value.0.target_id) }}
+            {% else %}
+              {{ drupal_entity('webform', 'ssi_dcc_home_form') }}
+            {% endif %}
+          </div>
+          {{ node.body.0.value|raw }}
+          <div id="homemaincopy">
+            <div class="row">
+              <div class="threemain col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                <img class="img-responsive" src="/themes/custom/dcc/images/ss/check.png">
+                <h3> Qualify</h3>
+                <p></p>
+                <p style="text-align: left;">If you suffer from a physical or mental disability and are
+                  uncertain about
+                  whether you qualify for social security disability benefits, our Disability Advocates
+                  will quickly
+                  determine your eligibility by asking you a few questions through our free disability
+                  evaluation.</p>
+                <p></p></div>
+              <div class="threemain col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                <img class="img-responsive" src="/themes/custom/dcc/images/ss/appeal.png">
+                <h3> Appeal</h3>
+                <p>If you've been denied social security disability benefits for any reason, we can help!
+                  The appeals
+                  process is a difficult and confusing step for most applicants but don't worry, we have
+                  helped thousands
+                  of Americans successfully file appeals and receive disability benefits.</p>
+              </div>
+              <div class="threemain col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                <img class="img-responsive" src="/themes/custom/dcc/images/ss/apply.png">
+                <h3> Apply</h3>
+                <p>Most first-time disability applicants are denied benefits because of a small technical
+                  error made on
+                  the application. Here at the Disability Care Center we will guide you from start to
+                  finish through your
+                  disability application, increasing initial approval chances. </p>
+              </div>
+            </div>
+          </div>
+
+          <div id="logobanner" class="col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="row">
+              <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                <img class="img-responsive" src="/themes/custom/dcc/images/ss/nosscr.jpg"></div>
+              <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                <img class="img-responsive" src="/themes/custom/dcc/images/ss/aba.jpg"></div>
+              <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                <img class="img-responsive" src="/themes/custom/dcc/images/ss/nadr.jpg"></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="container">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+          <p style="text-align:center; font-size:11px;">
+            © Copyright {{ 'now' | date('Y') }} DisabilityCareCenter.org | All Rights Reserved
+            <br>20 North Orange Ave, Suite 1600, Orlando, FL 32801
+            <br><br>This site is designed to be accessible to and usable by people with and without
+            disabilities.
+            <br>Please <a href="/contact-us/">contact us</a> if you encounter an accessibility or usability
+            issue on
+            this site.
+            <br><br><a href="/privacy-policy/">Privacy Policy</a> | <a href="/terms-conditions/">Terms &amp;
+              Conditions</a>
+          </p>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+</div>

@@ -1,0 +1,35 @@
+uuid: a212eee2-b08f-4f42-9e8f-2e4c2d990755
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.links_for_2_areas_template.field_link_to_content
+    - field.field.paragraph.links_for_2_areas_template.field_short_info
+    - paragraphs.paragraphs_type.links_for_2_areas_template
+  module:
+    - link
+    - text
+id: paragraph.links_for_2_areas_template.default
+targetEntityType: paragraph
+bundle: links_for_2_areas_template
+mode: default
+content:
+  field_link_to_content:
+    weight: 0
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
+  field_short_info:
+    weight: 1
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+hidden:
+  created: true
+  status: true

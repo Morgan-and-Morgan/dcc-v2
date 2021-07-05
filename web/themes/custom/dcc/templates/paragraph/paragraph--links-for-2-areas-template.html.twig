@@ -1,0 +1,20 @@
+{% set classes = [
+  'paragraph',
+  'paragraph--type--' ~ paragraph.bundle|clean_class,
+  view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+  not paragraph.isPublished() ? 'paragraph--unpublished'
+] %}
+{% block paragraph %}
+  <div{{ attributes.addClass(classes) }}>
+    {% block content %}
+      <div class="conditions col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        {% if content.field_link_to_content is not empty %}
+          <h3>{{ content.field_link_to_content }}</h3>
+        {% endif %}
+        {% if content.field_short_info is not empty %}
+          <p>{{ paragraph.field_short_info.value|raw }}</p>
+        {% endif %}
+      </div>
+    {% endblock %}
+  </div>
+{% endblock paragraph %}

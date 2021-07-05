@@ -1,0 +1,179 @@
+{#
+/**
+ * @file
+ * Bartik's theme implementation to display a single page.
+ *
+ * The doctype, html, head and body tags are not in this template. Instead they
+ * can be found in the html.html.twig template normally located in the
+ * core/modules/system directory.
+ *
+ * Available variables:
+ *
+ * General utility variables:
+ * - base_path: The base URL path of the Drupal installation. Will usually be
+ *   "/" unless you have installed Drupal in a sub-directory.
+ * - is_front: A flag indicating if the current page is the front page.
+ * - logged_in: A flag indicating if the user is registered and signed in.
+ * - is_admin: A flag indicating if the user has permission to access
+ *   administration pages.
+ *
+ * Site identity:
+ * - front_page: The URL of the front page. Use this instead of base_path when
+ *   linking to the front page. This includes the language domain or prefix.
+ *
+ * Page content (in order of occurrence in the default page.html.twig):
+ * - node: Fully loaded node, if there is an automatically-loaded node
+ *   associated with the page and the node ID is the second argument in the
+ *   page's path (e.g. node/12345 and node/12345/revisions, but not
+ *   comment/reply/12345).
+ *
+ * Regions:
+ * - page.header: Items for the header region.
+ * - page.highlighted: Items for the highlighted region.
+ * - page.primary_menu: Items for the primary menu region.
+ * - page.secondary_menu: Items for the secondary menu region.
+ * - page.featured_top: Items for the featured top region.
+ * - page.content: The main content of the current page.
+ * - page.sidebar_first: Items for the first sidebar.
+ * - page.sidebar_second: Items for the second sidebar.
+ * - page.featured_bottom_first: Items for the first featured bottom region.
+ * - page.featured_bottom_second: Items for the second featured bottom region.
+ * - page.featured_bottom_third: Items for the third featured bottom region.
+ * - page.footer_first: Items for the first footer column.
+ * - page.footer_second: Items for the second footer column.
+ * - page.footer_third: Items for the third footer column.
+ * - page.footer_fourth: Items for the fourth footer column.
+ * - page.footer_fifth: Items for the fifth footer column.
+ * - page.breadcrumb: Items for the breadcrumb region.
+ *
+ * @see template_preprocess_page()
+ * @see html.html.twig
+ */
+#}
+{% set content_classes = page.sidebar ? 'col-lg-8 col-md-8 col-sm-8 col-12' : 'col-12 col-md-12 col-sm-12 col-12' %}
+{% set sidebar_classes = 'col-lg-4 col-md-4 col-sm-4 col-12' %}
+
+<div id="page-wrapper">
+  <div id="page">
+    {# <header id="header" class="header" role="banner" aria-label="{{ 'Site header'|t }}"> #}
+    {# <div class="section layout-container clearfix"> #}
+    {# {{ page.header }} #}
+    {# </div> #}
+    {# </header> #}
+
+
+    <header>
+      <div id="topheader">
+        <div class="container">
+          <div class="row">
+            <div id="logo" class="col-lg-6 col-md-6 col-sm-12 col-12">
+              <a href="/">
+                <img class="img-responsive" src="/themes/custom/dcc/images/DCC_logo_2021.png">
+                <!--<img class="img-responsive" src="/wp-content/themes/dcc/images/logo.png" />-->
+              </a>
+            </div>
+            <div id="blank" class="col-md-2 col-xs-hidden"></div>
+            <div id="topnavs" class="col-md-4 col-12">
+              <ul id="uppernav">
+                <!--<li><a href="/giving-back/"><img src="/wp-content/themes/dcc/images/givingbackicon.png">Giving Back</a></li>-->
+                <li><a href="/about-us/"><img src="/themes/custom/dcc/images/abouticon.png">About Us</a></li>
+                <li><a href="/contact-us/"><img src="/themes/custom/dcc/images/contacaticon.png">Contact Us</a></li>
+              </ul>
+              <button class="btn btn-danger btn-lg" type="button">
+                <p>Disability Evaluation<br>
+                  <img src="/themes/custom/dcc/images/phoneicon.png"><span><a style="color:#FFF;"
+                                                                              href="tel:+18887384309"
+                                                                              data-ctm-watch-id="1" data-ctm-tracked="1"
+                                                                              data-observe="1" data-observer-id="0">(888) 738-4309</a></span>
+                </p>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+
+    <nav>
+      <div class="section layout-container clearfix">
+        {{ page.navigation }}
+      </div>
+    </nav>
+    {# Content #}
+    {{ node.field_4_areas|view }}
+    {# Content #}
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+            <p><strong>Main Navigation</strong></p>
+            <ul id="menu-main" class="menu">
+              <li id="menu-item-25"
+                  class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-25">
+                <a
+                  href="https://www.disabilitycarecenter.org/social-security-disability/">Social Security Disability
+                  Qualifications</a></li>
+              <li id="menu-item-23"
+                  class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-23">
+                <a
+                  href="https://www.disabilitycarecenter.org/medical-qualifications/">Medical Qualifications</a></li>
+              <li id="menu-item-1540"
+                  class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-1540">
+                <a
+                  href="https://www.disabilitycarecenter.org/veterans/">Veterans Disability</a></li>
+              <li id="menu-item-21"
+                  class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-21">
+                <a
+                  href="https://www.disabilitycarecenter.org/disability-resources/">Disability Resources</a></li>
+              <li id="menu-item-20" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20"><a
+                  href="https://www.disabilitycarecenter.org/blog/">Blog</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+            <p><strong>Who We Are</strong></p>
+            <ul id="menu-who-we-are" class="menu">
+              <li id="menu-item-149" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-149"><a
+                  href="https://www.disabilitycarecenter.org/about-us/">About Us</a></li>
+              <li id="menu-item-156" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-156"><a
+                  href="https://www.disabilitycarecenter.org/terms-conditions/">Terms &amp; Conditions</a></li>
+              <li id="menu-item-157" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-157"><a
+                  href="https://www.disabilitycarecenter.org/privacy-policy/">Privacy Policy</a></li>
+            </ul>
+          </div>
+          <!--<div class="col-lg-4 col-md-4 hidden-sm hidden-xs" >
+
+
+          </div>-->
+          <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+            <p><strong>Connect With Us</strong></p>
+            <ul id="menu-social" class="menu">
+              <li id="menu-item-158"
+                  class="fblink menu-item menu-item-type-custom menu-item-object-custom menu-item-158"><a
+                  href="https://www.facebook.com/pages/Disability-Care-Center/759469717482319?fref=ts">Like Us On
+                  Facebook</a></li>
+              <li id="menu-item-159"
+                  class="twitterlink menu-item menu-item-type-custom menu-item-object-custom menu-item-159"><a
+                  href="https://twitter.com/disability_care">Follow Us On Twitter</a></li>
+              <li id="menu-item-160"
+                  class="contactlink menu-item menu-item-type-post_type menu-item-object-page menu-item-160"><a
+                  href="https://www.disabilitycarecenter.org/contact-us/">Contact Us</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+            <p style="text-align:center; font-size:11px; padding-bottom:10px; margin-top:-55px;">
+              ©{{ 'now' | date('Y') }}. All Rights Reserved.<br>
+              20 North Orange Ave, Suite 1600, Orlando, FL 32801<br><br>
+              This site is designed to be accessible to and usable by people with and without disabilities.<br>
+              Please <a style="font-size: 11px; color:#4C9AC1 !important; text-decoration:underline;"
+                        href="/contact-us">contact
+                us</a> if you encounter an accessibility or usability issue on this site.
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+</div>

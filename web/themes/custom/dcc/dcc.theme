@@ -39,51 +39,12 @@ function dcc_preprocess_html(&$variables)
     $variables['attributes']['class'][] = 'node-type-' . $variables['node_type'];
   }
 
-
-//
-//$id = '138';
-//
-//
-//
-//  $original_post = getPostById($id);
-//  kint($original_post); die();
-//  if ($original_post['post_parent'] == '0') {
-//    $alias = '/' . $original_post['name'];
-//
-//  }
-//  else {
-//    $parent = getPostById($original_post['post_parent']);
-//
-//    if ($parent['post_parent'] == '0') {
-//      $alias = '/' . $parent['name'] . '/' . $original_post['name'];
-//    }
-//    else {
-//      $grandparent = getPostById($parent['post_parent']);
-//      $alias = '/' . $grandparent['name'] . '/' . $parent['name'] . '/' . $original_post['name'];
-//    }
-//  }
 }
 
-///**
-// * Get Post by id.
-// */
-//function getPostById($id) {
-//  if (isset($id)) {
-//    $con = Database::getConnection('default', 'migrate');
-//    $query = $con->select('wp_posts', 'p', ['target' => 'migrate']);
-//    $query->condition('p.ID', $id);
-//    $query->condition('p.post_type', 'page');
-//    $query->addField('p', 'post_parent', 'post_parent');
-//    $query->addField('p', 'post_name', 'post_name');
-//    $result = $query->execute()->fetchAll();
-//    $post_data = [];
-//    foreach ($result as $item) {
-//      $post_data['post_name'] = $item->post_name;
-//      $post_data['post_name'] = $item->post_parent;
-//    }
-//    return $post_data;
-//  }
-//  else {
-//    return NULL;
-//  }
-//}
+/**
+ * Implements hook_preprocess_paragraph().
+ */
+function dcc_preprocess_paragraph(&$variables){
+  $node = \Drupal::request()->attributes->get('node');
+  $variables['nodetitle'] = $node->getTitle();
+}

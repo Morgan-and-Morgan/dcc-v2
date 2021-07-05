@@ -1,0 +1,191 @@
+.page-template-5-areas {
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 16px;
+  line-height: 1.42857143;
+  color: #333;
+  background-color: #fff;
+  .btn {
+    border-radius: 0px !important;
+    padding: 10px 16px;
+    font-size: 18px;
+    line-height: 1.3333333;
+  }
+  .btn-primary {
+    margin-top: 20px;
+    background: #1A384E !important;
+    border-radius: 1px;
+  }
+  #blue h2, #blue-grey h2, #blue-grey2 h2, #red h2, #lightbluetop h2 {
+    color: #FFF !important;
+    font-size: 31px !important;
+  }
+  #red {
+    min-height: 66px;
+    background: #BE3A3A;
+  }
+  #white {
+    background: #FFF;
+    padding-bottom: 50px;
+    padding-top: 20px;
+    font-size: 16px;
+  }
+  #grey, #grey2 {
+    background: #FFF;
+    padding-bottom: 50px;
+    margin-bottom: -50px;
+  }
+
+  #blue-grey, #blue-grey2 {
+    text-align: left !important;
+  }
+  #blue, #blue-grey, #blue-grey2, #lightbluetop {
+    min-height: 66px;
+    text-align: center;
+    background: #1A384E;
+  }
+  .largerfont {
+    display: block;
+    font-size: 18px;
+    margin-top: 20px;
+  }
+  #maincopy {
+    font-weight: 400;
+  }
+  main {
+    display: block;
+    h1 {
+      margin-top: 20px;
+      margin-bottom: 10px;
+      color: #D43F3A !important;
+      font-size: 30px !important;
+      font-weight: 700 !important;
+    }
+    h2 {
+      font-size: 24px !important;
+      font-weight: 700 !important;
+      margin-top: 17px !important;
+    }
+    h3 {
+      color: #4C99C0 !important;
+      font-size: 21px !important;
+    }
+    #lightblue {
+      margin-top: 10px;
+      background: url('/themes/custom/dcc/images/lighblueBG.jpg') top left repeat;
+      width: 100%;
+      color: #FFF;
+      line-height: 180%;
+      font-size: 16px;
+      font-weight: 300;
+      padding-bottom: 30px;
+      margin-bottom: 0px;
+    }
+    #lightbluesection {
+      background: #A0C9DE;
+      color: #FFF;
+      font-size: 16px !important;
+      padding-bottom: 50px !important;
+      margin-bottom: -50px !important;
+
+      .field--name-field-disability-links {
+        .field__item {
+          .conditions {
+            padding: 5px 10px 10px 10px;
+            border-bottom: 1px solid #A0C9DE;
+            color: #000;
+            font-size: 15px;
+            a {
+              color: #19384D;
+            }
+            h3 {
+              color: #4C99C0 !important;
+              font-size: 21px !important;
+              margin-top: 20px;
+              margin-bottom: 10px;
+            }
+          }
+          &:nth-child(even) {
+            .conditions {
+              background: #6B95BA;
+            }
+          }
+          &:nth-child(odd) {
+            .conditions {
+              background: #99BDDD;
+            }
+          }
+          &:first-child {
+            .conditions {
+              margin: 30px 0 0;
+            }
+          }
+        }
+      }
+    }
+  }
+  .webform-wrapper {
+    padding: 10px 20px;
+    margin: 35px -10px 0 -10px;
+    background: #1A384E;
+
+    .form_heading {
+      width: 98%;
+      margin-bottom: 1.125em;
+
+      .form_title {
+        letter-spacing: normal !important;
+        margin: .625em 0 .375em;
+        font-weight: 700;
+        text-align: center;
+        font-size: 27px !important;
+        color: #FFF !important;
+      }
+    }
+    form {
+      label {
+        display: none;
+      }
+      input,
+      select,
+      textarea {
+        border-radius: 0;
+      }
+      textarea {
+        height: 80px;
+      }
+      fieldset {
+        color: white;
+        legend {
+          border-bottom: none;
+        }
+        .fieldset-wrapper {
+          .form-radios {
+            display: flex;
+            .form-type-radio {
+              width: 50%;
+              label {
+                display: inline;
+              }
+            }
+          }
+        }
+      }
+      .form-actions {
+        input {
+          margin-top: 0;
+          display: inline-block;
+          -webkit-appearance: button;
+          cursor: pointer;
+          background: #BE3A3A !important;
+          color: #FFF !important;
+          border-radius: 1px;
+          border: none;
+          width: 100%;
+          padding: 10px;
+          font-size: 21px !important;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+}

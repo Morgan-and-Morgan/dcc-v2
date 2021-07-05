@@ -1,0 +1,21 @@
+uuid: 66d0f128-1c80-4b76-933c-cd8e19adad2a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_section_3_text
+    - paragraphs.paragraphs_type.4_areas_with_form
+  module:
+    - text
+id: paragraph.4_areas_with_form.field_section_3_text
+field_name: field_section_3_text
+entity_type: paragraph
+bundle: 4_areas_with_form
+label: 'Section 3 Text'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

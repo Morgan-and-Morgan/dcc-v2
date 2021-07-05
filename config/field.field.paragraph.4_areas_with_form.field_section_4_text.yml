@@ -1,0 +1,21 @@
+uuid: 397d3008-9884-4fb1-940f-297e082052c1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_section_4_text
+    - paragraphs.paragraphs_type.4_areas_with_form
+  module:
+    - text
+id: paragraph.4_areas_with_form.field_section_4_text
+field_name: field_section_4_text
+entity_type: paragraph
+bundle: 4_areas_with_form
+label: 'Section 4 Text'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

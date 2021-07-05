@@ -5,8 +5,15 @@ dependencies:
   config:
     - core.entity_view_mode.node.teaser
     - field.field.node.page.body
+    - field.field.node.page.field_2_areas
+    - field.field.node.page.field_4_areas
+    - field.field.node.page.field_4_areas_with_form
+    - field.field.node.page.field_5_areas
+    - field.field.node.page.field_6_areas
     - field.field.node.page.field_featured_image
     - field.field.node.page.field_meta_tags
+    - field.field.node.page.field_page_template
+    - field.field.node.page.field_ss_ssi_webform
     - node.type.page
   module:
     - text
@@ -30,6 +37,13 @@ content:
     weight: 101
     region: content
 hidden:
+  field_2_areas: true
+  field_4_areas: true
+  field_4_areas_with_form: true
+  field_5_areas: true
+  field_6_areas: true
   field_featured_image: true
   field_meta_tags: true
+  field_page_template: true
+  field_ss_ssi_webform: true
   langcode: true

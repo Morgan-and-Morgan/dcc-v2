@@ -21,6 +21,7 @@
         "drupal/config_delete": "^1.17",
         "drupal/config_devel": "^1.8",
         "drupal/context": "^4.0@beta",
+        "drupal/context_entity_field": "^1.0@alpha",
         "drupal/core-composer-scaffold": "^8.8.1",
         "drupal/core-recommended": "^8.8",
         "drupal/ctools": "^3.4",
@@ -33,6 +34,7 @@
         "drupal/entity_clone": "^1.0@beta",
         "drupal/entity_export_csv": "^1.0@beta",
         "drupal/field_group": "^3.1",
+        "drupal/field_states_ui": "^2.0",
         "drupal/fontawesome": "^2.17",
         "drupal/ga_login": "^1.0@alpha",
         "drupal/google_tag": "^1.4",
@@ -142,6 +144,15 @@
             },
             "file-mapping": {
                 "[project-root]/.editorconfig": false
+            }
+        },
+        "patches": {
+            "drupal/context": {
+                "Allow to clone context": "https://www.drupal.org/files/issues/2020-08-21/context-cannot-clone-context-3072991-9.patch"
+            },
+            "drupal/field_states_ui": {
+                "Field_parents key not found": "https://www.drupal.org/files/issues/2021-06-08/3196272-3.patch",
+                "Ajax error": "https://www.drupal.org/files/issues/2020-10-28/3145195-13661358_6.patch"
             }
         }
     },

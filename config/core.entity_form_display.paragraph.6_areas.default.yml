@@ -1,0 +1,187 @@
+uuid: 69fa4239-1c28-4fb1-bcf1-85232cf0ab9c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.6_areas.field_section_1_bg
+    - field.field.paragraph.6_areas.field_section_1_text
+    - field.field.paragraph.6_areas.field_section_2_text
+    - field.field.paragraph.6_areas.field_section_3_bg
+    - field.field.paragraph.6_areas.field_section_3_text
+    - field.field.paragraph.6_areas.field_section_3_title
+    - field.field.paragraph.6_areas.field_section_4_text
+    - field.field.paragraph.6_areas.field_section_4_title
+    - field.field.paragraph.6_areas.field_section_5_bg
+    - field.field.paragraph.6_areas.field_section_5_text
+    - field.field.paragraph.6_areas.field_section_5_title
+    - paragraphs.paragraphs_type.6_areas
+  module:
+    - field_group
+    - media_library
+    - text
+third_party_settings:
+  field_group:
+    group_section_1:
+      children:
+        - field_section_1_bg
+        - field_section_1_text
+      parent_name: ''
+      weight: 0
+      format_type: fieldset
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+        required_fields: true
+      label: 'Section 1'
+    group_section_2:
+      children:
+        - field_section_2_text
+      parent_name: ''
+      weight: 2
+      format_type: fieldset
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+        required_fields: true
+      label: 'Section 2'
+    group_section_3:
+      children:
+        - field_section_3_title
+        - field_section_3_text
+        - field_section_3_bg
+      parent_name: ''
+      weight: 3
+      format_type: fieldset
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+        required_fields: true
+      label: 'Section 3'
+    group_section_4:
+      children:
+        - field_section_4_title
+        - field_section_4_text
+      parent_name: ''
+      weight: 4
+      format_type: fieldset
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+        required_fields: true
+      label: 'Section 4'
+    group_section_5:
+      children:
+        - field_section_5_title
+        - field_section_5_text
+        - field_section_5_bg
+      parent_name: ''
+      weight: 5
+      format_type: fieldset
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+        required_fields: true
+      label: 'Section 5'
+id: paragraph.6_areas.default
+targetEntityType: paragraph
+bundle: 6_areas
+mode: default
+content:
+  field_section_1_bg:
+    weight: 1
+    settings:
+      media_types: {  }
+    third_party_settings: {  }
+    type: media_library_widget
+    region: content
+  field_section_1_text:
+    weight: 2
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  field_section_2_text:
+    weight: 2
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  field_section_3_bg:
+    type: media_library_widget
+    weight: 7
+    settings:
+      media_types: {  }
+    third_party_settings: {  }
+    region: content
+  field_section_3_text:
+    weight: 6
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  field_section_3_title:
+    weight: 5
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_section_4_text:
+    weight: 9
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  field_section_4_title:
+    weight: 8
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_section_5_bg:
+    type: media_library_widget
+    weight: 12
+    settings:
+      media_types: {  }
+    third_party_settings: {  }
+    region: content
+  field_section_5_text:
+    weight: 11
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  field_section_5_title:
+    weight: 10
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+hidden:
+  created: true
+  status: true

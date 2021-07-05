@@ -1,0 +1,60 @@
+.page-template-2-areas {
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #333;
+  background-color: #fff;
+  .largerfont {
+    display: block;
+    font-size: 18px;
+    margin-top: 20px;
+  }
+  #maincopy {
+    font-weight: 400;
+  }
+  main {
+    display: block;
+    h1 {
+      margin-top: 20px;
+      margin-bottom: 10px;
+      color: #D43F3A !important;
+      font-size: 30px !important;
+      font-weight: 700 !important;
+    }
+    #lightbluesection {
+      background: #3A5C7B;
+      color: #FFF;
+      font-size: 16px !important;
+      padding-bottom: 50px !important;
+      margin-bottom: -50px !important;
+
+      .field--name-field-disability-links {
+        .field__item {
+          .conditions {
+            padding: 5px 10px 10px 10px;
+            border-bottom: 1px solid #A0C9DE;
+            color: #000;
+            font-size: 15px;
+            a {
+              color: #19384D;
+            }
+            h3 {
+              color: #4C99C0 !important;
+              font-size: 21px !important;
+            }
+          }
+          &:nth-child(even) {
+            .conditions {
+              background: #6B95BA;
+            }
+          }
+          &:nth-child(odd) {
+            .conditions {
+              background: #99BDDD;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,295 @@
+.page-ssi {
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #333;
+  background: #ECF0F1 !important;
+  width: 100%;
+
+  header {
+    display: block;
+    #topheader {
+      background: url(/themes/custom/dcc/images/ss/topBG.png) top left no-repeat;
+      background-size: cover;
+      width: 100%;
+      display: block;
+      #logo {
+        padding: 20px 0 20px 0;
+        img {
+          display: block;
+          max-width: 100%;
+          height: auto;
+        }
+      }
+      #topnavs {
+        #abovephone {
+          margin-top: 20px;
+          font-size: 18px;
+          font-weight: 700;
+          margin-bottom: 0px;
+        }
+        #belowphone {
+          font-size: 18px;
+          font-weight: 700;
+          margin-top: -5px;
+          color: #FFF;
+          text-align: center;
+        }
+        #abovephone, #belowphone {
+          color: #FFF;
+          text-align: center;
+        }
+      }
+    }
+    .btn-danger {
+      transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+      width: 100%;
+      padding: 10px 0 5px 0;
+      margin: 10px 0;
+      border: 1px solid #fff;
+      border-radius: 1px;
+      p {
+        margin: 0 0 10px;
+      }
+      &:hover {
+        border-color: #ac2925;
+      }
+    }
+  }
+
+  main {
+    font-size: 18px;
+    display: block;
+    #maincopy {
+      font-weight: 400;
+      color: #333;
+
+      #pictureandform {
+        @media (min-width: 769px) {
+          background-image: url("/themes/custom/dcc/images/ss/capitol-buildingTEST4.jpg");
+          background-repeat: no-repeat;
+          background-position:-50px 15px;
+        }
+      .ssi-webform-wrapper {
+          //padding: 10px 20px;
+          margin: 10px -10px 0 -10px;
+          //background: #1A384E;
+          background: #3A5D7B;
+
+          //.form_heading {
+          //  width: 98%;
+          //  margin-bottom: 1.125em;
+
+            //.form-title {
+            //  letter-spacing: normal !important;
+            //  margin: .625em 0 .375em;
+            //  font-weight: 700;
+            //  text-align: center;
+            //  font-size: 27px !important;
+            //  color: #FFF !important;
+            //}
+          //}
+          form {
+            .form-title {
+              background: #1A384E;
+              letter-spacing: normal !important;
+              //margin: .625em 0 .375em;
+              //font-weight: 700 !important;
+              text-align: center;
+              //font-size: 27px !important;
+              color: #FFF !important;
+              padding: 17px 5px;
+              h3 {
+                font-weight: 700 !important;
+                //text-align: center;
+                font-size: 27px !important;
+                margin-bottom: 0;
+              }
+            }
+            .form-main-wrapper {
+              display: block;
+              padding: 5px 30px 10px 30px;
+              margin: 0;
+              hr {
+                margin-top: 20px;
+                margin-bottom: 20px;
+                border: 0;
+                border-top: 1px solid #eee;
+              }
+              label {
+                display: none;
+                color: #FFF;
+                font-size: 14px;
+              }
+              input {
+                margin-top: 20px;
+                &[type="radio"] {
+                margin-top: unset;
+              }
+              }
+              select {
+                margin-top: 20px;
+              }
+              input,
+              select,
+              textarea {
+                border-radius: 3px;
+                min-height: 40px;
+                font-size: 14px;
+              }
+              textarea {
+                height: 100px !important;
+              }
+              fieldset {
+                legend {
+                  border-bottom: none;
+                  color: #FFF;
+                  font-size: 14px;
+                }
+                .fieldset-wrapper {
+                  .form-radios {
+                    display: flex;
+                    .form-type-radio {
+                      display: flex;
+                      align-items: center;
+                      width: 30%;
+                      label {
+                        display: inline;
+                        font-size: 12px;
+                        margin-left: 4px;
+                        font-weight: 700;
+                      }
+                    }
+                  }
+                }
+              }
+              .form-actions {
+                input {
+                  margin-top: 0;
+                  display: inline-block;
+                  -webkit-appearance: button;
+                  cursor: pointer;
+                  background: linear-gradient(to bottom, #D9534F 0px, #C12E2A 100%);
+                  text-transform: uppercase;
+                  color: #FFF !important;
+                  border-radius: 3px;
+                  border: none;
+                  width: 100%;
+                  padding: 10px;
+                  font-size: 18px !important;
+                  font-weight: 600;
+                }
+              }
+            }
+          }
+        }
+        }
+
+      h1 {
+        color: #1A384E !important;
+        font-size: 31px !important;
+        font-weight: 700 !important;
+        text-align: center;
+        padding-top: 20px;
+        margin-bottom: 25px !important;
+      }
+    }
+    #homemaincopy {
+      background: url(/themes/custom/dcc/images/ss/b-grid.jpg) repeat #193045 !important;
+      font-size: 21px;
+      padding: 30px 0;
+      text-align: center;
+      color: #FFF !important;
+      margin: 40px 0 0;
+    }
+    #homemaincopy {
+      background: url(/themes/custom/dcc/images/ss/b-grid.jpg) repeat #193045 !important;
+      font-size: 21px;
+      padding: 30px 0;
+      text-align: center;
+      color: #FFF !important;
+      margin: 40px 0 0;
+      h2 {
+        color: #FFF !important;
+        font-size: 26px !important;
+        font-weight: 700 !important;
+        margin-top: 17px !important;
+        margin-bottom: 10px;
+      }
+      .threemain {
+        font-size: 18px;
+        margin-bottom: 20px;
+        color: #FFF !important;
+        img {
+          text-align: center;
+          margin: 0 auto;
+          padding-top: 20px;
+          display: block;
+          max-width: 100%;
+          height: auto;
+        }
+        h3 {
+          font-size: 21px !important;
+          color: #FFF !important;
+          font-weight: 600 !important;
+          text-align: center !important;
+          margin: 30px 0;
+        }
+        p {
+          text-align: left;
+        }
+      }
+    }
+    #homelowermainwrap {
+      background: url(/themes/custom/dcc/images/ss/homelowermaincopy.jpg) center right no-repeat;
+      background-size: contain;
+      #homelowermaincopy {
+        padding: 40px 0;
+        h2 {
+          color: #1A384E !important;
+          font-size: 26px !important;
+          font-weight: 700 !important;
+          margin-top: 17px !important;
+        }
+      }
+      @media (max-width: 1200px) {
+        background-size: cover;
+      }
+      @media (max-width: 992px) {
+        background: url(/themes/custom/dcc/images/ss/homelowermaincopy2.jpg) center right no-repeat;
+        background-size: cover;
+      }
+    }
+  }
+
+  footer {
+    background: #1A384E;
+    margin-top: 0px;
+    padding-top: 40px;
+    #logobanner {
+      background: #FFF;
+      width: 100%;
+      padding: 20px;
+      text-align: center !important;
+      img {
+        max-width: 100%;
+        text-align: center !important;
+        margin: 0 auto;
+      }
+    }
+    padding-bottom: 20px;
+    background: #1A384E;
+    p {
+      padding-top: 30px;
+      text-indent: 0px;
+      margin-bottom: 0;
+      color: #FFF !important;
+      font-weight: 200 !important;
+    }
+    a, p {
+      color: #FFF !important;
+      font-weight: 400 !important;
+      font-size: 11px;
+    }
+  }
+}

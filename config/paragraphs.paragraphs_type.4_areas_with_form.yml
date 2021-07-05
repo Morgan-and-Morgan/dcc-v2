@@ -1,0 +1,10 @@
+uuid: dc50d7d3-78d8-4d57-8866-a81bdd1694ac
+langcode: en
+status: true
+dependencies: {  }
+id: 4_areas_with_form
+label: '4 Areas with form'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

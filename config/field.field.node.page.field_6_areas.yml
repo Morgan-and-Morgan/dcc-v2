@@ -1,0 +1,43 @@
+uuid: f74c8ad5-4c8f-428e-a54c-25abcad7c869
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_6_areas
+    - node.type.page
+    - paragraphs.paragraphs_type.6_areas
+  module:
+    - entity_reference_revisions
+id: node.page.field_6_areas
+field_name: field_6_areas
+entity_type: node
+bundle: page
+label: '6 Areas'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      6_areas: 6_areas
+    target_bundles_drag_drop:
+      2_areas:
+        weight: 6
+        enabled: false
+      4_areas:
+        weight: 7
+        enabled: false
+      4_areas_with_form:
+        weight: 8
+        enabled: false
+      5_areas:
+        weight: 9
+        enabled: false
+      6_areas:
+        enabled: true
+        weight: 10
+field_type: entity_reference_revisions

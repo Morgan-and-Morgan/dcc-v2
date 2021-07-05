@@ -1,0 +1,93 @@
+uuid: 080e93fc-9575-4e63-a33f-5a057b4300c0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.5_areas.field_disability_links
+    - field.field.paragraph.5_areas.field_section_1_bg
+    - field.field.paragraph.5_areas.field_section_1_text
+    - field.field.paragraph.5_areas.field_section_2_text
+    - field.field.paragraph.5_areas.field_section_2_title
+    - field.field.paragraph.5_areas.field_section_3_text
+    - field.field.paragraph.5_areas.field_section_3_title
+    - field.field.paragraph.5_areas.field_section_4_text
+    - field.field.paragraph.5_areas.field_section_4_title
+    - paragraphs.paragraphs_type.5_areas
+  module:
+    - entity_reference_revisions
+    - text
+id: paragraph.5_areas.default
+targetEntityType: paragraph
+bundle: 5_areas
+mode: default
+content:
+  field_disability_links:
+    weight: 8
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    type: entity_reference_revisions_entity_view
+    region: content
+  field_section_1_bg:
+    weight: 0
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_section_1_text:
+    weight: 7
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_section_2_text:
+    weight: 2
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_section_2_title:
+    weight: 1
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_section_3_text:
+    weight: 4
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_section_3_title:
+    weight: 3
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_section_4_text:
+    weight: 5
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_section_4_title:
+    weight: 6
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden: {  }

@@ -1,0 +1,10 @@
+uuid: ab7d2029-cd3a-4ae5-ac00-439a97fb4f99
+langcode: en
+status: true
+dependencies: {  }
+id: 5_areas
+label: '5 Areas'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

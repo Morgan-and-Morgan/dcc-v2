@@ -1,0 +1,85 @@
+uuid: e7184957-a3e0-4779-bd81-e7d74d894461
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.4_areas.field_disability_links
+    - field.field.paragraph.4_areas.field_section_1_bg
+    - field.field.paragraph.4_areas.field_section_1_text
+    - field.field.paragraph.4_areas.field_section_2_text
+    - field.field.paragraph.4_areas.field_section_2_title
+    - field.field.paragraph.4_areas.field_section_3_text
+    - field.field.paragraph.4_areas.field_section_3_title
+    - field.field.paragraph.4_areas.field_section_4_text
+    - paragraphs.paragraphs_type.4_areas
+  module:
+    - entity_reference_revisions
+    - text
+id: paragraph.4_areas.default
+targetEntityType: paragraph
+bundle: 4_areas
+mode: default
+content:
+  field_disability_links:
+    weight: 8
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    type: entity_reference_revisions_entity_view
+    region: content
+  field_section_1_bg:
+    type: entity_reference_entity_view
+    weight: 0
+    label: hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    region: content
+  field_section_1_text:
+    weight: 6
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_section_2_text:
+    weight: 2
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_section_2_title:
+    weight: 1
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_section_3_text:
+    weight: 4
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_section_3_title:
+    weight: 3
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_section_4_text:
+    weight: 5
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+hidden: {  }

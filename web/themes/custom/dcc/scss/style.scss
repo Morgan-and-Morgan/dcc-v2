@@ -1,15 +1,26 @@
 // Components
-@import "components/header";
+//@import "components/forms.scss";
 @import "components/footer";
-@import "components/sidebar_form";
+@import "components/header";
 @import "components/nav_menu";
+@import "components/sidebar_form";
+
 
 
 // Pages
-@import "pages/front";
-@import "pages/basic_page";
-@import "pages/page_404";
 @import "pages/article";
+@import "pages/basic_page";
+@import "pages/front";
+@import "pages/page_404";
+@import "pages/page_2_areas";
+@import "pages/page_4_areas";
+@import "pages/page_4_areas_with_form";
+@import "pages/page_5_areas";
+@import "pages/page_6_areas";
+@import "pages/page_ss";
+@import "pages/page_ssi";
+@import "pages/page_scholarships";
+
 
 
 

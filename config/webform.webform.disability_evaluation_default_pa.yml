@@ -1,7 +1,12 @@
 uuid: fbfa2bc3-825e-42d4-a824-8d950f3dc1c2
 langcode: en
 status: open
-dependencies: {  }
+dependencies:
+  module:
+    - honeypot
+third_party_settings:
+  honeypot:
+    honeypot: true
 open: null
 close: null
 weight: 0

@@ -1,0 +1,19 @@
+uuid: 92983f23-10eb-43bb-95cb-e09ed9d87447
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_section_2_title
+    - paragraphs.paragraphs_type.4_areas
+id: paragraph.4_areas.field_section_2_title
+field_name: field_section_2_title
+entity_type: paragraph
+bundle: 4_areas
+label: 'Section 2 Title'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

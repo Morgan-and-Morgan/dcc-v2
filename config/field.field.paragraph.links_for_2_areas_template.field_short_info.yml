@@ -1,0 +1,21 @@
+uuid: 448b6015-12bb-4e59-912c-3adcb6c5b7c6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_short_info
+    - paragraphs.paragraphs_type.links_for_2_areas_template
+  module:
+    - text
+id: paragraph.links_for_2_areas_template.field_short_info
+field_name: field_short_info
+entity_type: paragraph
+bundle: links_for_2_areas_template
+label: 'Short Info'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

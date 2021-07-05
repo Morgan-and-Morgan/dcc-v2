@@ -1,0 +1,43 @@
+uuid: 51e6ef25-dc16-4739-bbe9-3ae0f8ce77f5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_4_areas_with_form
+    - node.type.page
+    - paragraphs.paragraphs_type.4_areas_with_form
+  module:
+    - entity_reference_revisions
+id: node.page.field_4_areas_with_form
+field_name: field_4_areas_with_form
+entity_type: node
+bundle: page
+label: '4 Areas with form'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      4_areas_with_form: 4_areas_with_form
+    target_bundles_drag_drop:
+      2_areas:
+        weight: 6
+        enabled: false
+      4_areas:
+        weight: 7
+        enabled: false
+      4_areas_with_form:
+        enabled: true
+        weight: 8
+      5_areas:
+        weight: 9
+        enabled: false
+      6_areas:
+        weight: 10
+        enabled: false
+field_type: entity_reference_revisions

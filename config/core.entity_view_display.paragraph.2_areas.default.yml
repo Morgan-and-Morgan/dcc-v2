@@ -1,0 +1,50 @@
+uuid: 668c7347-232d-4b6a-bb37-cb6f71336cd1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.2_areas.field_disability_links
+    - field.field.paragraph.2_areas.field_section_1_bg
+    - field.field.paragraph.2_areas.field_section_1_text
+    - field.field.paragraph.2_areas.field_section_2_text
+    - paragraphs.paragraphs_type.2_areas
+  module:
+    - entity_reference_revisions
+    - text
+id: paragraph.2_areas.default
+targetEntityType: paragraph
+bundle: 2_areas
+mode: default
+content:
+  field_disability_links:
+    type: entity_reference_revisions_entity_view
+    weight: 2
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    region: content
+  field_section_1_bg:
+    weight: 0
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_section_1_text:
+    weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_section_2_text:
+    weight: 3
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+hidden: {  }

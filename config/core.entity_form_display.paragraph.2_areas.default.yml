@@ -1,0 +1,88 @@
+uuid: 07d8dbdd-3bf8-42b9-9ea7-59577517f912
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.2_areas.field_disability_links
+    - field.field.paragraph.2_areas.field_section_1_bg
+    - field.field.paragraph.2_areas.field_section_1_text
+    - field.field.paragraph.2_areas.field_section_2_text
+    - paragraphs.paragraphs_type.2_areas
+  module:
+    - field_group
+    - media_library
+    - paragraphs
+    - text
+third_party_settings:
+  field_group:
+    group_section_1:
+      children:
+        - field_section_1_bg
+        - field_section_1_text
+      parent_name: ''
+      weight: 0
+      format_type: fieldset
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+        required_fields: true
+      label: 'Section 1'
+    group_section_2:
+      children:
+        - field_section_2_text
+        - field_disability_links
+      parent_name: ''
+      weight: 1
+      format_type: fieldset
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+        required_fields: true
+      label: 'Section 2'
+id: paragraph.2_areas.default
+targetEntityType: paragraph
+bundle: 2_areas
+mode: default
+content:
+  field_disability_links:
+    type: entity_reference_paragraphs
+    weight: 3
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: ''
+    third_party_settings: {  }
+    region: content
+  field_section_1_bg:
+    weight: 1
+    settings:
+      media_types: {  }
+    third_party_settings: {  }
+    type: media_library_widget
+    region: content
+  field_section_1_text:
+    weight: 2
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  field_section_2_text:
+    weight: 2
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+hidden:
+  created: true
+  status: true

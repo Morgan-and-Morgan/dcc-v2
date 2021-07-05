@@ -1,0 +1,21 @@
+uuid: 10fe58b2-c283-4b74-bdd1-99805226d9b0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_section_2_text
+    - paragraphs.paragraphs_type.6_areas
+  module:
+    - text
+id: paragraph.6_areas.field_section_2_text
+field_name: field_section_2_text
+entity_type: paragraph
+bundle: 6_areas
+label: 'Section 2 Text'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

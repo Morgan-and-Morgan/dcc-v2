@@ -1,0 +1,28 @@
+uuid: 283c9cdd-9abb-49d6-b44c-347ce9b38a44
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_section_1_bg
+    - media.type.image
+    - paragraphs.paragraphs_type.5_areas
+id: paragraph.5_areas.field_section_1_bg
+field_name: field_section_1_bg
+entity_type: paragraph
+bundle: 5_areas
+label: 'Section 1 bg'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      image: image
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

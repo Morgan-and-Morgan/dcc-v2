@@ -1,0 +1,43 @@
+uuid: 4c20489d-6c45-4fb4-86b6-f971b16fcd2a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_4_areas
+    - node.type.page
+    - paragraphs.paragraphs_type.4_areas
+  module:
+    - entity_reference_revisions
+id: node.page.field_4_areas
+field_name: field_4_areas
+entity_type: node
+bundle: page
+label: '4 Areas'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      4_areas: 4_areas
+    target_bundles_drag_drop:
+      2_areas:
+        weight: 6
+        enabled: false
+      4_areas:
+        enabled: true
+        weight: 7
+      4_areas_with_form:
+        weight: 8
+        enabled: false
+      5_areas:
+        weight: 9
+        enabled: false
+      6_areas:
+        weight: 10
+        enabled: false
+field_type: entity_reference_revisions

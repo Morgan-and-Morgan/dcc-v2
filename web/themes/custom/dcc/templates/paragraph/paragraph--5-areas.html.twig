@@ -1,0 +1,97 @@
+{% set classes = [
+  'paragraph',
+  'paragraph--type--' ~ paragraph.bundle|clean_class,
+  view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+  not paragraph.isPublished() ? 'paragraph--unpublished'
+] %}
+{% block paragraph %}
+  <div{{ attributes.addClass(classes) }}>
+    {% block content %}
+      <main style="background:url('{{ paragraph.field_section_1_bg|file_url }}') top left no-repeat fixed; background-size: cover; padding-top:55px; margin-top:-20px;">
+        <div class="container">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+            <div style="padding-bottom:30px;" id="maincopy" class="col-lg-12 col-md-12 col-sm-12 col-12">
+
+              <h1 style="text-align: center;">{{ nodetitle }}</h1>
+              <span class="largerfont">{{ paragraph.field_section_1_text.value|raw }}</span>
+            </div>
+          </div>
+        </div>
+
+        <!--START SECTION 4-->
+
+        <div id="red">
+          <!--RED-->
+          <div class="container">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+              <h2>{{ paragraph.field_section_2_title.value|raw }}</h2>
+            </div>
+          </div>
+        </div>
+        <div id="white">
+          <div class="container">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+              <p>{{ paragraph.field_section_2_text.value|raw }}</p>
+            </div>
+          </div>
+        </div>
+        <!--END SECTION 4-->
+
+        <!--START DARK BLUE-->
+
+        <div id="blue-grey2">
+          <!--BLUE GREY-->
+          <div class="container">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+              <h2>{{ paragraph.field_section_3_title.value|raw }}</h2>
+            </div>
+          </div>
+          <!--BLUE GREY-->
+        </div>
+        <div id="grey2">
+          <div class="container">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+              <p>{{ paragraph.field_section_3_text.value|raw }}</p>
+            </div>
+          </div>
+        </div>
+        <!--END DARK BLUE-->
+
+        <!--START LIGHTBLUE-->
+        <div id="lightblue">
+          <div class="container">
+            <div class="col-lg-5 col-md-6 col-sm-12 col-12">
+              <p>{{ paragraph.field_section_4_text.value|raw }}</p>
+            </div>
+            <div id="arrowcolumn" class="col-lg-2 col-md-2 d-lg-block d-sm-none col-2 hidden-xs">
+              <!--img class="img-responsive" src="/wp-content/themes/dcc/images/arrow.png"-->
+            </div>
+
+            <div class="col-lg-5 col-md-6 col-sm-12 col-12">
+              <div class="webform-wrapper">
+                <div class="form_heading">
+                  <h3 class="form_title">Disability Claim Help</h3>
+                  <span class="form_description"></span>
+                </div>
+                {{ drupal_entity('webform', 'disability_claim_help') }}
+              </div>
+            </div>
+        </div>
+        </div>
+        <!--END LIGHT BLUE-->
+
+        <!--START SECTION 4-->
+        <!--Light Blue Entire Section-->
+        <div id="lightbluesection" style="margin-bottom:0px; padding-bottom:0px; background:#A0C9DE;">
+          <div class="container">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+              {{ content.field_disability_links }}
+            </div>
+          </div>
+        </div>
+
+        <!--END SECTION 4-->
+      </main>
+    {% endblock %}
+  </div>
+{% endblock paragraph %}
