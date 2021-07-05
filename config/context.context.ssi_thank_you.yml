@@ -22,4 +22,4 @@ reactions:
     id: page_template_suggestions
     suggestions: page__ssi_thank-you
     saved: false
-weight: -5
+weight: -6

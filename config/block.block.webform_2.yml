@@ -1,0 +1,42 @@
+uuid: 213598e4-ef22-4867-aa5a-9b9413900603
+langcode: en
+status: true
+dependencies:
+  config:
+    - webform.webform.start_your_application
+  module:
+    - context
+    - system
+    - webform
+  theme:
+    - dcc
+id: webform_2
+theme: dcc
+region: sidebar
+weight: 0
+provider: null
+plugin: webform_block
+settings:
+  id: webform_block
+  label: 'Start Your Application - Form'
+  provider: webform
+  label_display: '0'
+  webform_id: start_your_application
+  default_data: ''
+  redirect: false
+visibility:
+  request_path_exclusion:
+    id: request_path_exclusion
+    pages: ''
+    negate: null
+    context_mapping: {  }
+  view_inclusion:
+    id: view_inclusion
+    negate: null
+    view_inclusion: {  }
+    context_mapping: {  }
+  request_path:
+    id: request_path
+    pages: /social-security-disability
+    negate: false
+    context_mapping: {  }

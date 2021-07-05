@@ -1,0 +1,42 @@
+uuid: e54fc67e-8ce8-4cf7-90b8-0234b77c80b6
+langcode: en
+status: true
+dependencies:
+  config:
+    - webform.webform.disability_claim_help
+  module:
+    - context
+    - system
+    - webform
+  theme:
+    - dcc
+id: webform
+theme: dcc
+region: sidebar
+weight: 0
+provider: null
+plugin: webform_block
+settings:
+  id: webform_block
+  label: 'Disability Claim Help - Form'
+  provider: webform
+  label_display: '0'
+  webform_id: disability_claim_help
+  default_data: ''
+  redirect: false
+visibility:
+  request_path_exclusion:
+    id: request_path_exclusion
+    pages: ''
+    negate: null
+    context_mapping: {  }
+  view_inclusion:
+    id: view_inclusion
+    negate: null
+    view_inclusion: {  }
+    context_mapping: {  }
+  request_path:
+    id: request_path
+    pages: "/social-security-disability/qualify\r\n/social-security-disability/apply\r\n/social-security-disability/appeal-denial"
+    negate: false
+    context_mapping: {  }

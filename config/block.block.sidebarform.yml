@@ -1,6 +1,6 @@
 uuid: 13da5738-097c-4630-8204-66b1d33b9eb8
 langcode: en
-status: true
+status: false
 dependencies:
   content:
     - 'block_content:basic:61c2d4f0-f1cd-49a1-8f35-e91d4b7451c6'
@@ -19,7 +19,7 @@ provider: null
 plugin: 'block_content:61c2d4f0-f1cd-49a1-8f35-e91d4b7451c6'
 settings:
   id: 'block_content:61c2d4f0-f1cd-49a1-8f35-e91d4b7451c6'
-  label: 'Sidebar form'
+  label: 'Sidebar form default pages'
   provider: block_content
   label_display: '0'
   status: true
