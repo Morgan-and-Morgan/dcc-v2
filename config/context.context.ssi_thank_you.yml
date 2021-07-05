@@ -1,11 +1,11 @@
-uuid: 04a1e785-9d17-4a0a-bda1-396108744baa
+uuid: 4f351a26-a3f5-46ed-b818-931b7ecad6f8
 langcode: en
 status: true
 dependencies:
   module:
     - system
-name: disability_ss_layout
-label: 'Disability SS layout'
+name: ssi_thank_you
+label: 'SSI - Thank You'
 group: dcc
 description: ''
 requireAllConditions: true
@@ -13,17 +13,13 @@ disabled: false
 conditions:
   request_path:
     id: request_path
-    pages: /ss
+    pages: /ssi/thank-you
     negate: false
-    uuid: fdb2f795-c8cd-4dd5-b267-ab34489fecfe
+    uuid: b98eb7f9-c1d4-44dc-829a-9d38656ec4d5
     context_mapping: {  }
 reactions:
   page_template_suggestions:
     id: page_template_suggestions
-    suggestions: page__disability_ss
+    suggestions: page__ssi_thank-you
     saved: false
-  body_class:
-    id: body_class
-    body_class: page-ss
-    saved: false
-weight: -3
+weight: -5
