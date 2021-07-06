@@ -181,6 +181,95 @@
         }
       }
     }
+    @media (max-width: 991px) {
+      justify-content: flex-end;
+      background: #3a5c7b;
+      border-radius: 0;
+      min-height: 50px;
+      .navbar-toggle {
+        margin-right: 10px;
+        padding: 9px 10px;
+        background-image: none;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        .icon-bar {
+          background-color: #888;
+        }
+      }
+    }
   }
 }
-
+@media (max-width: 991px) {
+  .region-we-mega-menu {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .overlay, .btn-close {
+    display: none !important;
+  }
+  .we-mobile-megamenu-active {
+    border-top: 1px solid #e7e7e7 !important;
+    animation-fill-mode: unset !important;
+    animation-name: unset !important;
+    animation-duration: unset !important;
+    animation-timing-function: unset !important;
+    transition: all .5s ease-in-out !important;
+    .we-mega-menu-submenu {
+      display: none !important;
+    }
+    .we-mega-menu-ul {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      li {
+        display: block;
+        &[data-level="0"] {
+          width: auto !important;
+          &.active-trail {
+            a {
+              background: none !important;
+              color: unset !important;
+              text-decoration: none !important;
+            }
+          }
+          &:hover {
+            .we-mega-menu-submenu {
+              visibility: hidden !important;
+              display: none !important;
+              a.we-mega-menu-li {
+                background: none !important;
+                color: unset !important;
+                text-decoration: none;
+          }
+        }
+      }
+    }
+    a {
+      box-shadow: none !important;
+      border-top: none !important;
+      font-size: 14px !important;
+    }
+  }
+}
+}
+.navbar-we-mega-menu.navbar.we-mobile-megamenu-active {
+margin-top: 12px;
+padding-left: 0 !important;
+padding-right: 0;
+width: 100%;
+left: unset;
+right: unset;
+top: unset;
+display: block;
+position: relative;
+}
+body.toggled {
+right: unset !important;
+overflow: auto !important;
+.region-we-mega-menu {
+  align-items: flex-end !important;
+  flex-direction: column !important;
+}
+}
+}
