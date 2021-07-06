@@ -1,8 +1,7 @@
 const $ = jQuery;
 
 $(document).ready(function ($) {
-  $('.we-mega-menu-li[data-level="0"] a').click(function (event) {
-    event.preventDefault();
-    window.location = "http://www.google.com/";
+  $('body.toggled .region-we-mega-menu nav .we-mega-menu-ul li[data-level="0"]>a.we-mega-menu-li').click(function (event) {
+    $(this).once().trigger("click");
   });
 });
