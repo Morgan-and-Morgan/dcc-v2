@@ -199,7 +199,7 @@ access:
 handlers:
   step_1_disability_benefits_application:
     id: remote_post
-    label: 'Step 1: Disability Benefits Application'
+    label: Zapier
     notes: ''
     handler_id: step_1_disability_benefits_application
     status: true
@@ -228,7 +228,7 @@ handlers:
       custom_options: ''
       cast: false
       debug: false
-      completed_url: 'https://hooks.zapier.com/hooks/catch/1587852/om3a927/'
+      completed_url: 'https://hooks.zapier.com/hooks/catch/1587852/b3as94j'
       completed_custom_data: "form_id: 16\r\nform_title: \"Step 1: Disability Appeal Application\""
       updated_url: ''
       updated_custom_data: ''

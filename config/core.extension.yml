@@ -60,6 +60,7 @@ module:
   quickedit: 0
   rdf: 0
   real_aes: 0
+  redirect: 0
   search: 0
   sfweb2lead_webform: 0
   shortcut: 0
