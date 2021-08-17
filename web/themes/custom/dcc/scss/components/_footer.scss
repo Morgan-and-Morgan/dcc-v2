@@ -1,46 +1,90 @@
 footer {
   background: #1A384E;
   margin-top: 50px;
-}
-footer ul {
-  margin-top: 10px;
-  padding-bottom: 50px;
-  list-style:none;
-}
-footer ul li{
-  margin: 5px 0;
-}
-footer ul li.fblink{
-  background:url(/themes/custom/dcc/images/fb.jpg) top left no-repeat;
-  padding-left:21px;
-}
-footer ul li.twitterlink{
-  background:url(/themes/custom/dcc/images/twitter.jpg) top left no-repeat;
-  padding-left:21px;
-}
-footer ul li.contactlink{
-  background:url(/themes/custom/dcc/images/envelope.jpg) top left no-repeat;
-  padding-left:21px;
-}
-footer ul li.googlelink{
-  background:url(/themes/custom/dcc/images/googleplus.png) top left no-repeat;
-  padding-left:21px;
-}
-footer ul li a:hover{
-  text-decoration:none;
-}
-footer a, footer p {
-  color: #FFF !important;
-  font-weight: 400 !important;
-  font-size: 14px;
-}
-footer a:hover {
-  background: none !important;
-}
-footer p {
-  font-weight: 400 !important;
-  font-size: 16px;
-  padding-top: 30px;
-  text-indent:0px;
-  color:#4C9AC1 !important;
+  padding-bottom: 0;
+  padding-top: 0;
+
+  ul.menu {
+    margin-top: 10px;
+    margin-left: 0;
+    padding-left: 40px;
+    margin-bottom: 10px;
+    padding-bottom: 50px;
+    list-style:none;
+    line-height: 1.42857143;
+
+    .menu-item {
+      margin: 5px 0;
+      padding-top: 0;
+    }
+
+    li {
+      margin: 5px 0;
+      font-size: 14px;
+
+      &.fblink {
+        background:url(/themes/custom/dcc/images/fb.jpg) left no-repeat;
+        padding-left:21px;
+      }
+
+      &.twitterlink {
+        background:url(/themes/custom/dcc/images/twitter.jpg) left no-repeat;
+        padding-left:21px;
+      }
+
+      &.contactlink {
+        background:url(/themes/custom/dcc/images/envelope.jpg) left no-repeat;
+        padding-left:21px;
+      }
+
+      &.googlelink {
+        background:url(/themes/custom/dcc/images/googleplus.png) left no-repeat;
+        padding-left:21px;
+      }
+
+      a {
+        &:hover{
+          text-decoration:none;
+        }
+      }
+    }
+  }
+
+  a,
+  p {
+    color: #FFF !important;
+    font-weight: 400 !important;
+    font-size: 14px;
+  }
+
+  a {
+    &:hover {
+      background: none !important;
+    }
+  }
+
+  p {
+    font-weight: 400 !important;
+    font-size: 16px;
+    padding-top: 30px;
+    text-indent: 0;
+    color: #4C9AC1 !important;
+    margin: 0 0 10px;
+    line-height: 1.42857143;
+  }
+
+  .row.footer-bottom.site-info {
+    margin-top: -25px;
+
+    p {
+      padding-top: 0;
+    }
+  }
+
+  .row.footer-main {
+    @media (max-width: 576px) {
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
 }

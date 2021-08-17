@@ -4,6 +4,15 @@ header {
     background-size: cover;
     width: 100%;
     display: block;
+
+    .container {
+      .row {
+        @media (max-width: 767px) {
+          margin-right: 0;
+          margin-left: 0;
+        }
+      }
+    }
   }
   #logo {
     padding: 35px 0 26px 0;
@@ -14,7 +23,17 @@ header {
     float: left;
     display: block;
     margin-top: 20px;
-    margin-left:-10px !important;
+    margin-left: -10px !important;
+
+    @media (max-width: 991px) {
+      padding-left: 0;
+      padding-right: 0;
+      float: none;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      margin-left: 0 !important;
+    }
   }
   #uppernav li {
     float: left;
@@ -31,7 +50,14 @@ header {
   }
   #uppernav li a {
     color: #FFF;
+
+    @media (max-width: 991px) {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
   }
+
   .navbar {
     margin-bottom: 0px;
     border-bottom:0px !important;
@@ -101,13 +127,36 @@ header {
     margin: 10px 40px;
     border: 1px solid #FFF;
     border-radius: 1px;
+
+    @media (min-width: 768px) and (max-width: 992px) {
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    &:hover {
+      border-color: #D43F3A;
+    }
+
+    a {
+      &:hover {
+        text-decoration: underline;
+      }
+    }
   }
   .btn-danger p {
     margin: 0 0 10px;
+
+    @media (min-width: 768px) and (max-width: 992px) {
+      font-size: 16px;
+    }
   }
   .btn-danger span {
     font-size: 22px;
     font-weight: 400 !important;
+
+    @media (min-width: 768px) and (max-width: 992px) {
+      font-size: 16px;
+    }
   }
   .btn-primary {
     margin-top:20px;
@@ -120,4 +169,30 @@ header {
     margin:20px 20% 40px 20%;
   }
 
+}
+
+
+@media (max-width: 991px) {
+  .navbar-we-mega-menu.navbar.we-mobile-megamenu-active {
+    margin-top: 0 !important;
+  }
+
+  .region-we-mega-menu {
+    padding: 0 !important;
+  }
+
+  .block-we-megamenu-blockheader-navigation {
+    .region-we-mega-menu {
+      .navbar-toggle {
+        padding: 9px 10px !important;
+        margin-top: 8px !important;
+        margin-right: 15px !important;
+        margin-bottom: 8px !important;
+      }
+    }
+  }
+
+  .navbar-we-mega-menu.navbar.we-mobile-megamenu-active+.block-we-megamenu-blockheader-navigation .region-we-mega-menu .navbar-toggle {
+    background-color: #ddd;
+  }
 }

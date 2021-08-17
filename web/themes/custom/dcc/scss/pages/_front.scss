@@ -15,6 +15,15 @@
     background-size: cover;
     width: 100%;
     display: block;
+
+    .container {
+      .row {
+        @media (max-width: $screen-xs-max) {
+          margin-right: 0;
+          margin-left: 0;
+        }
+      }
+    }
   }
 
   #logo {
@@ -28,6 +37,16 @@
     display: block;
     margin-top: 20px;
     margin-left: -10px !important;
+
+    @media (max-width: 991px) {
+      padding-left: 0;
+      padding-right: 0;
+      float: none;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      margin-left: 0 !important;
+    }
   }
 
   #uppernav li {
@@ -47,6 +66,12 @@
 
   #uppernav li a {
     color: #FFF;
+
+    @media (max-width: 991px) {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
   }
 
   header .btn-danger {
@@ -55,11 +80,38 @@
     margin: 10px 40px;
     border: 1px solid #FFF;
     border-radius: 1px;
+
+    @media (min-width: 768px) and (max-width: 992px) {
+      margin: 0 auto !important;
+      width: 100% !important;
+    }
   }
 
-  .btn-danger span {
-    font-size: 22px;
-    font-weight: 400 !important;
+  .btn-danger {
+    span {
+      font-size: 22px;
+      font-weight: 400 !important;
+
+      @media (min-width: 768px) and (max-width: 992px) {
+        font-size: 16px;
+      }
+    }
+
+    a {
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    p {
+      @media (min-width: 768px) and (max-width: 992px) {
+        font-size: 16px;
+      }
+    }
+
+    &:hover {
+      border-color: $cardinal;
+    }
   }
 
   .btn-primary {
@@ -862,7 +914,6 @@
     }
     #uppernav li {
       font-size: 14px;
-      width: 30%;
     }
     header .btn-danger {
       width: 76%;

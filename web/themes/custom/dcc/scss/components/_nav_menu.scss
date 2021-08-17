@@ -45,6 +45,8 @@
             border-top: none !important;
 
             .we-mega-menu-submenu-inner {
+              min-height: auto;
+
               .we-mega-menu-row {
                 margin-left: 0;
                 margin-right: 0;
@@ -69,12 +71,14 @@
                       a {
                         padding: 0 !important;
                         font-size: 14px;
+                        text-transform: none;
 
                         &.we-megamenu-nolink {
                           margin: 20px 0 10px;
                           color: #1A384E;
                           font-weight: 700;
                           font-size: 13px !important;
+                          cursor: default;
 
                           &:before,
                           &:after {
@@ -138,6 +142,10 @@
                             i {
                               margin: 15px 0;
                               color: #214966;
+
+                              &:before {
+                                margin-left: 20px;
+                              }
                             }
 
                             a {
@@ -146,14 +154,14 @@
                               padding: 10px 16px !important;
                               font-size: 18px;
                               line-height: 1.3333333;
-                              background-color: #d9534f !important;
+                              background-color: #dc3545 !important;
                               border-color: #d43f3a;
                               border-radius: 0;
                               display: block;
 
                               &:hover {
-                                color: #3A5C7B !important;
-                                background-color: #c9302c !important;
+                                color: #FFF !important;
+                                background-color: #c82333 !important;
                                 border-color: #ac2925 !important;
                               }
                             }

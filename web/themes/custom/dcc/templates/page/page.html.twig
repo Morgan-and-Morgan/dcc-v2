@@ -55,13 +55,6 @@
 
 <div id="page-wrapper">
   <div id="page">
-{#    <header id="header" class="header" role="banner" aria-label="{{ 'Site header'|t }}">#}
-{#      <div class="section layout-container clearfix">#}
-{#        {{ page.header }}#}
-{#      </div>#}
-{#    </header>#}
-
-
     <header>
       <div id="topheader">
         <div class="container">
@@ -69,13 +62,11 @@
             <div id="logo" class="col-lg-6 col-md-6 col-sm-12 col-12">
               <a href="/">
                 <img class="img-responsive" src="/themes/custom/dcc/images/DCC_logo_2021.png">
-                <!--<img class="img-responsive" src="/wp-content/themes/dcc/images/logo.png" />-->
               </a>
             </div>
             <div id="blank" class="col-md-2 col-xs-hidden"></div>
             <div id="topnavs" class="col-md-4 col-12">
               <ul id="uppernav">
-                <!--<li><a href="/giving-back/"><img src="/wp-content/themes/dcc/images/givingbackicon.png">Giving Back</a></li>-->
                 <li><a href="/about-us/"><img src="/themes/custom/dcc/images/abouticon.png">About Us</a></li>
                 <li><a href="/contact-us/"><img src="/themes/custom/dcc/images/contacaticon.png">Contact Us</a></li>
               </ul>
@@ -88,7 +79,6 @@
         </div>
       </div>
     </header>
-
 
 
     <nav>
@@ -113,75 +103,59 @@
         {% endif %}
       </div>
     </div>
-{#    <footer class="site-footer">#}
-{#      <div class="layout-container">#}
-{#        {% if page.footer_first or page.footer_second %}#}
-{#          <div class="site-footer__top clearfix">#}
-{#            {{ page.footer_first }}#}
-{#            {{ page.footer_second }}#}
-{#          </div>#}
-{#        {% endif %}#}
-{#      </div>#}
-{#    </footer>#}
-
-
-
 
 
     <footer>
       <div class="container">
-        <div class="row">
+        <div class="row footer-main">
           <div class="col-lg-4 col-md-4 col-sm-4 col-12">
             <p><strong>Main Navigation</strong></p>
             <ul id="menu-main" class="menu">
               <li id="menu-item-25"
                   class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-25"><a
-                  href="https://www.disabilitycarecenter.org/social-security-disability/">Social Security Disability
+                  href="/social-security-disability/">Social Security Disability
                   Qualifications</a></li>
               <li id="menu-item-23"
                   class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-23"><a
-                  href="https://www.disabilitycarecenter.org/medical-qualifications/">Medical Qualifications</a></li>
+                  href="/medical-qualifications/">Medical Qualifications</a></li>
               <li id="menu-item-1540"
                   class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-1540"><a
-                  href="https://www.disabilitycarecenter.org/veterans/">Veterans Disability</a></li>
+                  href="/veterans/">Veterans Disability</a></li>
               <li id="menu-item-21"
                   class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-21"><a
-                  href="https://www.disabilitycarecenter.org/disability-resources/">Disability Resources</a></li>
+                  href="/disability-resources/">Disability Resources</a></li>
               <li id="menu-item-20" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20"><a
-                  href="https://www.disabilitycarecenter.org/blog/">Blog</a></li>
+                  href="/blog/">Blog</a></li>
             </ul>
           </div>
           <div class="col-lg-4 col-md-4 col-sm-4 col-12">
             <p><strong>Who We Are</strong></p>
             <ul id="menu-who-we-are" class="menu">
               <li id="menu-item-149" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-149"><a
-                  href="https://www.disabilitycarecenter.org/about-us/">About Us</a></li>
+                  href="/about-us/">About Us</a></li>
               <li id="menu-item-156" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-156"><a
-                  href="https://www.disabilitycarecenter.org/terms-conditions/">Terms &amp; Conditions</a></li>
+                  href="/terms-conditions/">Terms &amp; Conditions</a></li>
               <li id="menu-item-157" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-157"><a
-                  href="https://www.disabilitycarecenter.org/privacy-policy/">Privacy Policy</a></li>
+                  href="/privacy-policy/">Privacy Policy</a></li>
             </ul>
           </div>
-          <!--<div class="col-lg-4 col-md-4 hidden-sm hidden-xs" >
 
-
-          </div>-->
           <div class="col-lg-4 col-md-4 col-sm-4 col-12">
             <p><strong>Connect With Us</strong></p>
             <ul id="menu-social" class="menu">
               <li id="menu-item-158" class="fblink menu-item menu-item-type-custom menu-item-object-custom menu-item-158"><a
-                  href="https://www.facebook.com/pages/Disability-Care-Center/759469717482319?fref=ts">Like Us On
+                  href="https://www.facebook.com/pages/Disability-Care-Center/759469717482319?fref=ts" target="_blank">Like Us On
                   Facebook</a></li>
               <li id="menu-item-159"
                   class="twitterlink menu-item menu-item-type-custom menu-item-object-custom menu-item-159"><a
-                  href="https://twitter.com/disability_care">Follow Us On Twitter</a></li>
+                  href="https://twitter.com/disability_care" target="_blank">Follow Us On Twitter</a></li>
               <li id="menu-item-160"
                   class="contactlink menu-item menu-item-type-post_type menu-item-object-page menu-item-160"><a
-                  href="https://www.disabilitycarecenter.org/contact-us/">Contact Us</a></li>
+                  href="/contact-us/">Contact Us</a></li>
             </ul>
           </div>
         </div>
-        <div class="row">
+        <div class="row footer-bottom site-info">
           <div class="col-lg-12 col-md-12 col-sm-12 col-12">
             <p style="text-align:center; font-size:11px; padding-bottom:10px;">
               ©{{ 'now' | date('Y') }}. All Rights Reserved.<br>
