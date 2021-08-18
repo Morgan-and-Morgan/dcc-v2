@@ -12,7 +12,7 @@ dependencies:
 id: medicalqualificationsapplication
 theme: dcc
 region: content
-weight: 0
+weight: -7
 provider: null
 plugin: 'block_content:dec3422b-7135-4ef6-b221-e558034e54d1'
 settings:

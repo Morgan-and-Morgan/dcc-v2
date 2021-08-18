@@ -12,7 +12,7 @@ dependencies:
 id: socialsecuritydisabilityapplication
 theme: dcc
 region: content
-weight: 0
+weight: -6
 provider: null
 plugin: 'block_content:f9a50867-65db-488f-b47a-d77447beb901'
 settings:
