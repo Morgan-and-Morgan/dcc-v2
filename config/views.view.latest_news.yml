@@ -5,7 +5,7 @@ dependencies:
   config:
     - field.storage.node.body
     - field.storage.node.field_featured_image
-    - image.style.thumbnail
+    - image.style.news_teaser_125x85
     - node.type.article
   module:
     - image
@@ -294,7 +294,7 @@ display:
           click_sort_column: target_id
           type: image_url
           settings:
-            image_style: thumbnail
+            image_style: news_teaser_125x85
           group_column: ''
           group_columns: {  }
           group_rows: true
@@ -340,7 +340,7 @@ display:
             more_link: true
             more_link_text: 'Read Full Story'
             more_link_path: '{{ view_node }}'
-            strip_tags: false
+            strip_tags: true
             trim: true
             preserve_tags: ''
             html: false
