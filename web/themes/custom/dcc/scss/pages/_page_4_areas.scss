@@ -4,56 +4,93 @@
   line-height: 1.42857143;
   color: #333;
   background-color: #fff;
-  #blue h2, #blue-grey h2, #blue-grey2 h2, #red h2, #lightbluetop h2 {
+
+  #blue h2,
+  #blue-grey h2,
+  #blue-grey2 h2,
+  #red h2,
+  #lightbluetop h2 {
     color: #FFF !important;
     font-size: 31px !important;
   }
+
   #red {
     min-height: 66px;
     background: #BE3A3A;
   }
+
   #white {
     background: #FFF;
     padding-bottom: 50px;
     padding-top: 20px;
     font-size: 16px;
   }
+
   #grey, #grey2 {
     background: #FFF;
     padding-bottom: 50px;
     margin-bottom: -50px;
   }
 
-  #blue-grey, #blue-grey2 {
+  #grey2 {
+    .container {
+      padding-top: 25px;
+      padding-bottom: 15px;
+    }
+  }
+
+  #blue-grey,
+  #blue-grey2 {
     text-align: left !important;
   }
-  #blue, #blue-grey, #blue-grey2, #lightbluetop {
+
+  #blue,
+  #blue-grey,
+  #blue-grey2,
+  #lightbluetop {
     min-height: 66px;
     text-align: center;
     background: #1A384E;
   }
+
   .largerfont {
     display: block;
     font-size: 18px;
     margin-top: 20px;
   }
+
   #maincopy {
     font-weight: 400;
   }
+
   main {
     display: block;
+
+    .container {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
     h1 {
       margin-top: 20px;
       margin-bottom: 10px;
       color: #D43F3A !important;
       font-size: 30px !important;
       font-weight: 700 !important;
+      line-height: 1.1;
     }
+
     h2 {
       font-size: 24px !important;
       font-weight: 700 !important;
       margin-top: 17px !important;
+      line-height: 1.1;
     }
+
+    p {
+      margin: 0 0 10px;
+    }
+
     #lightbluesection {
       background: #3A5C7B;
       color: #FFF;
@@ -64,26 +101,33 @@
       .field--name-field-disability-links {
         .field__item {
           .conditions {
-            padding: 5px 10px 10px 10px;
+            padding: 5px 15px 10px 15px;
             border-bottom: 1px solid #A0C9DE;
             color: #000;
             font-size: 15px;
+
             a {
               color: #19384D;
             }
+
             h3 {
               color: #4C99C0 !important;
               font-size: 21px !important;
+              margin-top: 20px;
+              margin-bottom: 10px;
+              line-height: 1.1;
             }
           }
+
           &:nth-child(even) {
             .conditions {
-              background: #6B95BA;
+              background: #99BDDD;
             }
           }
+
           &:nth-child(odd) {
             .conditions {
-              background: #99BDDD;
+              background: #6B95BA;
             }
           }
         }

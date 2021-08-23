@@ -4,6 +4,12 @@
   line-height: 1.42857143;
   color: #333;
   background-color: #fff;
+
+  .container {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
   .largerfont {
     display: block;
     font-size: 18px;
@@ -20,6 +26,10 @@
       color: #D43F3A !important;
       font-size: 30px !important;
       font-weight: 700 !important;
+      line-height: 1.1;
+    }
+    p {
+      margin: 0 0 10px;
     }
     #lightbluesection {
       background: #3A5C7B;
@@ -31,7 +41,7 @@
       .field--name-field-disability-links {
         .field__item {
           .conditions {
-            padding: 5px 10px 10px 10px;
+            padding: 5px 15px 10px 15px;
             border-bottom: 1px solid #A0C9DE;
             color: #000;
             font-size: 15px;
@@ -41,16 +51,19 @@
             h3 {
               color: #4C99C0 !important;
               font-size: 21px !important;
+              margin-top: 20px;
+              margin-bottom: 10px;
+              line-height: 1.1;
             }
           }
           &:nth-child(even) {
             .conditions {
-              background: #6B95BA;
+              background: #99BDDD;
             }
           }
           &:nth-child(odd) {
             .conditions {
-              background: #99BDDD;
+              background: #6B95BA;
             }
           }
         }

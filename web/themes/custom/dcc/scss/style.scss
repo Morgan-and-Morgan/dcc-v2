@@ -5,7 +5,11 @@
 @import "components/nav_menu";
 @import "components/sidebar_form";
 
+// Variables
+@import "variables/colors";
 
+// Modules
+@import "modules/breakpoints";
 
 // Pages
 @import "pages/article";

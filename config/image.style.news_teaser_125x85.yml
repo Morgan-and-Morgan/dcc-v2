@@ -1,0 +1,15 @@
+uuid: ea4d6602-6290-48b7-ab95-1266b1f0cc6a
+langcode: en
+status: true
+dependencies: {  }
+name: news_teaser_125x85
+label: 'News teaser (125x85)'
+effects:
+  9f52e0cc-cebb-49ea-86f9-8624f339b960:
+    uuid: 9f52e0cc-cebb-49ea-86f9-8624f339b960
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 125
+      height: 85
+      anchor: center-center

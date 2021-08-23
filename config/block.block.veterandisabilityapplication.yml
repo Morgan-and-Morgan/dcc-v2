@@ -12,7 +12,7 @@ dependencies:
 id: veterandisabilityapplication
 theme: dcc
 region: content
-weight: 0
+weight: -5
 provider: null
 plugin: 'block_content:bd14adc7-817a-488b-82f1-a608888c5513'
 settings:

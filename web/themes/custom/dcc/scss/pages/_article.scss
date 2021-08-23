@@ -2,7 +2,7 @@
   background: #FFFFFF;
   font-family: 'Open Sans Condensed', sans-serif;
   #main-wrapper {
-    padding-top: 20px;
+
     #main {
       .main-content {
         section {
@@ -20,6 +20,7 @@
                 font-weight: 700 !important;
                 margin-top: 20px !important;
                 margin-bottom: 10px !important;
+                line-height: 1.1;
               }
               h2 {
                 color: #1A384E !important;
@@ -27,20 +28,24 @@
                 font-weight: 700 !important;
                 margin-top:17px !important;
                 margin-bottom: 10px;
+                line-height: 1.1;
               }
               h3 {
                 color: #4C99C0 !important;
                 font-size: 21px !important;
                 margin-top: 20px;
                 margin-bottom: 10px;
+                line-height: 1.1;
               }
               h4 {
                 font-size: 18px !important;
+                line-height: 1.1;
               }
               h6 {
                 color: #1A384E !important;
                 font-size: 14px!important;
                 font-weight: 700 !important;
+                line-height: 1.1;
               }
               ul.checked{
                 list-style:none;
@@ -56,6 +61,7 @@
               .aligncenter {}
               p {
                 margin: 0 0 10px;
+                line-height: 1.42857143;
               }
 
               /* Responsive images */

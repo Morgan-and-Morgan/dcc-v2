@@ -3,6 +3,10 @@
   background-size: cover;
   width: 100%;
 
+  p {
+    margin: 0 0 10px;
+  }
+
   header {
     display: block;
     #topheader {
@@ -46,9 +50,11 @@
       border-radius: 6px;
       font-size: 18px;
       line-height: 1.3333333;
+
       p {
         margin: 0 0 10px;
       }
+
       &:hover {
         border-color: #ac2925;
       }
@@ -57,14 +63,19 @@
 
   main {
     font-size: 18px;
+
     #maincopy {
       font-weight: 400;
       color: #235570;
+      padding-left: 0;
+      padding-right: 0;
+
       .ss-webform-wrapper {
         margin: 16px 0;
         max-width: 100%;
         padding: 10px 40px 40px 40px;
         background: linear-gradient(to bottom, #1a384e 0%,#102434 100%);
+
         form {
           .form-head {
             h1 {
@@ -74,10 +85,13 @@
               text-align: center;
               box-sizing: border-box;
               overflow: visible;
+              line-height: 1.1;
+
               img {
                 max-width: 100%;
               }
             }
+
             h2 {
               font-size: 23px !important;
               margin-top: 10px !important;
@@ -86,7 +100,9 @@
               color: #FFF !important;
               margin-bottom: 10px;
               font-weight: 700;
+              line-height: 1.1;
             }
+
             #formsub {
               font-size: 18px !important;
               font-weight: 400;
@@ -96,6 +112,12 @@
               color: #FFF !important;
             }
           }
+
+          #edit-processed-text-01 {
+            margin-top: 10px;
+            margin-bottom: 0;
+          }
+
           p {
             font-weight: 400;
             font-style: italic;
@@ -112,6 +134,9 @@
               font-weight: 700;
               font-size: 14px;
               color: #FFF !important;
+            }
+            input {
+              text-indent: 10px;
             }
           }
           label {
@@ -178,6 +203,8 @@
               display: inline-block;
               flex: 0 0 50%;
               max-width: 50%;
+              margin-bottom: 0;
+              margin-top: 16px;
 
               @media (max-width: 640px) {
                 flex: 0 0 100%;
@@ -197,6 +224,22 @@
                 font-size: 14px;
                 color: #FFFFFF;
               }
+
+              .fieldset-wrapper {
+                .form-radios {
+                  .form-type-radio {
+                    margin-top: 0;
+                    margin-bottom: 0;
+
+                    input {
+                      &:focus {
+                        box-shadow: none;
+                      }
+                    }
+                  }
+                }
+              }
+
               .form-item {
                 display: flex;
                 align-items: center;
@@ -304,7 +347,7 @@
     }
     a, p {
       color: #FFF !important;
-      font-weight: 400 !important;
+      font-weight: 400;
       font-size: 11px;
     }
   }
