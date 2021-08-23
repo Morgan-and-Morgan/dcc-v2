@@ -61,6 +61,12 @@
   main {
     font-size: 18px;
     display: block;
+
+    .container {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
     #maincopy {
       font-weight: 400;
       color: #333;
@@ -141,6 +147,12 @@
               textarea {
                 height: 100px !important;
               }
+
+              fieldset.webform-type-radios {
+                margin-top: 16px;
+                margin-bottom: 0;
+              }
+
               fieldset {
                 legend {
                   border-bottom: none;
@@ -163,6 +175,9 @@
                     }
                   }
                 }
+              }
+              .webform-actions {
+                margin-top: 24px;
               }
               .form-actions {
                 input {
@@ -193,6 +208,12 @@
         text-align: center;
         padding-top: 20px;
         margin-bottom: 25px !important;
+        margin-top: 20px;
+        line-height: 1.1;
+      }
+
+      p {
+        margin: 0 0 10px;
       }
     }
     #homemaincopy {
@@ -212,10 +233,11 @@
       margin: 40px 0 0;
       h2 {
         color: #FFF !important;
-        font-size: 26px !important;
+        font-size: 30px !important;
         font-weight: 700 !important;
         margin-top: 17px !important;
         margin-bottom: 10px;
+        line-height: 1.1;
       }
       .threemain {
         font-size: 18px;
@@ -248,9 +270,14 @@
         padding: 40px 0;
         h2 {
           color: #1A384E !important;
-          font-size: 26px !important;
+          font-size: 30px !important;
           font-weight: 700 !important;
           margin-top: 17px !important;
+          line-height: 1.1;
+        }
+
+        p {
+          margin: 0 0 10px;
         }
       }
       @media (max-width: 1200px) {
@@ -281,7 +308,7 @@
     padding-bottom: 20px;
     background: #1A384E;
     p {
-      padding-top: 30px;
+      padding-top: 40px;
       text-indent: 0px;
       margin-bottom: 0;
       color: #FFF !important;
