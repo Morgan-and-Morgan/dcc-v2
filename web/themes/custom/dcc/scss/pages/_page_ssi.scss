@@ -49,11 +49,20 @@
       border: 1px solid #fff;
       background: #BE3A3A !important;
       border-radius: 1px;
+
+      span {
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+
       p {
         margin: 0 0 10px;
       }
+
       &:hover {
         border-color: #ac2925;
+        text-decoration: underline;
       }
     }
   }
@@ -318,6 +327,18 @@
       color: #FFF !important;
       font-weight: 400 !important;
       font-size: 11px;
+    }
+  }
+}
+
+.path-ssi-thank-you {
+  header {
+    .btn-danger {
+      span {
+        &:hover {
+          text-decoration: underline;
+        }
+      }
     }
   }
 }
