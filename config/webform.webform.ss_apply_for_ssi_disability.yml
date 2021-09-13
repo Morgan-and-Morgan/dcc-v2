@@ -212,7 +212,6 @@ handlers:
         serial: serial
         uuid: uuid
         token: token
-        uri: uri
         completed: completed
         changed: changed
         in_draft: in_draft

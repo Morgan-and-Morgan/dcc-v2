@@ -37,6 +37,6 @@ visibility:
     context_mapping: {  }
   request_path:
     id: request_path
-    pages: "/disability-resources\r\n/disability-resources/disability-guide\r\n/medical-qualifications\r\n/social-security-disability\r\n/social-security-disability/qualify\r\n/social-security-disability/apply\r\n/social-security-disability/appeal-denial\r\n/ssi/thank-you\r\n/ss/thank-you\r\n/social-security-disability"
+    pages: "/disability-resources\r\n/disability-resources/disability-guide\r\n/medical-qualifications\r\n/social-security-disability\r\n/social-security-disability/qualify\r\n/social-security-disability/apply\r\n/social-security-disability/appeal-denial\r\n/ssi/thank-you\r\n/ss/thank-you\r\n/social-security-disability\r\n/thank-you\r\n/user\r\n/user/*"
     negate: true
     context_mapping: {  }
