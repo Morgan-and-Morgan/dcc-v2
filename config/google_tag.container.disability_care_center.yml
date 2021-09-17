@@ -1,0 +1,72 @@
+uuid: 98fa8733-c4b6-49d3-8248-6e15870412cc
+langcode: en
+status: true
+dependencies:
+  module:
+    - context
+    - context_entity_field
+    - ctools
+    - webform
+id: disability_care_center
+label: 'Disability Care Center'
+weight: 0
+container_id: GTM-KH52X49
+data_layer: dataLayer
+include_classes: false
+whitelist_classes: "google\nnonGooglePixels\nnonGoogleScripts\nnonGoogleIframes"
+blacklist_classes: "customScripts\ncustomPixels"
+include_environment: false
+environment_id: ''
+environment_token: ''
+path_toggle: 'exclude listed'
+path_list: "/admin*\n/batch*\n/node/add*\n/node/*/edit\n/node/*/delete\n/user/*/edit*\n/user/*/cancel*"
+role_toggle: 'exclude listed'
+role_list: {  }
+status_toggle: 'exclude listed'
+status_list: "403\n404"
+conditions:
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    bundles: {  }
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'
+  'entity_bundle:webform_submission':
+    id: 'entity_bundle:webform_submission'
+    bundles: {  }
+    negate: false
+    context_mapping:
+      webform_submission: '@webform.webform_submission_route_context:webform_submission'
+  'entity_field:node':
+    id: 'entity_field:node'
+    field_name: body
+    field_state: filled
+    field_value: ''
+    context_mapping:
+      node: '@node.node_route_context:node'
+    negate: 0
+  'entity_field:webform_submission':
+    id: 'entity_field:webform_submission'
+    field_name: changed
+    field_state: filled
+    field_value: ''
+    context_mapping:
+      webform_submission: '@webform.webform_submission_route_context:webform_submission'
+    negate: 0
+  http_status_code:
+    id: http_status_code
+    status_codes: {  }
+    negate: 0
+  request_path_exclusion:
+    id: request_path_exclusion
+    pages: ''
+    negate: null
+  view_inclusion:
+    id: view_inclusion
+    negate: null
+    view_inclusion: {  }
+  webform:
+    id: webform
+    webforms: {  }
+    negate: false
+    context_mapping: {  }
