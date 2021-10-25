@@ -23,6 +23,7 @@ module:
   dblog: 0
   dcc_common: 0
   dcc_migrations: 0
+  drupal_ftp_global_vars: 0
   dynamic_page_cache: 0
   editor: 0
   encrypt: 0
