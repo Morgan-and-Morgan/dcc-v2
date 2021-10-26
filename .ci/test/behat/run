@@ -13,24 +13,47 @@ source $BASH_ENV
 # Verbose mode and exit on errors
 set -ex
 
+# Figure out if we're on master or not.
+if [[ $CI_BRANCH != $DEFAULT_BRANCH ]]
+then
+  MDE_ENVIRONMENT=${CI_BRANCH}
+  # Run dev tests.
+  BEHAT_TAGS="dev"
+else
+  # Push to the dev environment.
+  MDE_ENVIRONMENT='dev'
+  # Run prod tests.
+  BEHAT_TAGS="prod"
+fi
+
 # Create a drush alias file so that Behat tests can be executed against Pantheon.
 terminus alpha:aliases --no-db-url --only=$TERMINUS_SITE
-drush sa @pantheon.$TERMINUS_SITE.$TERMINUS_ENV
+drush sa @pantheon.$TERMINUS_SITE.$MDE_ENVIRONMENT
 
 # Drush Behat driver fails without this option.
 echo "\$options['strict'] = 0;" >> ~/.drush/pantheon.aliases.drushrc.php
 
 # Dynamically set Behat configuration parameters
-export BEHAT_PARAMS='{"extensions" : {"Behat\\MinkExtension" : {"base_url" : "https://'$TERMINUS_ENV'-'$TERMINUS_SITE'.pantheonsite.io/"}, "Drupal\\DrupalExtension" : {"drush" :   {  "alias":  "@pantheon.'$TERMINUS_SITE'.'$TERMINUS_ENV'" }}}}'
+export BEHAT_PARAMS='{"extensions" : {"Behat\\MinkExtension" : {"base_url" : "https://'$MDE_ENVIRONMENT'-'$TERMINUS_SITE'.pantheonsite.io/"}, "Drupal\\DrupalExtension" : {"drush" :   {  "alias":  "@pantheon.'$TERMINUS_SITE'.'$MDE_ENVIRONMENT'" }}}}'
 
 # Start headless Chrome
-echo "\n Starting Chrome in headless mode ..."
-google-chrome --disable-gpu --headless --remote-debugging-address=0.0.0.0 --remote-debugging-port=9222 --no-sandbox </dev/null &>/dev/null &
-
-echo "::::::::::::::::::::::::::::::::::::::::::::::::"
-echo "Behat test site: $TERMINUS_SITE.$TERMINUS_ENV"
-echo "::::::::::::::::::::::::::::::::::::::::::::::::"
-echo
+google-chrome --disable-gpu --headless --remote-debugging-address=0.0.0.0 --remote-debugging-port=9222 --no-sandbox --socket-timeout=60 --disable-web-security --user-data-dir=/tmp/chrome_dev --disable-site-isolation-trials </dev/null &>/dev/null &
 
 # Run the Behat tests
+
+# Single thread, no CCI parallelism.
 ./vendor/bin/behat --config=tests/behat/behat-pantheon.yml --strict --colors  "$@"
+
+# Multi thread, aka CCI parallelism.
+# Parallelism configured at .circleci/config.yml -> behat_test -> parallelism.
+# TEST_FILES=($(circleci tests glob "tests/behat/features/*.feature" | circleci tests split --split-by=timings))
+# for FILE in "${TEST_FILES[@]}";
+# do
+#   ./vendor/bin/behat --config=tests/behat/behat-pantheon.yml --strict --colors --tags ${BEHAT_TAGS} ${FILE}
+#   # if [ ${FILE} == 'tests/behat/features/verify-search.feature' ] && [ ${MDE_ENVIRONMENT} != 'dev' ]; then
+#   #   # Might be better to put an empty @dev step in this file then just
+#   #   # use tags vs this per file and env logic...
+#   #   continue
+#   # fi
+#   # ./vendor/bin/behat --config=tests/behat/behat-pantheon.yml --strict --colors ${FILE}
+# done

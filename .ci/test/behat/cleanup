@@ -10,13 +10,22 @@ set -eo pipefail
 terminus -n auth:login --machine-token="$TERMINUS_TOKEN"
 
 # Restore the DB backup made before testing
-#terminus -n backup:restore $TERMINUS_SITE.$TERMINUS_ENV --element=database --yes
+#terminus -n backup:restore $TERMINUS_SITE.$CI_BRANCH --element=database --yes
+
+# Figure out if we're on master or not.
+if [[ $CI_BRANCH != $DEFAULT_BRANCH ]]
+then
+  MDE_ENVIRONMENT=${CI_BRANCH}
+else
+  # Push to the dev environment
+  MDE_ENVIRONMENT='dev'
+fi
 
 # Clear Drupal cache
-terminus -n drush "$TERMINUS_SITE.$TERMINUS_ENV" cr
+terminus -n drush "$TERMINUS_SITE.$MDE_ENVIRONMENT" cr
 
 # Clear site cache
-terminus -n env:clear-cache $TERMINUS_SITE.$TERMINUS_ENV
+terminus -n env:clear-cache $TERMINUS_SITE.$MDE_ENVIRONMENT
 
 # Store artifacts
 export ARTIFACTS_DIR_URL="${CI_BUILD_URL}/artifacts/${CI_NODE_INDEX}/artifacts"

@@ -13,20 +13,32 @@ terminus -n auth:login --machine-token="$TERMINUS_TOKEN"
 # Run composer install again to get dev dependencies
 composer install --no-ansi --no-interaction --optimize-autoloader --no-progress
 
+# Figure out if we're on master or not.
+if [[ $CI_BRANCH != $DEFAULT_BRANCH ]]
+then
+  MDE_ENVIRONMENT=${CI_BRANCH}
+else
+  # Push to the dev environment
+  MDE_ENVIRONMENT='dev'
+fi
+
 # Wake the multidev environment before running tests
-terminus -n env:wake $TERMINUS_SITE.$TERMINUS_ENV
+terminus -n env:wake $TERMINUS_SITE.$MDE_ENVIRONMENT
 
 # Ping Drush to start ssh with the app server
-terminus -n drush $TERMINUS_SITE.$TERMINUS_ENV -- version
+terminus -n drush $TERMINUS_SITE.$MDE_ENVIRONMENT -- version
 
-# Update Drupal database
-terminus -n drush "$TERMINUS_SITE.$TERMINUS_ENV" -- updatedb -y
+# # Update Drupal database
+# terminus -n drush "$TERMINUS_SITE.$MDE_ENVIRONMENT" -- updatedb -y
+
+# # Import config changes
+# terminus -n drush "$TERMINUS_SITE.$MDE_ENVIRONMENT" -- cim -y
 
 # Create a backup before running Behat tests
-#terminus -n backup:create $TERMINUS_SITE.$TERMINUS_ENV
+#terminus -n backup:create $TERMINUS_SITE.$CI_BRANCH
 
-# Clear Drupal cache
-terminus -n drush "$TERMINUS_SITE.$TERMINUS_ENV" -- cr
+# # Clear Drupal cache
+# terminus -n drush "$TERMINUS_SITE.$MDE_ENVIRONMENT" -- cr
 
-# Clear the environment cache
-terminus -n env:clear-cache $TERMINUS_SITE.$TERMINUS_ENV
+# # Clear the environment cache
+# terminus -n env:clear-cache $TERMINUS_SITE.$MDE_ENVIRONMENT
