@@ -18,7 +18,7 @@ if [[ $CI_BRANCH != $DEFAULT_BRANCH ]]
 then
   # Create a new multidev environment (or push to an existing one)
   MDE_ENVIRONMENT=${CI_BRANCH}
-  terminus -n build:env:create "$TERMINUS_SITE.dev" "$CI_BRANCH" --yes
+  terminus -n build:env:create "$TERMINUS_SITE.live" "$CI_BRANCH" --yes
   terminus -n connection:set "${TERMINUS_SITE}.${MDE_ENVIRONMENT}" git
 else
   # Push to the dev environment
