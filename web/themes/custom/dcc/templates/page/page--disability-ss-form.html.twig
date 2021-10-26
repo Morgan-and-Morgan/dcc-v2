@@ -82,23 +82,9 @@
       </div>
     </main>
 
-    <footer>
-      <div class="container">
-        <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-          <p style="text-align:center; font-size:11px;">
-            © Copyright {{ 'now' | date('Y') }} DisabilityCareCenter.org | All Rights Reserved
-            <br>20 North Orange Ave, Suite 1600, Orlando, FL 32801
-            <br><br>This site is designed to be accessible to and usable by people with and without
-            disabilities.
-            <br>Please <a href="/contact-us/">contact us</a> if you encounter an accessibility or usability
-            issue on
-            this site.
-            <br><br><a href="/privacy-policy/">Privacy Policy</a> | <a href="/terms-conditions/">Terms &amp;
-              Conditions</a>
-          </p>
-        </div>
-      </div>
-    </footer>
+    <!-- BEGIN FOOTER -->
+      {% include '@dcc/includes/footer-short.html.twig' %}
+    <!-- END FOOTER -->
 
   </div>
 </div>
