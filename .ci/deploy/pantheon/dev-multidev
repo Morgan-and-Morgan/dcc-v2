@@ -17,29 +17,32 @@ composer run prepare-for-pantheon
 if [[ $CI_BRANCH != $DEFAULT_BRANCH ]]
 then
   # Create a new multidev environment (or push to an existing one)
-  terminus -n build:env:create "$TERMINUS_SITE.dev" "$TERMINUS_ENV" --yes
+  MDE_ENVIRONMENT=${CI_BRANCH}
+  terminus -n build:env:create "$TERMINUS_SITE.live" "$CI_BRANCH" --yes
+  terminus -n connection:set "${TERMINUS_SITE}.${MDE_ENVIRONMENT}" git
 else
   # Push to the dev environment
+  MDE_ENVIRONMENT='dev'
   terminus -n build:env:push "$TERMINUS_SITE.dev" --yes
 fi
 
 # Update the Drupal database
-terminus -n drush "$TERMINUS_SITE.$TERMINUS_ENV" -- updatedb -y
+terminus -n drush "$TERMINUS_SITE.$MDE_ENVIRONMENT" -- updatedb -y
 
 # If exported configuration is available, then import it.
-if [ -f "config/system.site.yml" ] ; then
-  terminus -n drush "$TERMINUS_SITE.$TERMINUS_ENV" -- config-import --yes
+if [ -f "config/sync/system.site.yml" ] ; then
+  terminus -n drush "$TERMINUS_SITE.$MDE_ENVIRONMENT" -- config-import --yes
 fi
 
 # Clear Drupal cache
-terminus -n drush "$TERMINUS_SITE.$TERMINUS_ENV" -- cr
+terminus -n drush "$TERMINUS_SITE.$MDE_ENVIRONMENT" -- cr
 
 # Clear the environment cache
-terminus -n env:clear-cache $TERMINUS_SITE.$TERMINUS_ENV
+terminus -n env:clear-cache $TERMINUS_SITE.$MDE_ENVIRONMENT
 
 # Ensure secrets are set
-terminus -n secrets:set "$TERMINUS_SITE.$TERMINUS_ENV" token "$GITHUB_TOKEN" --file='github-secrets.json' --clear --skip-if-empty
+terminus -n secrets:set "$TERMINUS_SITE.$MDE_ENVIRONMENT" token "$GITHUB_TOKEN" --file='github-secrets.json' --clear --skip-if-empty
 
 # Delete old multidev environments associated
 # with a PR that has been merged or closed.
-terminus -n build:env:delete:pr $TERMINUS_SITE --yes
+# terminus -n build:env:delete:pr $TERMINUS_SITE --yes
