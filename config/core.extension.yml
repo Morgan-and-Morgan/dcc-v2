@@ -83,6 +83,7 @@ module:
   webform_ui: 0
   trailing_slash: 1
   webform_bootstrap: 1
+  xmlsitemap: 1
   views: 10
   paragraphs: 11
   standard: 1000
