@@ -100,69 +100,10 @@
     {# Content #}
       {{ node.field_2_areas|view }}
     {# Content #}
-    <footer>
-      <div class="container">
-        <div class="row footer-main">
-          <div class="col-lg-4 col-md-4 col-sm-4 col-12">
-            <p><strong>Main Navigation</strong></p>
-            <ul id="menu-main" class="menu">
-              <li id="menu-item-25"
-                  class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-25"><a
-                        href="/social-security-disability/">Social Security Disability
-                  Qualifications</a></li>
-              <li id="menu-item-23"
-                  class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-23"><a
-                        href="/medical-qualifications/">Medical Qualifications</a></li>
-              <li id="menu-item-1540"
-                  class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-1540"><a
-                        href="/veterans/">Veterans Disability</a></li>
-              <li id="menu-item-21"
-                  class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-21"><a
-                        href="/disability-resources/">Disability Resources</a></li>
-              <li id="menu-item-20" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20"><a
-                        href="/blog/">Blog</a></li>
-            </ul>
-          </div>
-          <div class="col-lg-4 col-md-4 col-sm-4 col-12">
-            <p><strong>Who We Are</strong></p>
-            <ul id="menu-who-we-are" class="menu">
-              <li id="menu-item-149" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-149"><a
-                        href="/about-us/">About Us</a></li>
-              <li id="menu-item-156" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-156"><a
-                        href="/terms-conditions/">Terms &amp; Conditions</a></li>
-              <li id="menu-item-157" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-157"><a
-                        href="/privacy-policy/">Privacy Policy</a></li>
-            </ul>
-          </div>
 
-          <div class="col-lg-4 col-md-4 col-sm-4 col-12">
-            <p><strong>Connect With Us</strong></p>
-            <ul id="menu-social" class="menu">
-              <li id="menu-item-158" class="fblink menu-item menu-item-type-custom menu-item-object-custom menu-item-158"><a
-                        href="https://www.facebook.com/pages/Disability-Care-Center/759469717482319?fref=ts" target="_blank">Like Us On
-                  Facebook</a></li>
-              <li id="menu-item-159"
-                  class="twitterlink menu-item menu-item-type-custom menu-item-object-custom menu-item-159"><a
-                        href="https://twitter.com/disability_care" target="_blank">Follow Us On Twitter</a></li>
-              <li id="menu-item-160"
-                  class="contactlink menu-item menu-item-type-post_type menu-item-object-page menu-item-160"><a
-                        href="/contact-us/">Contact Us</a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="row footer-bottom site-info">
-          <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-            <p style="text-align:center; font-size:11px; padding-bottom:10px;">
-              ©{{ 'now' | date('Y') }}. All Rights Reserved.<br>
-              20 North Orange Ave, Suite 1600, Orlando, FL 32801<br><br>
-              This site is designed to be accessible to and usable by people with and without disabilities.<br>
-              Please <a style="font-size: 11px; color:#4C9AC1 !important; text-decoration:underline;" href="/contact-us">contact
-                us</a> if you encounter an accessibility or usability issue on this site.
-            </p>
-          </div>
-        </div>
-      </div>
-    </footer>
+    <!-- BEGIN FOOTER -->
+      {% include '@dcc/includes/footer-full.html.twig' %}
+    <!-- END FOOTER -->
 
   </div>
 </div>

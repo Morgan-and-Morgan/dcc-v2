@@ -1,0 +1,10 @@
+<footer>
+    {% if includeLogos %}
+        <div class="container">
+            {% include '@dcc/includes/footer-components/footer-logo-banner.html.twig' %}
+        </div>
+    {% endif %}
+    <div class="container">
+        {% include '@dcc/includes/footer-components/footer-site-info.html.twig' %}
+    </div>
+</footer>
