@@ -143,6 +143,14 @@ h3.gform_title {
   color: $white;
   font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
   font-weight: 400;
+  font-size: 11px;
+  a {
+    text-decoration: underline;
+    color: $white;
+    &:hover {
+      color: $white;
+    }
+  }
 }
 
 /*END GRAVITY FORMS*/
