@@ -231,24 +231,6 @@ jobs:
           path: /tmp/artifacts
           destination: artifacts
 
-  composer_lock_updater:
-    <<: *defaults
-    steps:
-      - checkout
-
-      - run:
-          # Set TERMINUS_ENV and related environment variables.
-          # https://github.com/pantheon-systems/docker-build-tools-ci/blob/6.x/scripts/set-environment
-          name: setup-environment-vars
-          command: /build-tools-ci/scripts/set-environment
-
-      - run:
-          name: Authenticate with Terminus
-          command: terminus -n auth:login --machine-token="$TERMINUS_TOKEN"
-
-      - run:
-          name: run composer lock updater
-          command: set -e && terminus project:clu $TERMINUS_SITE
   npmbuild_and_persist:
     docker:
       - image: node:10.15.3
@@ -290,17 +272,6 @@ workflows:
             # requires:
             # - deploy_to_pantheon
             # - visual_regression_test
-
-  scheduled_update_check:
-    triggers:
-      - schedule:
-          cron: "0 0 * * *"
-          filters:
-            branches:
-              only:
-                - master
-    jobs:
-      - composer_lock_updater
 
 orbs:
   pantheon: pantheon-systems/pantheon@0.5.1
