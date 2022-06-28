@@ -228,7 +228,7 @@ handlers:
       cast: false
       debug: false
       completed_url: 'https://hooks.zapier.com/hooks/catch/1587852/b3askov'
-      completed_custom_data: "form_id: 14\r\nform_title: \"Step 1: Disability Benefit Evaluation\""
+      completed_custom_data: "form_id: 14\r\nform_title: \"Step 1: Disability Benefit Evaluation\"\r\nlitigation: Social Security\r\ncase_type: Social Security"
       updated_url: ''
       updated_custom_data: ''
       deleted_url: ''
