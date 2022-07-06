@@ -1,0 +1,10 @@
+form_ids: 'user_pass,user_register_form'
+site_key: 6LcEBrQgAAAAAE83DG9nvhU9hH6rcqlVGQlSgE05
+secret_key: 6LcEBrQgAAAAAAEBC4Ttkg9W5Z-UJLdKu8aB1RYM
+site_key_v3: ''
+secret_key_v3: ''
+recaptcha_type: v2
+v3_score: 80
+recaptcha_use_globally: false
+_core:
+  default_config_hash: QkjHcOn8AFHsmuGjG7fhFnWgxSlX3WkghHksoK1pHeE

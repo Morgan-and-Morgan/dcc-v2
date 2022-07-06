@@ -70,6 +70,7 @@
         "drupal/services": "^4.0@beta",
         "drupal/sfweb2lead_webform": "^5.2",
         "drupal/shortcode": "^2.0",
+        "drupal/simple_recaptcha": "^1.0@beta",
         "drupal/tb_megamenu": "^1.0@RC",
         "drupal/tfa": "^1.0@alpha",
         "drupal/token_filter": "^1.2",

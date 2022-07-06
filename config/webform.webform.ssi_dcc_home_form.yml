@@ -4,6 +4,7 @@ status: open
 dependencies:
   module:
     - honeypot
+    - simple_recaptcha_webform
 third_party_settings:
   honeypot:
     honeypot: true
@@ -199,7 +200,7 @@ access:
 handlers:
   step_1_disability_benefits_application:
     id: remote_post
-    label: 'Step 1: Disability Benefits Application'
+    label: Zapier
     notes: ''
     handler_id: step_1_disability_benefits_application
     status: true
@@ -242,4 +243,16 @@ handlers:
       message: ''
       messages: {  }
       error_url: ''
+  recaptcha:
+    id: simple_recaptcha
+    label: reCAPTCHA
+    notes: ''
+    handler_id: recaptcha
+    status: true
+    conditions: {  }
+    weight: 0
+    settings:
+      recaptcha_type: v2
+      v3_score: ''
+      v3_error_message: ''
 variants: {  }
