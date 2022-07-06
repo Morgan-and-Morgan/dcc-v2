@@ -264,6 +264,8 @@
           .form-actions {
             .recaptcha {
               margin-bottom: 20px;
+              display: flex;
+              justify-content: center;
               > div {
                 max-width: 100%;
                 iframe {
