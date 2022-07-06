@@ -262,6 +262,9 @@
             }
           }
           .form-actions {
+            .recaptcha {
+              margin-bottom: 20px;
+            }
             input {
               white-space: initial;
               text-transform: uppercase;
