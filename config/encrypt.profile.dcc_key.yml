@@ -9,5 +9,5 @@ dependencies:
 id: dcc_key
 label: 'DCC key'
 encryption_method: real_aes
-encryption_key: dcc_key
 encryption_method_configuration: {  }
+encryption_key: dcc_key

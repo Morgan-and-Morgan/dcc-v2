@@ -4,8 +4,8 @@ status: true
 dependencies:
   module:
     - context_entity_field
-name: ssi_form_layout
 label: 'SSI Form layout'
+name: ssi_form_layout
 group: dcc
 description: ''
 requireAllConditions: true

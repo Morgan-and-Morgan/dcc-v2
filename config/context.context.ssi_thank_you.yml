@@ -4,8 +4,8 @@ status: true
 dependencies:
   module:
     - system
-name: ssi_thank_you
 label: 'SSI - Thank You'
+name: ssi_thank_you
 group: dcc
 description: ''
 requireAllConditions: true
@@ -13,10 +13,10 @@ disabled: false
 conditions:
   request_path:
     id: request_path
-    pages: /ssi/thank-you
     negate: false
     uuid: b98eb7f9-c1d4-44dc-829a-9d38656ec4d5
     context_mapping: {  }
+    pages: /ssi/thank-you
 reactions:
   page_template_suggestions:
     id: page_template_suggestions

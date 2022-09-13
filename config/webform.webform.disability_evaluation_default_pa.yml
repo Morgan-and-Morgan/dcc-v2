@@ -7,9 +7,9 @@ dependencies:
 third_party_settings:
   honeypot:
     honeypot: true
+weight: 0
 open: null
 close: null
-weight: 0
 uid: 1
 template: false
 archive: false
@@ -17,7 +17,84 @@ id: disability_evaluation_default_pa
 title: 'Disability Evaluation - Default Pages'
 description: ''
 category: ''
-elements: "step_1_title:\n  '#type': processed_text\n  '#text': |\n    <h2>Disability Evaluation</h2>\n    \n    <p><span class=\"formsection\">Step 1: Disability Questions</span></p>\n    \n  '#format': full_html\ndoes_applicant_expect_to_not_work_for_at_least_12_months:\n  '#type': radios\n  '#title': 'Does applicant expect to not work for at least 12 months?'\n  '#options':\n    'Yes': 'Yes'\n    'No': 'No'\nis_applicant_receiving_treatment_from_a_doctor:\n  '#type': radios\n  '#title': 'Is applicant receiving treatment from a doctor?'\n  '#options':\n    'Yes': 'Yes'\n    'No': 'No'\ncan_the_applicant_work_at_all:\n  '#type': radios\n  '#title': 'Can the applicant work at all?'\n  '#options':\n    'Yes': 'Yes'\n    'No': 'No'\nplease_list_all_conditions:\n  '#type': textarea\n  '#title': 'Please list all conditions.'\n  '#placeholder': 'Please list all conditions.'\nstep_2_title:\n  '#type': processed_text\n  '#text': |\n    <p><span class=\"formsection\">Step 2: Applicant’s Information</span></p>\n    \n  '#format': full_html\nname:\n  '#type': textfield\n  '#title': Name\n  '#placeholder': Name\n  '#required': true\n  '#required_error': 'Name is required'\nphone:\n  '#type': tel\n  '#title': Phone\n  '#placeholder': Phone\n  '#required': true\n  '#required_error': 'Phone is required'\nemail:\n  '#type': email\n  '#title': Email\n  '#placeholder': Email\n  '#required': true\nage:\n  '#type': textfield\n  '#title': Age\n  '#placeholder': Age\n  '#required': true\n  '#required_error': 'Age is required'\nstate:\n  '#type': select\n  '#title': State\n  '#options': state_names\n  '#empty_option': State\n  '#empty_value': State\n  '#required': true\n  '#required_error': 'State is required'\nterms_conditions:\n  '#type': processed_text\n  '#text': |\n    <p class=\"custom-para-blog\">By submitting you agree to our <a href=\"https://www.forthepeople.com/disclaimer-and-terms-of-use/\" target=\"_blank\">Terms</a> &amp; <a href=\"https://www.forthepeople.com/privacy-policy/\" target=\"_blank\">Privacy Policy</a>.</p>\n    \n  '#format': full_html\nactions:\n  '#type': webform_actions\n  '#title': 'Submit button(s)'\n  '#submit__label': 'Evaluate My Case'"
+elements: |-
+  step_1_title:
+    '#type': processed_text
+    '#text': |
+      <h2>Disability Evaluation</h2>
+      
+      <p><span class="formsection">Step 1: Disability Questions</span></p>
+      
+    '#format': full_html
+  does_applicant_expect_to_not_work_for_at_least_12_months:
+    '#type': radios
+    '#title': 'Does applicant expect to not work for at least 12 months?'
+    '#options':
+      'Yes': 'Yes'
+      'No': 'No'
+  is_applicant_receiving_treatment_from_a_doctor:
+    '#type': radios
+    '#title': 'Is applicant receiving treatment from a doctor?'
+    '#options':
+      'Yes': 'Yes'
+      'No': 'No'
+  can_the_applicant_work_at_all:
+    '#type': radios
+    '#title': 'Can the applicant work at all?'
+    '#options':
+      'Yes': 'Yes'
+      'No': 'No'
+  please_list_all_conditions:
+    '#type': textarea
+    '#title': 'Please list all conditions.'
+    '#placeholder': 'Please list all conditions.'
+  step_2_title:
+    '#type': processed_text
+    '#text': |
+      <p><span class="formsection">Step 2: Applicant’s Information</span></p>
+      
+    '#format': full_html
+  name:
+    '#type': textfield
+    '#title': Name
+    '#placeholder': Name
+    '#required': true
+    '#required_error': 'Name is required'
+  phone:
+    '#type': tel
+    '#title': Phone
+    '#placeholder': Phone
+    '#required': true
+    '#required_error': 'Phone is required'
+  email:
+    '#type': email
+    '#title': Email
+    '#placeholder': Email
+    '#required': true
+  age:
+    '#type': textfield
+    '#title': Age
+    '#placeholder': Age
+    '#required': true
+    '#required_error': 'Age is required'
+  state:
+    '#type': select
+    '#title': State
+    '#options': state_names
+    '#empty_option': State
+    '#empty_value': State
+    '#required': true
+    '#required_error': 'State is required'
+  terms_conditions:
+    '#type': processed_text
+    '#text': |
+      <p class="custom-para-blog">By submitting you agree to our <a href="https://www.forthepeople.com/disclaimer-and-terms-of-use/" target="_blank">Terms</a> &amp; <a href="https://www.forthepeople.com/privacy-policy/" target="_blank">Privacy Policy</a>.</p>
+      
+    '#format': full_html
+  actions:
+    '#type': webform_actions
+    '#title': 'Submit button(s)'
+    '#submit__label': 'Evaluate My Case'
 css: ''
 javascript: ''
 settings:
@@ -32,9 +109,9 @@ settings:
   page_theme_name: ''
   form_title: both
   form_submit_once: false
-  form_exception_message: ''
   form_open_message: ''
   form_close_message: ''
+  form_exception_message: ''
   form_previous_submissions: true
   form_confidential: false
   form_confidential_message: ''
@@ -44,28 +121,36 @@ settings:
   form_prepopulate_source_entity: false
   form_prepopulate_source_entity_required: false
   form_prepopulate_source_entity_type: ''
-  form_reset: false
+  form_unsaved: false
+  form_disable_back: false
+  form_submit_back: false
   form_disable_autocomplete: false
   form_novalidate: false
   form_disable_inline_errors: false
   form_required: false
-  form_unsaved: false
-  form_disable_back: false
-  form_submit_back: false
   form_autofocus: false
   form_details_toggle: false
+  form_reset: false
   form_access_denied: default
   form_access_denied_title: ''
   form_access_denied_message: ''
   form_access_denied_attributes: {  }
   form_file_limit: ''
+  form_attributes: {  }
+  form_method: ''
+  form_action: ''
   share: false
   share_node: false
   share_theme_name: ''
   share_title: true
   share_page_body_attributes: {  }
   submission_label: ''
+  submission_exception_message: ''
+  submission_locked_message: ''
   submission_log: false
+  submission_excluded_elements: {  }
+  submission_exclude_empty: false
+  submission_exclude_empty_checkbox: false
   submission_views: {  }
   submission_views_replace: {  }
   submission_user_columns: {  }
@@ -74,11 +159,6 @@ settings:
   submission_access_denied_title: ''
   submission_access_denied_message: ''
   submission_access_denied_attributes: {  }
-  submission_exception_message: ''
-  submission_locked_message: ''
-  submission_excluded_elements: {  }
-  submission_exclude_empty: false
-  submission_exclude_empty_checkbox: false
   previous_submission_message: ''
   previous_submissions_message: ''
   autofill: false
@@ -89,13 +169,13 @@ settings:
   wizard_progress_percentage: false
   wizard_progress_link: false
   wizard_progress_states: false
-  wizard_auto_forward: true
-  wizard_auto_forward_hide_next_button: false
-  wizard_keyboard: true
   wizard_start_label: ''
   wizard_preview_link: false
   wizard_confirmation: true
   wizard_confirmation_label: ''
+  wizard_auto_forward: true
+  wizard_auto_forward_hide_next_button: false
+  wizard_keyboard: true
   wizard_track: ''
   wizard_prev_button_label: ''
   wizard_next_button_label: ''
@@ -118,9 +198,9 @@ settings:
   draft_pending_single_message: ''
   draft_pending_multiple_message: ''
   confirmation_type: url
+  confirmation_url: /thank-you
   confirmation_title: ''
   confirmation_message: ''
-  confirmation_url: /thank-you
   confirmation_attributes: {  }
   confirmation_back: true
   confirmation_back_label: ''
@@ -199,9 +279,9 @@ access:
 handlers:
   zapier:
     id: remote_post
+    handler_id: zapier
     label: Zapier
     notes: 'Send DCC Submission'
-    handler_id: zapier
     status: true
     conditions: {  }
     weight: 0
@@ -226,6 +306,7 @@ handlers:
         notes: notes
       custom_data: ''
       custom_options: ''
+      file_data: true
       cast: false
       debug: false
       completed_url: 'https://hooks.zapier.com/hooks/catch/1587852/b3ar3tb/'
