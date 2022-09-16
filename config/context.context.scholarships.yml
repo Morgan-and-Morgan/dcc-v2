@@ -4,8 +4,8 @@ status: true
 dependencies:
   module:
     - system
-name: scholarships
 label: Scholarships
+name: scholarships
 group: dcc
 description: Scholarships
 requireAllConditions: true
@@ -13,10 +13,10 @@ disabled: false
 conditions:
   request_path:
     id: request_path
-    pages: /giving-back/scholarships
     negate: false
     uuid: d2ea6fe6-84e3-44d5-9b95-9605e35ef8c3
     context_mapping: {  }
+    pages: /giving-back/scholarships
 reactions:
   page_template_suggestions:
     id: page_template_suggestions

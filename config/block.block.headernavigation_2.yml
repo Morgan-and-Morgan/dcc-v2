@@ -15,6 +15,6 @@ plugin: 'we_megamenu_block:header-navigation'
 settings:
   id: 'we_megamenu_block:header-navigation'
   label: 'Header Navigation'
-  provider: we_megamenu
   label_display: '0'
+  provider: we_megamenu
 visibility: {  }
