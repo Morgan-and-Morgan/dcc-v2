@@ -78,6 +78,9 @@
       padding-right: 0;
 
       .ss-webform-wrapper {
+        @media (max-width: 640px) {
+          padding: 10px 15px 40px 15px;
+        }
         margin: 16px 0;
         max-width: 100%;
         padding: 10px 40px 40px 40px;

@@ -207,7 +207,7 @@
     #homemaincopy {
       background: url(/themes/custom/dcc/images/ss/b-grid.jpg) repeat #193045 !important;
       font-size: 21px;
-      padding: 30px 0;
+      padding: 30px 15px;
       text-align: center;
       color: #FFF !important;
       margin: 40px 0 0;
@@ -215,7 +215,7 @@
     #homemaincopy {
       background: url(/themes/custom/dcc/images/ss/b-grid.jpg) repeat #193045 !important;
       font-size: 21px;
-      padding: 30px 0;
+      padding: 30px 15px;
       text-align: center;
       color: #FFF !important;
       margin: 40px 0 0;
@@ -368,6 +368,9 @@
         padding-left: 0;
         padding-right: 0;
         .ss-webform-wrapper {
+          @media (max-width: 640px) {
+            padding: 10px 15px 40px 15px;
+          }
           margin: 16px 0;
           max-width: 100%;
           padding: 10px 40px 40px 40px;
