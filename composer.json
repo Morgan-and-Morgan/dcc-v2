@@ -32,7 +32,7 @@
         "composer/installers": "^1.9",
         "drupal/config_delete": "^1.17",
         "drupal/config_devel": "^1.8",
-        "drupal/context_entity_field": "^1.0@alpha",
+        "drupal/context_entity_field": "^1.0.0-alpha1",
         "drupal/default_paragraphs": "^1.0",
         "drupal/field_states_ui": "^2.0",
         "drupal/fontawesome": "^2.17",
@@ -41,6 +41,7 @@
         "drupal/menu_block": "^1.6",
         "drupal/menu_link_clone": "^3.2",
         "drupal/menus_attribute": "^1.1",
+        "drupal/profile_switcher": "^1.0@alpha",
         "drupal/services": "^4.0@beta",
         "drupal/sfweb2lead_webform": "^5.2",
         "drupal/shortcode": "^2.0",
@@ -49,12 +50,13 @@
         "drupal/webform": "^6.0",
         "drupal/xmlsitemap": "^1.1",
         "drush/drush": "^10",
+        "symfony/var-dumper": "v5.4.9",
         "morgan-and-morgan/drupal_ftp_global_vars": "1.0.2",
         "pantheon-systems/drupal-integrations": "^8",
         "pantheon-systems/quicksilver-pushback": "^2"
     },
     "require-dev": {
-        "behat/mink-extension": "^2.2",
+        "behat/mink-extension": "^2.2"
     },
     "conflict": {
         "drupal/drupal": "*"
@@ -88,6 +90,28 @@
         ],
         "post-create-project-cmd": [
             "DrupalProject\\composer\\ScriptHandler::createRequiredFiles"
+        ],
+        "build-theme": [
+            "cd web/themes/custom/dcc; npm -v; node -v; npm install --unsafe-perm; npm run build;"
+        ],
+        "nuke-profile": [
+            "rm -Rf web/profiles/contrib/ vendor/ composer.lock"
+        ],
+        "nuke-site": [
+            "rm -Rf web/profiles/contrib/ vendor/ composer.lock web/themes/contrib web/theme/custom/dcc/dist web/theme/custom/dcc/node_modules"
+        ],
+        "nuke-rebuild": [
+            "composer nuke-site",
+            "composer install",
+            "composer build-theme"
+        ],
+        "lando-nuke-deploy": [
+            "composer nuke-site",
+            "composer install",
+            "lando drush updb -y",
+            "lando drush cim -y",
+            "composer build-theme",
+            "lando drush cr"
         ]
     },
     "extra": {
@@ -143,7 +167,15 @@
         "preferred-install": "dist",
         "sort-packages": true,
         "platform": {
-            "php": ">=7.4"
+            "php": "7.4"
+        },
+        "allow-plugins": {
+            "composer/installers": true,
+            "cweagans/composer-patches": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "drupal/core-composer-scaffold": true,
+            "zaporylie/composer-drupal-optimizations": true,
+            "wikimedia/composer-merge-plugin": true
         }
     }
 }
