@@ -160,7 +160,8 @@
                 "Ajax error": "https://www.drupal.org/files/issues/2020-10-28/3145195-13661358_6.patch"
             },
             "drupal/we_megamenu": {
-                "Optional parameter $theme_name declared... (https://www.drupal.org/project/we_megamenu/issues/3239043)": "https://www.drupal.org/files/issues/2022-02-24/we_megamenu_deprecated.patch"
+                "Optional parameter $theme_name declared... (https://www.drupal.org/project/we_megamenu/issues/3239043)": "https://www.drupal.org/files/issues/2022-02-24/we_megamenu_deprecated.patch",
+                "Deprecated function: reset() (https://www.drupal.org/project/we_megamenu/issues/3296290)": "https://www.drupal.org/files/issues/2022-08-12/we_megamenu-3296290-5.patch"
             }
         }
     },
