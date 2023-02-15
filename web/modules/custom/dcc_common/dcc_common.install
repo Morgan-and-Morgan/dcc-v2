@@ -18,3 +18,19 @@ function dcc_common_update_8001() {
   \Drupal::service('module_installer')->uninstall($uninstall_modules);
 
 }
+
+/**
+ * Implements hook_update_N().
+ *
+ * Remove modules from system.schema.
+ */
+function dcc_common_update_8002() {
+  $uninstall_modules = [
+    'kint'
+  ];
+
+  foreach ($uninstall_modules as $module) {
+    \Drupal::keyValue('system.schema')->delete($module);
+  }
+
+}

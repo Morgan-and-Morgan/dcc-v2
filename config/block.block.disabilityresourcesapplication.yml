@@ -18,14 +18,14 @@ plugin: 'block_content:9c0c1720-65af-492a-b0ea-ce4142b6662d'
 settings:
   id: 'block_content:9c0c1720-65af-492a-b0ea-ce4142b6662d'
   label: 'Disability Resources application'
-  provider: block_content
   label_display: '0'
+  provider: block_content
   status: true
   info: ''
   view_mode: full
 visibility:
   request_path:
     id: request_path
-    pages: ''
     negate: true
     context_mapping: {  }
+    pages: ''

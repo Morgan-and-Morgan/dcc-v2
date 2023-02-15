@@ -4,8 +4,8 @@ status: true
 dependencies:
   module:
     - system
-name: disability_ss_layout
 label: 'Disability SS layout'
+name: disability_ss_layout
 group: dcc
 description: ''
 requireAllConditions: true
@@ -13,10 +13,10 @@ disabled: false
 conditions:
   request_path:
     id: request_path
-    pages: /ss
     negate: false
     uuid: fdb2f795-c8cd-4dd5-b267-ab34489fecfe
     context_mapping: {  }
+    pages: /ss
 reactions:
   page_template_suggestions:
     id: page_template_suggestions

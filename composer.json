@@ -27,7 +27,7 @@
         }
     },
     "require": {
-        "morgan-and-morgan/mm_drupal_core_d9_shared_infra": "1.1.30",
+        "morgan-and-morgan/mm_drupal_core_d9_shared_infra": "dev-la-wem-3945",
         "wikimedia/composer-merge-plugin": "^2.0.1",
         "composer/installers": "^1.9",
         "drupal/config_delete": "^1.17",
@@ -50,7 +50,6 @@
         "drupal/webform": "^6.0",
         "drupal/xmlsitemap": "^1.1",
         "drush/drush": "^10",
-        "symfony/var-dumper": "v5.4.9",
         "morgan-and-morgan/drupal_ftp_global_vars": "1.0.2",
         "pantheon-systems/drupal-integrations": "^8",
         "pantheon-systems/quicksilver-pushback": "^2"
@@ -159,6 +158,9 @@
             "drupal/field_states_ui": {
                 "Field_parents key not found": "https://www.drupal.org/files/issues/2021-06-08/3196272-3.patch",
                 "Ajax error": "https://www.drupal.org/files/issues/2020-10-28/3145195-13661358_6.patch"
+            },
+            "drupal/we_megamenu": {
+                "Optional parameter $theme_name declared... (https://www.drupal.org/project/we_megamenu/issues/3239043)": "https://www.drupal.org/files/issues/2022-02-24/we_megamenu_deprecated.patch"
             }
         }
     },
@@ -167,7 +169,7 @@
         "preferred-install": "dist",
         "sort-packages": true,
         "platform": {
-            "php": "7.4"
+            "php": "8.1"
         },
         "allow-plugins": {
             "composer/installers": true,
@@ -175,7 +177,8 @@
             "dealerdirect/phpcodesniffer-composer-installer": true,
             "drupal/core-composer-scaffold": true,
             "zaporylie/composer-drupal-optimizations": true,
-            "wikimedia/composer-merge-plugin": true
+            "wikimedia/composer-merge-plugin": true,
+            "drupal/core-project-message": true
         }
     }
 }
