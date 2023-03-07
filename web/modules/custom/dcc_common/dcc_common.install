@@ -53,3 +53,35 @@ function dcc_common_update_8003() {
   }
 
 }
+
+/**
+ * Enable shared infra install profile.
+ */
+function dcc_common_update_8004(&$sandbox) {
+
+  // Delete profile directory state.
+  \Drupal::state()->delete('system.profile.files');
+
+  // Find new extensions.
+  \Drupal::service('extension.list.module')->reset()->getList();
+
+  // Grab config.
+  $config = \Drupal::configFactory()->getEditable('core.extension');
+
+  // Update profile entry.
+  $config->set('profile', 'mm_drupal_core_d9_shared_infra');
+
+  // Remove old profile from active config.
+  $modules = $config->get('module');
+  unset($modules['standard']);
+  $config->set('module', $modules);
+  $config->save();
+  drupal_flush_all_caches();
+
+  // Remove schema entry for old_profile.
+  $sc = \Drupal::keyValue('system.schema');
+  if ($sc->get('standard')) {
+    $sc->delete('standard');
+  }
+  drupal_flush_all_caches();
+}

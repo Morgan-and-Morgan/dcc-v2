@@ -89,7 +89,7 @@ module:
   xmlsitemap: 1
   views: 10
   paragraphs: 11
-  standard: 1000
+  mm_drupal_core_d9_shared_infra: 1000
 theme:
   stable: 0
   classy: 0
@@ -97,4 +97,4 @@ theme:
   seven: 0
   bootstrap4: 0
   dcc: 0
-profile: standard
+profile: mm_drupal_core_d9_shared_infra
