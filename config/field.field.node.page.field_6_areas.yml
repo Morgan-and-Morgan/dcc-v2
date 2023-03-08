@@ -21,9 +21,9 @@ default_value_callback: ''
 settings:
   handler: 'default:paragraph'
   handler_settings:
-    negate: 0
     target_bundles:
       6_areas: 6_areas
+    negate: 0
     target_bundles_drag_drop:
       2_areas:
         weight: 6
@@ -38,6 +38,6 @@ settings:
         weight: 9
         enabled: false
       6_areas:
-        enabled: true
         weight: 10
+        enabled: true
 field_type: entity_reference_revisions
