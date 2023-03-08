@@ -18,14 +18,14 @@ plugin: 'block_content:f9a50867-65db-488f-b47a-d77447beb901'
 settings:
   id: 'block_content:f9a50867-65db-488f-b47a-d77447beb901'
   label: 'Social Security Disability application'
-  provider: block_content
   label_display: '0'
+  provider: block_content
   status: true
   info: ''
   view_mode: full
 visibility:
   request_path:
     id: request_path
-    pages: ''
     negate: true
     context_mapping: {  }
+    pages: ''

@@ -5,8 +5,8 @@ dependencies:
   module:
     - context_entity_field
     - ctools
-name: basic_page_4_areas_with_form
 label: 'Basic Page - 4 Areas with Form'
+name: basic_page_4_areas_with_form
 group: basic_page
 description: 'Basic Page - 4 Areas with Form'
 requireAllConditions: true
@@ -22,12 +22,12 @@ conditions:
     negate: 0
   'entity_bundle:node':
     id: 'entity_bundle:node'
-    bundles:
-      page: page
     negate: false
     uuid: 7d0d8082-c8c0-4c0f-bc5a-84f5d8a2d915
     context_mapping:
       node: '@node.node_route_context:node'
+    bundles:
+      page: page
 reactions:
   page_template_suggestions:
     id: page_template_suggestions

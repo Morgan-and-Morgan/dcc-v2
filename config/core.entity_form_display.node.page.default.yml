@@ -32,16 +32,16 @@ third_party_settings:
         - field_4_areas_with_form
         - field_5_areas
         - field_6_areas
+      label: Template
+      region: content
       parent_name: ''
       weight: 8
       format_type: fieldset
-      region: content
       format_settings:
-        id: ''
         classes: ''
+        id: ''
         description: ''
         required_fields: true
-      label: Template
 _core:
   default_config_hash: AD_lefuYmjsKeH3OQApsyP_nLj6ZnGaALznLQSQ0Z_o
 id: node.page.default
@@ -55,8 +55,8 @@ content:
     region: content
     settings:
       rows: 9
-      placeholder: ''
       summary_rows: 3
+      placeholder: ''
       show_summary: false
     third_party_settings:
       field_states_ui:
@@ -72,6 +72,7 @@ content:
   field_2_areas:
     type: entity_reference_paragraphs
     weight: 9
+    region: content
     settings:
       title: Paragraph
       title_plural: Paragraphs
@@ -96,10 +97,10 @@ content:
               submit:
                 save: Add
                 cancel: Cancel
-    region: content
   field_4_areas:
     type: entity_reference_paragraphs
     weight: 10
+    region: content
     settings:
       title: Paragraph
       title_plural: Paragraphs
@@ -120,10 +121,10 @@ content:
               submit:
                 save: Add
                 cancel: Cancel
-    region: content
   field_4_areas_with_form:
     type: entity_reference_paragraphs
     weight: 11
+    region: content
     settings:
       title: Paragraph
       title_plural: Paragraphs
@@ -150,10 +151,10 @@ content:
               comparison: value
               value: 4_areas_with_form
               submit: 'Add Cancel'
-    region: content
   field_5_areas:
     type: entity_reference_paragraphs
     weight: 12
+    region: content
     settings:
       title: Paragraph
       title_plural: Paragraphs
@@ -180,10 +181,10 @@ content:
               comparison: value
               value: 5_areas
               submit: 'Add Cancel'
-    region: content
   field_6_areas:
     type: entity_reference_paragraphs
     weight: 13
+    region: content
     settings:
       title: Paragraph
       title_plural: Paragraphs
@@ -210,29 +211,30 @@ content:
               comparison: value
               value: 6_areas
               submit: 'Add Cancel'
-    region: content
   field_featured_image:
+    type: media_library_widget
     weight: 13
+    region: content
     settings:
       media_types: {  }
     third_party_settings: {  }
-    type: media_library_widget
-    region: content
   field_meta_tags:
+    type: metatag_firehose
     weight: 11
+    region: content
     settings:
       sidebar: true
     third_party_settings: {  }
-    type: metatag_firehose
-    region: content
   field_page_template:
+    type: options_select
     weight: 7
+    region: content
     settings: {  }
     third_party_settings: {  }
-    type: options_select
-    region: content
   field_ss_ssi_webform:
+    type: webform_entity_reference_select
     weight: 12
+    region: content
     settings:
       default_data: true
       webforms: {  }
@@ -242,8 +244,6 @@ content:
           type: ''
           list: ''
           add: Add
-    type: webform_entity_reference_select
-    region: content
   langcode:
     type: language_select
     weight: 1
@@ -259,24 +259,24 @@ content:
     third_party_settings: {  }
   promote:
     type: boolean_checkbox
-    settings:
-      display_label: true
     weight: 4
     region: content
+    settings:
+      display_label: true
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    settings:
-      display_label: true
     weight: 10
     region: content
+    settings:
+      display_label: true
     third_party_settings: {  }
   sticky:
     type: boolean_checkbox
-    settings:
-      display_label: true
     weight: 5
     region: content
+    settings:
+      display_label: true
     third_party_settings: {  }
   title:
     type: string_textfield
