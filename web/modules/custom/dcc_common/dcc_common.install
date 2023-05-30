@@ -1,0 +1,87 @@
+<?php
+
+/**
+ * @file
+ * File contains update hooks and such.
+ */
+
+ /**
+ * Implements hook_update_N().
+ *
+ * Remove uninstalled modules from system schema.
+ */
+function dcc_common_update_8001() {
+  $uninstall_modules = [
+    'kint'
+  ];
+
+  \Drupal::service('module_installer')->uninstall($uninstall_modules);
+
+}
+
+/**
+ * Implements hook_update_N().
+ *
+ * Remove modules from system.schema.
+ */
+function dcc_common_update_8002() {
+  $uninstall_modules = [
+    'kint'
+  ];
+
+  foreach ($uninstall_modules as $module) {
+    \Drupal::keyValue('system.schema')->delete($module);
+  }
+
+}
+
+/**
+ * Implements hook_update_N().
+ *
+ * Remove modules from system.schema.
+ */
+function dcc_common_update_8003() {
+  $uninstall_modules = [
+    'kint'
+  ];
+
+  foreach ($uninstall_modules as $module) {
+    \Drupal::configFactory()
+      ->getEditable("core.extension")
+      ->clear("module.kint")
+      ->save(TRUE);
+  }
+
+}
+
+/**
+ * Enable shared infra install profile.
+ */
+function dcc_common_update_8004(&$sandbox) {
+
+  // Delete profile directory state.
+  \Drupal::state()->delete('system.profile.files');
+
+  // Find new extensions.
+  \Drupal::service('extension.list.module')->reset()->getList();
+
+  // Grab config.
+  $config = \Drupal::configFactory()->getEditable('core.extension');
+
+  // Update profile entry.
+  $config->set('profile', 'mm_drupal_core_d9_shared_infra');
+
+  // Remove old profile from active config.
+  $modules = $config->get('module');
+  unset($modules['standard']);
+  $config->set('module', $modules);
+  $config->save();
+  drupal_flush_all_caches();
+
+  // Remove schema entry for old_profile.
+  $sc = \Drupal::keyValue('system.schema');
+  if ($sc->get('standard')) {
+    $sc->delete('standard');
+  }
+  drupal_flush_all_caches();
+}

@@ -31,7 +31,7 @@ function dcc_preprocess_html(&$variables)
 {
   $current_path = \Drupal::service('path.current')->getPath();
   $current_path = \Drupal::service('path.current')->getPath();
-  $path_alias = \Drupal::service('path.alias_manager')->getAliasByPath($current_path);
+  $path_alias = \Drupal::service('path_alias.manager')->getAliasByPath($current_path);
   $path_alias = ltrim($path_alias, '/');
   $variables['attributes']['class'][] = 'path-' . \Drupal\Component\Utility\Html::cleanCssIdentifier($path_alias);
   if (isset($variables['node_type'])) {
@@ -45,6 +45,6 @@ function dcc_preprocess_html(&$variables)
  * Implements hook_preprocess_paragraph().
  */
 function dcc_preprocess_paragraph(&$variables){
-  $node = \Drupal::request()->attributes->get('node');
-  $variables['nodetitle'] = $node->getTitle();
+  // $node = \Drupal::request()->attributes->get('node');
+  // $variables['nodetitle'] = $node->getTitle();
 }

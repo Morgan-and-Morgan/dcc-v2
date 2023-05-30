@@ -7,9 +7,9 @@ dependencies:
 third_party_settings:
   honeypot:
     honeypot: true
+weight: 0
 open: null
 close: null
-weight: 0
 uid: 1
 template: false
 archive: false
@@ -17,7 +17,94 @@ id: step_1_disability_benefit_applic
 title: 'SSI - Step 1: Disability Benefit Application'
 description: ''
 category: ''
-elements: "processed_text:\n  '#type': processed_text\n  '#wrapper_attributes':\n    class:\n      - form-title\n  '#text': |\n    <h3 class=\"form_title\">Step 1: Disability Benefit Application</h3>\n    \n  '#format': full_html\nform_wrapper:\n  '#type': container\n  '#title': 'Form wrapper'\n  '#attributes':\n    class:\n      - form-main-wrapper\n  flexbox:\n    '#type': webform_flexbox\n    first_name:\n      '#type': textfield\n      '#title': 'First Name'\n      '#placeholder': 'First Name'\n    last_name:\n      '#type': textfield\n      '#title': 'Last Name'\n      '#placeholder': 'Last Name'\n  flexbox_01:\n    '#type': webform_flexbox\n    email:\n      '#type': email\n      '#title': Email\n      '#placeholder': Email\n    phone:\n      '#type': tel\n      '#title': Phone\n      '#placeholder': Phone\n  flexbox_02:\n    '#type': webform_flexbox\n    age:\n      '#type': textfield\n      '#title': Age\n      '#placeholder': Age\n    state:\n      '#type': select\n      '#title': State\n      '#options': state_codes_short_\n      '#empty_option': State\n      '#empty_value': State\n  processed_text_01:\n    '#type': processed_text\n    '#text': '<hr />'\n    '#format': full_html\n  do_you_expect_your_disability_to_last_12_months_or_more:\n    '#type': radios\n    '#title': 'Do you expect your disability to last 12 months or more?'\n    '#options':\n      'Yes': 'Yes'\n      'No': 'No'\n    '#required': true\n  does_your_disability_prevent_you_from_working:\n    '#type': radios\n    '#title': 'Does your disability prevent you from working?'\n    '#options':\n      'Yes': 'Yes'\n      'No': 'No'\n    '#required': true\n  are_you_seeing_a_doctor_or_taking_medication_for_your_disability:\n    '#type': radios\n    '#title': 'Are you seeing a doctor or taking medication for your disability?'\n    '#options':\n      'Yes': 'Yes'\n      'No': 'No'\n    '#required': true\n  tell_us_about_your_disabilities_and_symptoms:\n    '#type': textarea\n    '#title': 'Tell us about your disabilities and symptoms.'\n    '#placeholder': 'Tell us about your disabilities and symptoms.'\n    '#required': true\n  terms_conditions:\n    '#type': processed_text\n    '#text': |\n      <p class=\"custom-para-blog\">By submitting you agree to our <a href=\"https://www.forthepeople.com/disclaimer-and-terms-of-use/\" target=\"_blank\">Terms</a> &amp; <a href=\"https://www.forthepeople.com/privacy-policy/\" target=\"_blank\">Privacy Policy</a>.</p>\n      \n    '#format': full_html\n  actions:\n    '#type': webform_actions\n    '#title': 'Submit button(s)'\n    '#submit__label': 'Start My Application'"
+elements: |-
+  processed_text:
+    '#type': processed_text
+    '#wrapper_attributes':
+      class:
+        - form-title
+    '#text': |
+      <h3 class="form_title">Step 1: Disability Benefit Application</h3>
+      
+    '#format': full_html
+  form_wrapper:
+    '#type': container
+    '#title': 'Form wrapper'
+    '#attributes':
+      class:
+        - form-main-wrapper
+    flexbox:
+      '#type': webform_flexbox
+      first_name:
+        '#type': textfield
+        '#title': 'First Name'
+        '#placeholder': 'First Name'
+      last_name:
+        '#type': textfield
+        '#title': 'Last Name'
+        '#placeholder': 'Last Name'
+    flexbox_01:
+      '#type': webform_flexbox
+      email:
+        '#type': email
+        '#title': Email
+        '#placeholder': Email
+      phone:
+        '#type': tel
+        '#title': Phone
+        '#placeholder': Phone
+    flexbox_02:
+      '#type': webform_flexbox
+      age:
+        '#type': textfield
+        '#title': Age
+        '#placeholder': Age
+      state:
+        '#type': select
+        '#title': State
+        '#options': state_codes_short_
+        '#empty_option': State
+        '#empty_value': State
+    processed_text_01:
+      '#type': processed_text
+      '#text': '<hr />'
+      '#format': full_html
+    do_you_expect_your_disability_to_last_12_months_or_more:
+      '#type': radios
+      '#title': 'Do you expect your disability to last 12 months or more?'
+      '#options':
+        'Yes': 'Yes'
+        'No': 'No'
+      '#required': true
+    does_your_disability_prevent_you_from_working:
+      '#type': radios
+      '#title': 'Does your disability prevent you from working?'
+      '#options':
+        'Yes': 'Yes'
+        'No': 'No'
+      '#required': true
+    are_you_seeing_a_doctor_or_taking_medication_for_your_disability:
+      '#type': radios
+      '#title': 'Are you seeing a doctor or taking medication for your disability?'
+      '#options':
+        'Yes': 'Yes'
+        'No': 'No'
+      '#required': true
+    tell_us_about_your_disabilities_and_symptoms:
+      '#type': textarea
+      '#title': 'Tell us about your disabilities and symptoms.'
+      '#placeholder': 'Tell us about your disabilities and symptoms.'
+      '#required': true
+    terms_conditions:
+      '#type': processed_text
+      '#text': |
+        <p class="custom-para-blog">By submitting you agree to our <a href="https://www.forthepeople.com/disclaimer-and-terms-of-use/" target="_blank">Terms</a> &amp; <a href="https://www.forthepeople.com/privacy-policy/" target="_blank">Privacy Policy</a>.</p>
+        
+      '#format': full_html
+    actions:
+      '#type': webform_actions
+      '#title': 'Submit button(s)'
+      '#submit__label': 'Start My Application'
 css: ''
 javascript: ''
 settings:
@@ -32,9 +119,9 @@ settings:
   page_theme_name: ''
   form_title: both
   form_submit_once: false
-  form_exception_message: ''
   form_open_message: ''
   form_close_message: ''
+  form_exception_message: ''
   form_previous_submissions: true
   form_confidential: false
   form_confidential_message: ''
@@ -44,28 +131,36 @@ settings:
   form_prepopulate_source_entity: false
   form_prepopulate_source_entity_required: false
   form_prepopulate_source_entity_type: ''
-  form_reset: false
+  form_unsaved: false
+  form_disable_back: false
+  form_submit_back: false
   form_disable_autocomplete: false
   form_novalidate: false
   form_disable_inline_errors: false
   form_required: false
-  form_unsaved: false
-  form_disable_back: false
-  form_submit_back: false
   form_autofocus: false
   form_details_toggle: false
+  form_reset: false
   form_access_denied: default
   form_access_denied_title: ''
   form_access_denied_message: ''
   form_access_denied_attributes: {  }
   form_file_limit: ''
+  form_attributes: {  }
+  form_method: ''
+  form_action: ''
   share: false
   share_node: false
   share_theme_name: ''
   share_title: true
   share_page_body_attributes: {  }
   submission_label: ''
+  submission_exception_message: ''
+  submission_locked_message: ''
   submission_log: false
+  submission_excluded_elements: {  }
+  submission_exclude_empty: false
+  submission_exclude_empty_checkbox: false
   submission_views: {  }
   submission_views_replace: {  }
   submission_user_columns: {  }
@@ -74,11 +169,6 @@ settings:
   submission_access_denied_title: ''
   submission_access_denied_message: ''
   submission_access_denied_attributes: {  }
-  submission_exception_message: ''
-  submission_locked_message: ''
-  submission_excluded_elements: {  }
-  submission_exclude_empty: false
-  submission_exclude_empty_checkbox: false
   previous_submission_message: ''
   previous_submissions_message: ''
   autofill: false
@@ -89,19 +179,21 @@ settings:
   wizard_progress_percentage: false
   wizard_progress_link: false
   wizard_progress_states: false
-  wizard_auto_forward: true
-  wizard_auto_forward_hide_next_button: false
-  wizard_keyboard: true
   wizard_start_label: ''
   wizard_preview_link: false
   wizard_confirmation: true
   wizard_confirmation_label: ''
+  wizard_auto_forward: true
+  wizard_auto_forward_hide_next_button: false
+  wizard_keyboard: true
   wizard_track: ''
   wizard_prev_button_label: ''
   wizard_next_button_label: ''
   wizard_toggle: false
   wizard_toggle_show_label: ''
   wizard_toggle_hide_label: ''
+  wizard_page_type: container
+  wizard_page_title_tag: h2
   preview: 0
   preview_label: ''
   preview_title: ''
@@ -118,9 +210,9 @@ settings:
   draft_pending_single_message: ''
   draft_pending_multiple_message: ''
   confirmation_type: url
+  confirmation_url: /ssi/thank-you/
   confirmation_title: ''
   confirmation_message: ''
-  confirmation_url: /ssi/thank-you/
   confirmation_attributes: {  }
   confirmation_back: true
   confirmation_back_label: ''
@@ -199,9 +291,9 @@ access:
 handlers:
   step_1_disability_benefits_application:
     id: remote_post
+    handler_id: step_1_disability_benefits_application
     label: Zapier
     notes: ''
-    handler_id: step_1_disability_benefits_application
     status: true
     conditions: {  }
     weight: 0
@@ -225,6 +317,7 @@ handlers:
         notes: notes
       custom_data: ''
       custom_options: ''
+      file_data: true
       cast: false
       debug: false
       completed_url: 'https://hooks.zapier.com/hooks/catch/1587852/b3asrha/'

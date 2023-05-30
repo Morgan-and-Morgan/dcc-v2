@@ -48,6 +48,9 @@ web/sites/README.txt
 web/update.php
 web/web.config
 
+# Ignore Lando files.
+.lando.yml
+
 # Add directories containing build assets below.
 # Keep all additions above the "cut" line.
 

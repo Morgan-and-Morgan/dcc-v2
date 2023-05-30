@@ -1,3 +1,5 @@
+_core:
+  default_config_hash: R4IF-ClDHXxblLcG0L7MgsLvfBIMAvi_skumNFQwkDc
 module:
   admin_toolbar: 0
   admin_toolbar_tools: 0
@@ -35,14 +37,12 @@ module:
   field_ui: 0
   file: 0
   filter: 0
-  ga_login: 0
   google_tag: 0
   help: 0
   history: 0
   honeypot: 0
   image: 0
   key: 0
-  kint: 0
   language: 0
   link: 0
   media: 0
@@ -54,11 +54,13 @@ module:
   migrate: 0
   migrate_plus: 0
   migrate_tools: 0
+  mysql: 0
   node: 0
   options: 0
   page_cache: 0
   path: 0
   path_alias: 0
+  profile_switcher: 0
   quickedit: 0
   rdf: 0
   real_aes: 0
@@ -86,7 +88,7 @@ module:
   xmlsitemap: 1
   views: 10
   paragraphs: 11
-  standard: 1000
+  mm_drupal_core_d9_shared_infra: 1000
 theme:
   stable: 0
   classy: 0
@@ -94,6 +96,4 @@ theme:
   seven: 0
   bootstrap4: 0
   dcc: 0
-profile: standard
-_core:
-  default_config_hash: R4IF-ClDHXxblLcG0L7MgsLvfBIMAvi_skumNFQwkDc
+profile: mm_drupal_core_d9_shared_infra

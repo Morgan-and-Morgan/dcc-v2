@@ -21,9 +21,9 @@ default_value_callback: ''
 settings:
   handler: 'default:paragraph'
   handler_settings:
-    negate: 0
     target_bundles:
       links_for_2_areas_template: links_for_2_areas_template
+    negate: 0
     target_bundles_drag_drop:
       2_areas:
         weight: 7
@@ -41,6 +41,6 @@ settings:
         weight: 11
         enabled: false
       links_for_2_areas_template:
-        enabled: true
         weight: 12
+        enabled: true
 field_type: entity_reference_revisions

@@ -1,7 +1,8 @@
 api_version: 1
 web_docroot: true
 drush_version: 10
-php_version: 7.3
+# Move to PHP 8.1.
+php_version: 8.1
 workflows:
   sync_code:
     after:
