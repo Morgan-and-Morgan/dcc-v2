@@ -2,6 +2,9 @@
 ### GitHub repository .gitignore section
 ###
 
+# Ignore local DDev configs.
+.ddev
+
 # Ignore files only needed on CI
 .bashrc
 

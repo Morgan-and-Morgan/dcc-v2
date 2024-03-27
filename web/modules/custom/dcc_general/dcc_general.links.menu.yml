@@ -1,0 +1,12 @@
+system.dcc_general:
+  title: 'CUSTOM General Settings'
+  route_name: system.dcc_general_settings
+  parent: system.admin_config_system
+  description: 'DCC Custom General Settings'
+  weight: -10
+dcc_general.banner_settings:
+  title: 'Banner Settings'
+  description: 'Configure custom banner settings.'
+  parent: system.dcc_general
+  route_name: dcc_general.banner_settings
+  weight: 10

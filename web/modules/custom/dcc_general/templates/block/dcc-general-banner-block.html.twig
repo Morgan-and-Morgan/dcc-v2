@@ -1,0 +1,33 @@
+{% if content %}
+
+  {{ attach_library('dcc_general/dcc-general-banner-block') }}
+
+  <div class="dcc-general--banner-block">
+
+    {% if content.banner_title %}
+      <div class="banner-block--title-wrapper">
+        {{ title_prefix }}
+          <span{{ title_attributes.addClass('banner-block--title') }}>{{ content.banner_title }}</span>
+        {{ title_suffix }}
+      </div>
+    {% endif %}
+
+    {% if content.banner_description %}
+      <div class="banner-block--description">{{ content.banner_description }}</div
+    {% endif %}
+
+    {% if content.banner_button_title and content.banner_button_link  %}
+      <div class="banner-block--button">
+        <a
+          href="{{ content.banner_button_link }}"
+          class="banner-block--button-link button"
+          title="{{ content.banner_button_title }}"
+          role="button"
+        >
+          {{ content.banner_button_title }}
+        </a>
+      </div>
+    {% endif %}
+
+  </div>
+{% endif %}

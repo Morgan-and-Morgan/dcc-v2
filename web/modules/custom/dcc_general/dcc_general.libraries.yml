@@ -1,0 +1,5 @@
+# Banner block styles #
+dcc-general-banner-block:
+  css:
+    theme:
+      css/dcc_general_banner_block.css: {}
