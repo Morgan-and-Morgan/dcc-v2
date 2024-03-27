@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for DCC General module.
+ *
+ * @DCG
+ * This file is no longer required in Drupal 8.
+ * @see https://www.drupal.org/node/2217931
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function dcc_general_theme() {
+  return [
+    'dcc_general_banner_block' => [
+      'template' => 'block/dcc-general-banner-block',
+      'variables' => [
+        'content' => NULL
+      ],
+    ]
+  ];
+}
