@@ -10,3 +10,9 @@ dcc_general.banner_settings:
   parent: system.dcc_general
   route_name: dcc_general.banner_settings
   weight: 10
+dcc_general.banner_type2_settings:
+  title: 'Banner Type2 Settings'
+  description: 'Configure custom banner type2 settings.'
+  parent: system.dcc_general
+  route_name: dcc_general.banner_type2_settings
+  weight: 10

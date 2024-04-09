@@ -19,6 +19,12 @@ function dcc_general_theme() {
       'variables' => [
         'content' => NULL
       ],
+    ],
+    'dcc_general_banner_type2_block' => [
+      'template' => 'block/dcc-general-banner-type2-block',
+      'variables' => [
+        'content' => NULL
+      ],
     ]
   ];
 }

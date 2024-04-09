@@ -1,8 +1,15 @@
 dcc_general.banner_settings:
-  path: '/admin/config/system/dcc-general'
+  path: '/admin/config/system/dcc-general-banner-settings'
   defaults:
     _title: 'DCC General Banner Settings'
     _form: 'Drupal\dcc_general\Form\BannerSettingsForm'
+  requirements:
+    _permission: 'administer dcc_general configuration'
+dcc_general.banner_type2_settings:
+  path: '/admin/config/system/dcc-general-banner-type2-settings'
+  defaults:
+    _title: 'DCC General Banner Type2 Settings'
+    _form: 'Drupal\dcc_general\Form\BannerType2SettingsForm'
   requirements:
     _permission: 'administer dcc_general configuration'
 system.dcc_general_settings:

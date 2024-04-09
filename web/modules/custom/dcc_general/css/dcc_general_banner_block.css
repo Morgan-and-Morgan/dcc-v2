@@ -1,3 +1,6 @@
+
+.block-dcc-general-banner-type2-block,
+.block-dcc-general-banner-block,
 .page-homepage .block-dcc-general-banner-block {
   background-color: #ffffff;
   display: flex;
@@ -6,15 +9,32 @@
   padding: 72px 48px;
 }
 
-.page-homepage .dcc-general--banner-block {
-
+.block-dcc-general-banner-type2-block,
+.block-dcc-general-banner-block {
+  display: block;
+  background-color: #3A5C7B;
 }
 
+.path-medical-qualifications .block-dcc-general-banner-type2-block,
+.path-medical-qualifications .block-dcc-general-banner-block {
+  display: block;
+  background-color: #ffffff;
+  margin-top: 30px;
+}
+
+.banner-block--wrapper,
+.page-homepage .banner-block--wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.banner-block--title-wrapper .banner-block--title,
 .page-homepage .banner-block--title-wrapper .banner-block--title {
   margin-bottom: 16px;
   display: block;
 }
 
+.dcc-general--banner-block .banner-block--title,
 .page-homepage .dcc-general--banner-block .banner-block--title {
   color: #1A384E;
   font-weight: 700;
@@ -23,6 +43,20 @@
   margin-top: 0;
 }
 
+.path-medical-qualifications .dcc-general--banner-block .banner-block--title,
+.path-medical-qualifications .page-homepage .dcc-general--banner-block .banner-block--title {
+  color: #1A384E;
+  font-weight: 700;
+  font-size: 35px;
+  line-height: 38.5px;
+  margin-top: 0;
+}
+
+.dcc-general--banner-block .banner-block--title {
+  color: #ffffff;
+}
+
+.banner-block--description,
 .page-homepage .banner-block--description {
   font-size: 16px;
   font-weight: 400;
@@ -30,7 +64,16 @@
   color: #212529;
 }
 
-.page-homepage .banner-block--button-link {
+.banner-block--description {
+  color: #ffffff;
+}
+
+.path-medical-qualifications .banner-block--description {
+  color: #212529;
+}
+
+.dcc-general--banner-block .banner-block--button-link,
+.page-homepage .dcc-general--banner-block .banner-block--button-link {
   display: flex;
   justify-content: center;
   width: 100%;
@@ -46,13 +89,15 @@
   line-height: 17.6px;
 }
 
+.dcc-general--banner-block .banner-block--button-link:hover,
 .page-homepage .banner-block--button-link:hover {
   color: #333;
   background-color: #e6e6e6;
   border-color: #adadad;
 }
 
-.page-homepage .banner-block--button-link:after {
+.dcc-general--banner-block .banner-block--button-link:after,
+.page-homepage .dcc-general--banner-block .banner-block--button-link:after {
   content: '';
   display: block;
   width: 10px;
@@ -64,6 +109,10 @@
   margin-top: 3.33px;
 }
 
-.page-homepage .banner-block--button-link:hover:after {
+.page-homepage .dcc-general--banner-block .banner-block--button-link:hover:after {
   color: #333;
+}
+
+.dcc-general--banner-block .banner-block--button-link:hover:after {
+  background-image: url("../img/svg/vector-arrow-right-up-hover.svg");
 }
