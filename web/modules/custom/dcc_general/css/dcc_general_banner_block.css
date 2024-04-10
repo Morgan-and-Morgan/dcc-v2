@@ -15,11 +15,17 @@
   background-color: #3A5C7B;
 }
 
+.path-social-security-disability-appeal-denial .block-dcc-general-banner-type2-block,
+.path-social-security-disability-apply .block-dcc-general-banner-type2-block,
+.path-social-security-disability-qualify .block-dcc-general-banner-type2-block {
+  margin-top: 45px;
+}
+
 .path-medical-qualifications .block-dcc-general-banner-type2-block,
 .path-medical-qualifications .block-dcc-general-banner-block {
   display: block;
   background-color: #ffffff;
-  margin-top: 30px;
+  margin-top: 45px;
 }
 
 .banner-block--wrapper,
