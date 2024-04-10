@@ -44,7 +44,7 @@ conditions:
   http_status_code:
     id: http_status_code
     status_codes: {  }
-    negate: 0
+    negate: false
   request_path_exclusion:
     id: request_path_exclusion
     pages: ''

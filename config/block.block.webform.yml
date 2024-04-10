@@ -1,6 +1,6 @@
 uuid: e54fc67e-8ce8-4cf7-90b8-0234b77c80b6
 langcode: en
-status: true
+status: false
 dependencies:
   config:
     - webform.webform.disability_claim_help
@@ -13,7 +13,7 @@ dependencies:
 id: webform
 theme: dcc
 region: sidebar
-weight: 0
+weight: -10
 provider: null
 plugin: webform_block
 settings:
