@@ -9,20 +9,20 @@ use Drupal\Core\Form\FormStateInterface;
 /**
  * Configure DCC General settings for this site.
  */
-class BannerType2SettingsForm extends ConfigFormBase {
+class DisabilityEvaluationDefaultPagesBannerSettingsForm extends ConfigFormBase {
 
   /**
    * {@inheritdoc}
    */
   public function getFormId() {
-    return 'dcc_general_banner_type2_settings';
+    return 'disability_evaluation_default_pages__banner_settings';
   }
 
   /**
    * {@inheritdoc}
    */
   protected function getEditableConfigNames() {
-    return ['dcc_general.banner_type2_settings'];
+    return ['dcc_general.disability_evaluation_default_pages__banner_settings'];
   }
 
   /**
@@ -32,23 +32,23 @@ class BannerType2SettingsForm extends ConfigFormBase {
     $form['banner_title'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Title'),
-      '#default_value' => $this->config('dcc_general.banner_type2_settings')->get('banner_title'),
+      '#default_value' => $this->config('dcc_general.disability_evaluation_default_pages__banner_settings')->get('banner_title'),
     ];
     $form['banner_description'] = [
       '#type' => 'textarea',
       '#format' => 'full_html',
       '#title' => $this->t('Description'),
-      '#default_value' => $this->config('dcc_general.banner_type2_settings')->get('banner_description'),
+      '#default_value' => $this->config('dcc_general.disability_evaluation_default_pages__banner_settings')->get('banner_description'),
     ];
     $form['banner_button_title'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Button Title'),
-      '#default_value' => $this->config('dcc_general.banner_type2_settings')->get('banner_button_title'),
+      '#default_value' => $this->config('dcc_general.disability_evaluation_default_pages__banner_settings')->get('banner_button_title'),
     ];
     $form['banner_button_link'] = [
       '#type' => 'url',
       '#title' => $this->t('Button link'),
-      '#default_value' => $this->config('dcc_general.banner_type2_settings')->get('banner_button_link'),
+      '#default_value' => $this->config('dcc_general.disability_evaluation_default_pages__banner_settings')->get('banner_button_link'),
     ];
 
     return parent::buildForm($form, $form_state);
@@ -71,16 +71,16 @@ class BannerType2SettingsForm extends ConfigFormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    $this->config('dcc_general.banner_type2_settings')
+    $this->config('dcc_general.disability_evaluation_default_pages__banner_settings')
       ->set('banner_title', $form_state->getValue('banner_title'))
       ->save();
-    $this->config('dcc_general.banner_type2_settings')
+    $this->config('dcc_general.disability_evaluation_default_pages__banner_settings')
       ->set('banner_description', $form_state->getValue('banner_description'))
       ->save();
-    $this->config('dcc_general.banner_type2_settings')
+    $this->config('dcc_general.disability_evaluation_default_pages__banner_settings')
       ->set('banner_button_title', $form_state->getValue('banner_button_title'))
       ->save();
-    $this->config('dcc_general.banner_type2_settings')
+    $this->config('dcc_general.disability_evaluation_default_pages__banner_settings')
       ->set('banner_button_link', $form_state->getValue('banner_button_link'))
       ->save();
     parent::submitForm($form, $form_state);

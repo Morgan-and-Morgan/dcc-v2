@@ -1,21 +1,21 @@
-dcc_general.banner_settings:
-  path: '/admin/config/system/dcc-general-banner-settings'
-  defaults:
-    _title: 'DCC General Banner Settings'
-    _form: 'Drupal\dcc_general\Form\BannerSettingsForm'
-  requirements:
-    _permission: 'administer dcc_general configuration'
-dcc_general.banner_type2_settings:
-  path: '/admin/config/system/dcc-general-banner-type2-settings'
-  defaults:
-    _title: 'DCC General Banner Type2 Settings'
-    _form: 'Drupal\dcc_general\Form\BannerType2SettingsForm'
-  requirements:
-    _permission: 'administer dcc_general configuration'
-system.dcc_general_settings:
-  path: '/admin/config/dcc_general'
+system.disability__banners_settings:
+  path: '/admin/config/disability-banners-settings'
   defaults:
     _controller: '\Drupal\system\Controller\SystemController::systemAdminMenuBlockPage'
-    _title: 'DCC GENERAL SETTINGS'
+    _title: 'Disability banners settings'
   requirements:
-    _permission: 'access administration pages'
+    _permission: 'disability banners settings'
+dcc_general.disability_claim_help__banner_settings:
+  path: '/admin/config/system/disability-claim-help--banner-settings'
+  defaults:
+    _title: 'Disability Claim Help - Banner settings'
+    _form: 'Drupal\dcc_general\Form\DisabilityClaimHelpBannerSettingsForm'
+  requirements:
+    _permission: 'disability claim help banner'
+dcc_general.disability_evaluation_default_pages__banner_settings:
+  path: '/admin/config/system/disability-evaluation-default-pages--banner-settings'
+  defaults:
+    _title: 'Disability Evaluation - Default Pages - Banner settings'
+    _form: 'Drupal\dcc_general\Form\DisabilityEvaluationDefaultPagesBannerSettingsForm'
+  requirements:
+    _permission: 'disability evaluation default pages banner'

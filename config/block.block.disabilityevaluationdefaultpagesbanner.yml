@@ -1,4 +1,4 @@
-uuid: d36a89f7-60fb-4880-a745-1282f32f1e5c
+uuid: b5faf1b5-4f64-4e62-9c47-09d25b9f2ab3
 langcode: en
 status: true
 dependencies:
@@ -8,15 +8,15 @@ dependencies:
     - system
   theme:
     - dcc
-id: dccbannerblock
+id: disabilityevaluationdefaultpagesbanner
 theme: dcc
 region: sidebar
-weight: -13
+weight: -11
 provider: null
-plugin: dcc_general_banner_block
+plugin: disability_evaluation_default_pages_banner_block
 settings:
-  id: dcc_general_banner_block
-  label: 'DCC Banner Block'
+  id: disability_evaluation_default_pages_banner_block
+  label: 'Disability Evaluation - Default Pages - Banner'
   provider: dcc_general
   label_display: '0'
 visibility:
@@ -43,6 +43,6 @@ visibility:
     context_mapping: {  }
   request_path:
     id: request_path
-    pages: "/social-security-disability/qualify\r\n/social-security-disability/apply\r\n/social-security-disability/appeal-denial"
-    negate: false
+    pages: "/disability-resources\r\n/disability-resources/disability-guide\r\n/medical-qualifications\r\n/social-security-disability\r\n/social-security-disability/qualify\r\n/social-security-disability/apply\r\n/social-security-disability/appeal-denial\r\n/ssi/thank-you\r\n/ss/thank-you\r\n/social-security-disability\r\n/thank-you\r\n/user\r\n/user/*"
+    negate: true
     context_mapping: {  }

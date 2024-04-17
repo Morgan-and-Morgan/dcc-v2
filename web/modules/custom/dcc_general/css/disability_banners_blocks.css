@@ -1,7 +1,7 @@
 
-.block-dcc-general-banner-type2-block,
-.block-dcc-general-banner-block,
-.page-homepage .block-dcc-general-banner-block {
+.block-disability-evaluation-default-pages-banner-block,
+.block-disability-claim-help-banner-block,
+.page-homepage .block-disability-claim-help-banner-block {
   background-color: #ffffff;
   display: flex;
   height: auto;
@@ -9,20 +9,19 @@
   padding: 72px 48px;
 }
 
-.block-dcc-general-banner-type2-block,
-.block-dcc-general-banner-block {
+.block-disability-evaluation-default-pages-banner-block,
+.block-disability-claim-help-banner-block {
   display: block;
   background-color: #3A5C7B;
 }
 
-.path-social-security-disability-appeal-denial .block-dcc-general-banner-type2-block,
-.path-social-security-disability-apply .block-dcc-general-banner-type2-block,
-.path-social-security-disability-qualify .block-dcc-general-banner-type2-block {
+.path-social-security-disability-appeal-denial .block-disability-claim-help-banner-block,
+.path-social-security-disability-apply .block-disability-claim-help-banner-block,
+.path-social-security-disability-qualify .block-disability-claim-help-banner-block {
   margin-top: 45px;
 }
 
-.path-medical-qualifications .block-dcc-general-banner-type2-block,
-.path-medical-qualifications .block-dcc-general-banner-block {
+.path-medical-qualifications .block-disability-claim-help-banner-block {
   display: block;
   background-color: #ffffff;
   margin-top: 45px;

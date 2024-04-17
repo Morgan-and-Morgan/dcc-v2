@@ -13,7 +13,7 @@ dependencies:
 id: webform
 theme: dcc
 region: sidebar
-weight: -10
+weight: -12
 provider: null
 plugin: webform_block
 settings:
