@@ -244,4 +244,5 @@ handlers:
       message: ''
       messages: {  }
       error_url: ''
+      file_data: true
 variants: {  }

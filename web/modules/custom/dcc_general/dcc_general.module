@@ -1,0 +1,30 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for DCC General module.
+ *
+ * @DCG
+ * This file is no longer required in Drupal 8.
+ * @see https://www.drupal.org/node/2217931
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function dcc_general_theme() {
+  return [
+    'disability_claim_help__banner_block' => [
+      'template' => 'block/disability-claim-help--banner-block',
+      'variables' => [
+        'content' => NULL
+      ],
+    ],
+    'disability_evaluation_default_pages__banner_block' => [
+      'template' => 'block/disability-evaluation-default-pages--banner-block',
+      'variables' => [
+        'content' => NULL
+      ],
+    ]
+  ];
+}

@@ -1,0 +1,21 @@
+system.disability__banners_settings:
+  path: '/admin/config/disability-banners-settings'
+  defaults:
+    _controller: '\Drupal\system\Controller\SystemController::systemAdminMenuBlockPage'
+    _title: 'Disability banners settings'
+  requirements:
+    _permission: 'disability banners settings'
+dcc_general.disability_claim_help__banner_settings:
+  path: '/admin/config/system/disability-claim-help--banner-settings'
+  defaults:
+    _title: 'Disability Claim Help - Banner settings'
+    _form: 'Drupal\dcc_general\Form\DisabilityClaimHelpBannerSettingsForm'
+  requirements:
+    _permission: 'disability claim help banner'
+dcc_general.disability_evaluation_default_pages__banner_settings:
+  path: '/admin/config/system/disability-evaluation-default-pages--banner-settings'
+  defaults:
+    _title: 'Disability Evaluation - Default Pages - Banner settings'
+    _form: 'Drupal\dcc_general\Form\DisabilityEvaluationDefaultPagesBannerSettingsForm'
+  requirements:
+    _permission: 'disability evaluation default pages banner'

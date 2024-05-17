@@ -1,0 +1,123 @@
+
+.block-disability-evaluation-default-pages-banner-block,
+.block-disability-claim-help-banner-block,
+.page-homepage .block-disability-claim-help-banner-block {
+  background-color: #ffffff;
+  display: flex;
+  height: auto;
+  width: 100%;
+  padding: 72px 48px;
+}
+
+.block-disability-evaluation-default-pages-banner-block,
+.block-disability-claim-help-banner-block {
+  display: block;
+  background-color: #3A5C7B;
+}
+
+.path-social-security-disability-appeal-denial .block-disability-claim-help-banner-block,
+.path-social-security-disability-apply .block-disability-claim-help-banner-block,
+.path-social-security-disability-qualify .block-disability-claim-help-banner-block {
+  margin-top: 45px;
+}
+
+.path-medical-qualifications .block-disability-claim-help-banner-block {
+  display: block;
+  background-color: #ffffff;
+  margin-top: 45px;
+}
+
+.banner-block--wrapper,
+.page-homepage .banner-block--wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.banner-block--title-wrapper .banner-block--title,
+.page-homepage .banner-block--title-wrapper .banner-block--title {
+  margin-bottom: 16px;
+  display: block;
+}
+
+.dcc-general--banner-block .banner-block--title,
+.page-homepage .dcc-general--banner-block .banner-block--title {
+  color: #1A384E;
+  font-weight: 700;
+  font-size: 35px;
+  line-height: 38.5px;
+  margin-top: 0;
+}
+
+.path-medical-qualifications .dcc-general--banner-block .banner-block--title,
+.path-medical-qualifications .page-homepage .dcc-general--banner-block .banner-block--title {
+  color: #1A384E;
+  font-weight: 700;
+  font-size: 35px;
+  line-height: 38.5px;
+  margin-top: 0;
+}
+
+.dcc-general--banner-block .banner-block--title {
+  color: #ffffff;
+}
+
+.banner-block--description,
+.page-homepage .banner-block--description {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19.2px;
+  color: #212529;
+}
+
+.banner-block--description {
+  color: #ffffff;
+}
+
+.path-medical-qualifications .banner-block--description {
+  color: #212529;
+}
+
+.dcc-general--banner-block .banner-block--button-link,
+.page-homepage .dcc-general--banner-block .banner-block--button-link {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 20px 0;
+  background-color: #3A5C7B;
+  border: 2px solid #1A384E;
+  border-radius: 0;
+  text-align: center;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 48px 0 0 0;
+  font-size: 16px;
+  line-height: 17.6px;
+}
+
+.dcc-general--banner-block .banner-block--button-link:hover,
+.page-homepage .banner-block--button-link:hover {
+  color: #333;
+  background-color: #e6e6e6;
+  border-color: #adadad;
+}
+
+.dcc-general--banner-block .banner-block--button-link:after,
+.page-homepage .dcc-general--banner-block .banner-block--button-link:after {
+  content: '';
+  display: block;
+  width: 10px;
+  height: 10px;
+  background-image: url("../img/svg/vector-arrow-right-up.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  margin-left: 9.67px;
+  margin-top: 3.33px;
+}
+
+.page-homepage .dcc-general--banner-block .banner-block--button-link:hover:after {
+  color: #333;
+}
+
+.dcc-general--banner-block .banner-block--button-link:hover:after {
+  background-image: url("../img/svg/vector-arrow-right-up-hover.svg");
+}

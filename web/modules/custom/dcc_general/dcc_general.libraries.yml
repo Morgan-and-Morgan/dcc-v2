@@ -1,0 +1,5 @@
+# Banner block styles #
+disability-banners-blocks:
+  css:
+    theme:
+      css/disability_banners_blocks.css: {}

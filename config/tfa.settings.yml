@@ -1,4 +1,4 @@
-enabled: 1
+enabled: true
 required_roles:
   authenticated: authenticated
   administrator: administrator

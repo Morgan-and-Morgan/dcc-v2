@@ -1,0 +1,18 @@
+system.disability__banners_settings:
+  title: 'Disability banners settings'
+  route_name: system.disability__banners_settings
+  parent: system.admin_config_system
+  description: 'Configuration of Disability banners'
+  weight: -10
+dcc_general.disability_claim_help__banner_settings:
+  title: 'Disability Claim Help - Banner settings.'
+  description: 'Configure Disability Claim Help - Banner.'
+  parent: system.disability__banners_settings
+  route_name: dcc_general.disability_claim_help__banner_settings
+  weight: 10
+dcc_general.disability_evaluation_default_pages__banner_settings:
+  title: 'Disability Evaluation - Default Pages - Banner settings.'
+  description: 'Configure Disability Evaluation - Default Pages - Banner.'
+  parent: system.disability__banners_settings
+  route_name: dcc_general.disability_evaluation_default_pages__banner_settings
+  weight: 10

@@ -1,39 +1,45 @@
-uuid: 9c64cdba-c51e-4750-844f-26810a8cdebb
+uuid: b5faf1b5-4f64-4e62-9c47-09d25b9f2ab3
 langcode: en
-status: false
+status: true
 dependencies:
-  config:
-    - webform.webform.disability_evaluation_default_pa
   module:
     - context
+    - dcc_general
     - system
-    - webform
   theme:
     - dcc
-id: webform_3
+id: disabilityevaluationdefaultpagesbanner
 theme: dcc
 region: sidebar
-weight: -10
+weight: -11
 provider: null
-plugin: webform_block
+plugin: disability_evaluation_default_pages_banner_block
 settings:
-  id: webform_block
-  label: 'Disability Evaluation - Default Pages - Form'
-  provider: webform
+  id: disability_evaluation_default_pages_banner_block
+  label: 'Disability Evaluation - Default Pages - Banner'
+  provider: dcc_general
   label_display: '0'
-  webform_id: disability_evaluation_default_pa
-  default_data: ''
-  redirect: false
 visibility:
-  request_path_exclusion:
-    id: request_path_exclusion
-    pages: ''
+  user_status:
+    id: user_status
+    user_status:
+      viewing_profile: '0'
+      logged_viewing_profile: '0'
+      own_page_true: '0'
+      field_value: '0'
+    user_fields: uid
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'
+  context:
+    id: context
+    values: ''
     negate: null
     context_mapping: {  }
-  view_inclusion:
-    id: view_inclusion
+  context_all:
+    id: context_all
+    values: ''
     negate: null
-    view_inclusion: {  }
     context_mapping: {  }
   request_path:
     id: request_path
