@@ -7,19 +7,6 @@
         {
             "type": "composer",
             "url": "https://packages.drupal.org/8"
-        },
-        {
-            "type": "package",
-            "package": {
-                "name": "morgan-and-morgan/drupal_ftp_global_vars",
-                "type": "drupal-module",
-                "version": "1.0.2",
-                "source": {
-                    "url": "git@github.com:Morgan-and-Morgan/drupal-ftp-global-vars.git",
-                    "type": "git",
-                    "reference": "1.0.2"
-                }
-            }
         }
     ],
     "require": {
@@ -80,7 +67,6 @@
         "drupal/xmlsitemap": "^1.1",
         "drush-ops/behat-drush-endpoint": "^9.3",
         "drush/drush": "^10",
-        "morgan-and-morgan/drupal_ftp_global_vars": "1.0.2",
         "pantheon-systems/drupal-integrations": "^8",
         "pantheon-systems/quicksilver-pushback": "^2"
     },
@@ -174,6 +160,12 @@
         "sort-packages": true,
         "platform": {
             "php": "7.3"
+        },
+        "allow-plugins": {
+            "composer/installers": true,
+            "cweagans/composer-patches": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "drupal/core-composer-scaffold": true
         }
     }
 }
