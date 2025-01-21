@@ -6,7 +6,6 @@ dependencies:
     - 'block_content:basic:61c2d4f0-f1cd-49a1-8f35-e91d4b7451c6'
   module:
     - block_content
-    - context
     - node
     - system
   theme:
@@ -31,16 +30,6 @@ visibility:
     negate: true
     context_mapping: {  }
     pages: "/disability-resources\r\n/disability-resources/disability-guide\r\n/medical-qualifications\r\n/social-security-disability\r\n/social-security-disability/qualify\r\n/social-security-disability/apply\r\n/social-security-disability/appeal-denial\r\n/ssi/thank-you\r\n/ss/thank-you\r\n"
-  request_path_exclusion:
-    id: request_path_exclusion
-    negate: null
-    context_mapping: {  }
-    pages: ''
-  view_inclusion:
-    id: view_inclusion
-    negate: null
-    context_mapping: {  }
-    view_inclusion: {  }
   'entity_bundle:node':
     id: 'entity_bundle:node'
     negate: false

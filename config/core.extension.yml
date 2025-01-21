@@ -19,7 +19,6 @@ module:
   context_ui: 0
   contextual: 0
   ctools: 0
-  custom_sql_migrate_source_plugin: 0
   datetime: 0
   dblog: 0
   dcc_common: 0
@@ -32,7 +31,6 @@ module:
   entity_reference_revisions: 0
   field: 0
   field_group: 0
-  field_states_ui: 0
   field_ui: 0
   file: 0
   filter: 0
@@ -46,7 +44,6 @@ module:
   link: 0
   media: 0
   media_library: 0
-  menu_link_clone: 0
   menu_link_content: 0
   menu_ui: 0
   metatag: 0
@@ -59,6 +56,7 @@ module:
   page_cache: 0
   path: 0
   path_alias: 0
+  phpass: 0
   real_aes: 0
   redirect: 0
   search: 0
@@ -85,11 +83,11 @@ module:
   xmlsitemap: 1
   views: 10
   paragraphs: 11
+  field_states_ui: 200
   standard: 1000
 theme:
-  stable: 0
-  classy: 0
   bootstrap4: 0
   dcc: 0
   claro: 0
+  stable9: 0
 profile: standard

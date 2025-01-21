@@ -12,7 +12,7 @@ label: 'WP Media'
 source:
   plugin: custom_sql_query
   key: migrate
-  sql_query: 'SELECT meta_value AS filename, post_id, guid, id, post_mime_type FROM wp_posts p, wp_postmeta pm WHERE p.id = pm.post_id AND p.post_type = ''attachment'' AND meta_key = ''_wp_attached_file'' AND p.post_mime_type IN (''image/jpeg'', ''image/png'')'
+  sql_query: "SELECT meta_value AS filename, post_id, guid, id, post_mime_type FROM wp_posts p, wp_postmeta pm WHERE p.id = pm.post_id AND p.post_type = 'attachment' AND meta_key = '_wp_attached_file' AND p.post_mime_type IN ('image/jpeg', 'image/png')"
   keys:
     - id
   type: integer

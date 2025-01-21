@@ -5,7 +5,6 @@ dependencies:
   config:
     - webform.webform.start_your_application
   module:
-    - context
     - system
     - webform
   theme:
@@ -24,17 +23,8 @@ settings:
   webform_id: start_your_application
   default_data: ''
   redirect: false
+  lazy: false
 visibility:
-  request_path_exclusion:
-    id: request_path_exclusion
-    negate: null
-    context_mapping: {  }
-    pages: ''
-  view_inclusion:
-    id: view_inclusion
-    negate: null
-    context_mapping: {  }
-    view_inclusion: {  }
   request_path:
     id: request_path
     negate: false
