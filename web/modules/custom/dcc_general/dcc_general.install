@@ -15,7 +15,8 @@
  */
 function dcc_general_update_9001() {
   $modules_to_remove = [
-    'drupal_ftp_global_vars'
+    'drupal_ftp_global_vars',
+    'kint'
   ];
 
   $config_name = 'core.extension';
