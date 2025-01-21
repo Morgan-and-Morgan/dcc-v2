@@ -40,7 +40,7 @@
         "drupal/key": "^1.14",
         "drupal/menu_block": "^1.6",
         "drupal/menus_attribute": "^1.1",
-        "drupal/metatag": "^1.16",
+        "drupal/metatag": "^2.1",
         "drupal/migrate_file": "^2.0",
         "drupal/migrate_plus": "^6.0",
         "drupal/migrate_tools": "^6.0",
@@ -63,7 +63,8 @@
         "drupal/xmlsitemap": "^1.5",
         "drush-ops/behat-drush-endpoint": "^9.3",
         "drush/drush": "^12",
-        "pantheon-systems/quicksilver-pushback": "^2"
+        "pantheon-systems/quicksilver-pushback": "^2",
+        "symfony/http-client": "^6.4"
     },
     "require-dev": {
         "behat/behat": "^3.1",
@@ -156,9 +157,9 @@
             "dealerdirect/phpcodesniffer-composer-installer": true,
             "drupal/core-composer-scaffold": true,
             "drupal/core-project-message": true,
-            "dealerdirect/phpcodesniffer-composer-installer": true,
-            "zaporylie/composer-drupal-optimizations": true,
-            "oomphinc/composer-installers-extender": true
+            "oomphinc/composer-installers-extender": true,
+            "php-http/discovery": true,
+            "zaporylie/composer-drupal-optimizations": true
         }
     }
 }
