@@ -12,17 +12,32 @@ container_id: GTM-KH52X49
 hostname: www.googletagmanager.com
 data_layer: dataLayer
 include_classes: false
-whitelist_classes: "google\nnonGooglePixels\nnonGoogleScripts\nnonGoogleIframes"
-blacklist_classes: "customScripts\ncustomPixels"
+whitelist_classes: |-
+  google
+  nonGooglePixels
+  nonGoogleScripts
+  nonGoogleIframes
+blacklist_classes: |-
+  customScripts
+  customPixels
 include_environment: false
 environment_id: ''
 environment_token: ''
 path_toggle: 'exclude listed'
-path_list: "/admin*\n/batch*\n/node/add*\n/node/*/edit\n/node/*/delete\n/user/*/edit*\n/user/*/cancel*"
+path_list: |-
+  /admin*
+  /batch*
+  /node/add*
+  /node/*/edit
+  /node/*/delete
+  /user/*/edit*
+  /user/*/cancel*
 role_toggle: 'exclude listed'
 role_list: {  }
 status_toggle: 'exclude listed'
-status_list: "403\n404"
+status_list: |-
+  403
+  404
 conditions:
   'entity_field:node':
     id: 'entity_field:node'
@@ -42,8 +57,8 @@ conditions:
     negate: 0
   request_path_exclusion:
     id: request_path_exclusion
-    pages: ''
     negate: null
+    pages: ''
   view_inclusion:
     id: view_inclusion
     negate: null

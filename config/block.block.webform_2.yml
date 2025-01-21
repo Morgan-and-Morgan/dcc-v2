@@ -19,24 +19,24 @@ plugin: webform_block
 settings:
   id: webform_block
   label: 'Start Your Application - Form'
-  provider: webform
   label_display: '0'
+  provider: webform
   webform_id: start_your_application
   default_data: ''
   redirect: false
 visibility:
   request_path_exclusion:
     id: request_path_exclusion
-    pages: ''
     negate: null
     context_mapping: {  }
+    pages: ''
   view_inclusion:
     id: view_inclusion
     negate: null
-    view_inclusion: {  }
     context_mapping: {  }
+    view_inclusion: {  }
   request_path:
     id: request_path
-    pages: /social-security-disability
     negate: false
     context_mapping: {  }
+    pages: /social-security-disability

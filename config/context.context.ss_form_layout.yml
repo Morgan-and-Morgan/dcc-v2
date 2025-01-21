@@ -4,8 +4,8 @@ status: true
 dependencies:
   module:
     - context_entity_field
-name: ss_form_layout
 label: 'SS Form layout'
+name: ss_form_layout
 group: dcc
 description: ''
 requireAllConditions: true
