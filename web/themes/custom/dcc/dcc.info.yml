@@ -2,6 +2,7 @@ name: Disability Care Center
 type: theme
 description: DCC subtheme
 core: 8.x
+core_version_requirement: ^8 || ^9
 libraries:
   - dcc/global-styling
   - dcc/bootstrap_cdn
