@@ -57,6 +57,7 @@ module:
   path: 0
   path_alias: 0
   phpass: 0
+  profile_switcher: 0
   real_aes: 0
   redirect: 0
   search: 0
@@ -83,10 +84,10 @@ module:
   views: 10
   paragraphs: 11
   field_states_ui: 200
-  standard: 1000
+  mm_drupal_core_d9_shared_infra: 1000
 theme:
   bootstrap4: 0
   dcc: 0
   claro: 0
   stable9: 0
-profile: standard
+profile: mm_drupal_core_d9_shared_infra
