@@ -12,7 +12,7 @@ gulp.task("sass:build", function (cb) {
     .pipe(sass({ outputStyle: 'compressed' }).on("error", sass.logError))
     // .pipe(sourcemaps.write())
     // .pipe(concat('index.css'))
-    .pipe(gulp.dest("./dist"));
+    .pipe(gulp.dest("./dist/css"));
   cb();
 });
 
@@ -38,7 +38,7 @@ gulp.task("js:build-main-js", function (cb) {
         }
       })
     )
-    .pipe(gulp.dest("./dist"));
+    .pipe(gulp.dest("./dist/js"));
   cb();
 });
 

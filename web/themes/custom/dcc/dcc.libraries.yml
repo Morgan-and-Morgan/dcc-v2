@@ -1,11 +1,11 @@
 global-styling:
   css:
     theme:
-      dist/slick.css: {preprocess: false}
-      dist/style.css: {preprocess: false}
+      dist/css/slick.css: {preprocess: false}
+      dist/css/style.css: {preprocess: false}
   js:
     js/lib/slick.min.js: {}
-    dist/main-min.js: { defer: true, async: true }
+    dist/js/main-min.js: { defer: true, async: true }
   dependencies:
     - core/jquery
 bootstrap_cdn:

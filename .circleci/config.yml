@@ -266,7 +266,8 @@ jobs:
       - persist_to_workspace:
           root: .
           paths:
-            - web/themes/custom/dcc/dist
+            - web/themes/custom/dcc/dist/js
+            - web/themes/custom/dcc/dist/css
 
 workflows:
   version: 2

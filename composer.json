@@ -79,7 +79,7 @@
             "@build-theme-dcc"
         ],
         "build-theme-dcc": [
-            "cd web/themes/custom/dcc; npm -v; node -v; npm install --unsafe-perm; npm rebuild node-sass; npm run build;"
+            "cd web/themes/custom/dcc; rm -Rf web/theme/custom/dcc/dist; npm -v; node -v; npm install --unsafe-perm; npm rebuild node-sass; npm run build;"
         ],
         "nuke-profile": [
             "rm -Rf web/profiles/contrib/ vendor/ composer.lock"
