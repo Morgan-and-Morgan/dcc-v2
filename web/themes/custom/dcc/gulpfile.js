@@ -7,14 +7,7 @@ const webpack = require("webpack-stream");
 /** SASS TASKS **/
 gulp.task("sass:build", function (cb) {
   gulp
-    .src("./scss/style.scss")
-    // .pipe(sourcemaps.init())
-    .pipe(sass({ outputStyle: 'compressed' }).on("error", sass.logError))
-    // .pipe(sourcemaps.write())
-    // .pipe(concat('index.css'))
-    .pipe(gulp.dest("./dist"));
-  gulp
-    .src("./scss/custom/slick.scss")
+    .src("./scss/style.scss", "./scss/custom/slick.scss")
     // .pipe(sourcemaps.init())
     .pipe(sass({ outputStyle: 'compressed' }).on("error", sass.logError))
     // .pipe(sourcemaps.write())

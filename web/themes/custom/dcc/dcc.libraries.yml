@@ -1,7 +1,7 @@
 global-styling:
   css:
     theme:
-      dist/slick.css: { }
+      dist/slick.css: {preprocess: false}
       dist/style.css: {preprocess: false}
   js:
     js/lib/slick.min.js: {}
