@@ -50,6 +50,9 @@ module:
   migrate: 0
   migrate_plus: 0
   migrate_tools: 0
+  mm_drupal_security: 0
+  mm_extras: 0
+  mm_ftp_global_vars: 0
   mysql: 0
   node: 0
   options: 0

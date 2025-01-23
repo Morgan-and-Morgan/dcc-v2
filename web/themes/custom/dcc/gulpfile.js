@@ -1,5 +1,5 @@
 const gulp = require("gulp");
-const sass = require("gulp-sass");
+const sass = require('gulp-sass')(require('sass'));
 const concat = require('gulp-concat');
 const sourcemaps = require("gulp-sourcemaps");
 const webpack = require("webpack-stream");
@@ -8,6 +8,13 @@ const webpack = require("webpack-stream");
 gulp.task("sass:build", function (cb) {
   gulp
     .src("./scss/style.scss")
+    // .pipe(sourcemaps.init())
+    .pipe(sass({ outputStyle: 'compressed' }).on("error", sass.logError))
+    // .pipe(sourcemaps.write())
+    // .pipe(concat('index.css'))
+    .pipe(gulp.dest("./dist"));
+  gulp
+    .src("./scss/custom/slick.scss")
     // .pipe(sourcemaps.init())
     .pipe(sass({ outputStyle: 'compressed' }).on("error", sass.logError))
     // .pipe(sourcemaps.write())

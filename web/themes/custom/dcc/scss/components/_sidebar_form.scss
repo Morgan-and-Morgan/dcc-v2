@@ -1,4 +1,4 @@
-@import "../modules/colors";
+@use "../modules/colors";
 
 /*GRAVITY FORMS*/
 .gform_body label {
@@ -140,7 +140,7 @@ h3.gform_title {
 }
 
 .custom-para-blog {
-  color: $white;
+  color: colors.$white;
   font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
   font-weight: 400;
   font-size: 11px;
@@ -148,9 +148,9 @@ h3.gform_title {
   text-align: center;
   a {
     text-decoration: underline;
-    color: $white;
+    color: colors.$white;
     &:hover {
-      color: $white;
+      color: colors.$white;
     }
   }
 }
