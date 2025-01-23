@@ -6,11 +6,10 @@
   "scripts": {
     "sass:build": "gulp sass:build",
     "sass:watch": "gulp sass:watch",
-    "js:build": "gulp js:build",
+    "js:build": "gulp js:build-main-js",
     "js:watch": "gulp js:watch",
     "dev": "gulp assets:watch",
-    "build": "gulp assets:build",
-    "build-css": "sass src/styles:dist/styles"
+    "build": "gulp assets:build"
   },
   "author": "",
   "license": "ISC",
