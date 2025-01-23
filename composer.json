@@ -56,7 +56,8 @@
     "scripts": {
         "build-assets": [
             "@prepare-for-pantheon",
-            "composer install --optimize-autoloader --no-dev"
+            "composer install --optimize-autoloader --no-dev",
+            "@build-theme-dcc"
         ],
         "lint": "find web/modules/custom web/themes/custom -name '*.php' -exec php -l {} \\;",
         "code-sniff": [
@@ -74,7 +75,22 @@
             "DrupalProject\\composer\\ScriptHandler::createRequiredFiles"
         ],
         "post-create-project-cmd": [
-            "DrupalProject\\composer\\ScriptHandler::createRequiredFiles"
+            "DrupalProject\\composer\\ScriptHandler::createRequiredFiles",
+            "@build-theme-dcc"
+        ],
+        "build-theme-dcc": [
+            "cd web/themes/custom/dcc; npm -v; node -v; npm install --unsafe-perm; npm rebuild node-sass; npm run build;"
+        ],
+        "nuke-profile": [
+            "rm -Rf web/profiles/contrib/ vendor/ composer.lock"
+        ],
+        "nuke-site": [
+            "rm -Rf web/profiles/contrib/ vendor/ composer.lock web/themes/contrib web/theme/custom/dcc/dist web/theme/custom/dcc/node_modules"
+        ],
+        "nuke-rebuild": [
+            "composer nuke-site",
+            "composer install",
+            "composer build-theme-dcc"
         ]
     },
     "extra": {

@@ -233,15 +233,36 @@ jobs:
 
   npmbuild_and_persist:
     docker:
-      - image: node:10.15.3
+      - image: node:18.12.0
     steps:
       - checkout
       - run:
+          name: NPM login
+          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
+
+      - run:
+          name: Swap node versions
+          command: |
+            ls /usr/bin
+            node -v
+            set +e
+            wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+            export NVM_DIR="$HOME/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+            [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+            nvm install v18.12.0
+            nvm alias default v18.12.0
+            echo 'export NVM_DIR="$HOME/.nvm"' >> $BASH_ENV
+            echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> $BASH_ENV
+
+      - run:
           name: install npm dependencies in a custom Drupal  theme
           command: cd web/themes/custom/dcc && npm ci
+
       - run:
           name: Compile Assets
           command: cd web/themes/custom/dcc && npm run build
+
       - persist_to_workspace:
           root: .
           paths:
