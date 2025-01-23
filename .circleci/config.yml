@@ -263,12 +263,6 @@ jobs:
           name: Compile Assets
           command: cd web/themes/custom/dcc && npm run build
 
-      - persist_to_workspace:
-          root: .
-          paths:
-            - web/themes/custom/dcc/dist/js
-            - web/themes/custom/dcc/dist/css
-
 workflows:
   version: 2
   build_deploy_and_test:
