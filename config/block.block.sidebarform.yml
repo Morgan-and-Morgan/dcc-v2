@@ -6,7 +6,6 @@ dependencies:
     - 'block_content:basic:61c2d4f0-f1cd-49a1-8f35-e91d4b7451c6'
   module:
     - block_content
-    - context
     - node
     - system
   theme:
@@ -20,32 +19,22 @@ plugin: 'block_content:61c2d4f0-f1cd-49a1-8f35-e91d4b7451c6'
 settings:
   id: 'block_content:61c2d4f0-f1cd-49a1-8f35-e91d4b7451c6'
   label: 'Sidebar form default pages'
-  provider: block_content
   label_display: '0'
+  provider: block_content
   status: true
   info: ''
   view_mode: full
 visibility:
-  node_type:
-    id: node_type
-    bundles:
-      article: article
-      page: page
+  request_path:
+    id: request_path
+    negate: true
+    context_mapping: {  }
+    pages: "/disability-resources\r\n/disability-resources/disability-guide\r\n/medical-qualifications\r\n/social-security-disability\r\n/social-security-disability/qualify\r\n/social-security-disability/apply\r\n/social-security-disability/appeal-denial\r\n/ssi/thank-you\r\n/ss/thank-you\r\n"
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
     negate: false
     context_mapping:
       node: '@node.node_route_context:node'
-  request_path:
-    id: request_path
-    pages: "/disability-resources\r\n/disability-resources/disability-guide\r\n/medical-qualifications\r\n/social-security-disability\r\n/social-security-disability/qualify\r\n/social-security-disability/apply\r\n/social-security-disability/appeal-denial\r\n/ssi/thank-you\r\n/ss/thank-you\r\n"
-    negate: true
-    context_mapping: {  }
-  request_path_exclusion:
-    id: request_path_exclusion
-    pages: ''
-    negate: null
-    context_mapping: {  }
-  view_inclusion:
-    id: view_inclusion
-    negate: null
-    view_inclusion: {  }
-    context_mapping: {  }
+    bundles:
+      article: article
+      page: page

@@ -3,107 +3,50 @@
     "description": "Install drops-8 with Composer on Pantheon.",
     "type": "project",
     "license": "MIT",
-    "repositories": [
-        {
+    "repositories": {
+        "drupal": {
             "type": "composer",
             "url": "https://packages.drupal.org/8"
         },
-        {
-            "type": "package",
-            "package": {
-                "name": "morgan-and-morgan/drupal_ftp_global_vars",
-                "type": "drupal-module",
-                "version": "1.0.2",
-                "source": {
-                    "url": "git@github.com:Morgan-and-Morgan/drupal-ftp-global-vars.git",
-                    "type": "git",
-                    "reference": "1.0.2"
-                }
-            }
+        "mm-drupal-core-d9": {
+            "type": "git",
+            "url": "git@github.com:morgan-and-morgan/mm-drupal-core-d9-shared-infra.git"
+        },
+        "bower-asset": {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
         }
-    ],
+    },
     "require": {
-        "php": ">=7.3",
-        "composer/installers": "^1.9",
-        "cweagans/composer-patches": "^1.7",
-        "drupal/admin_toolbar": "^2.4",
-        "drupal/advagg": "^4.1",
-        "drupal/better_exposed_filters": "^5.0@beta",
-        "drupal/block_class": "^1.3",
-        "drupal/bootstrap4": "^2.1",
-        "drupal/config_delete": "^1.17",
+        "drupal/config_delete": "^2.0",
         "drupal/config_devel": "^1.8",
-        "drupal/context": "^4.1",
-        "drupal/context_entity_field": "^1.0@alpha",
-        "drupal/core-composer-scaffold": "^8.8.1",
-        "drupal/core-recommended": "^8.8",
-        "drupal/ctools": "^3.4",
-        "drupal/custom_sql_migrate_source_plugin": "^1.2",
-        "drupal/default_paragraphs": "^1.0",
-        "drupal/devel": "^2.1",
-        "drupal/devel_php": "^1.3",
-        "drupal/encrypt": "^3.0",
-        "drupal/entity_browser": "^2.5",
-        "drupal/entity_clone": "^1.0@beta",
-        "drupal/entity_export_csv": "^1.0@beta",
-        "drupal/field_group": "^3.1",
-        "drupal/field_states_ui": "^2.0",
+        "drupal/context_entity_field": "^2.0@alpha",
+        "drupal/default_paragraphs": "^2.0",
+        "drupal/field_states_ui": "^3.0",
         "drupal/fontawesome": "^2.17",
-        "drupal/ga_login": "^1.0@alpha",
-        "drupal/google_tag": "^1.4",
         "drupal/honeypot": "^2.0",
-        "drupal/image_widget_crop": "^2.3",
         "drupal/key": "^1.14",
         "drupal/menu_block": "^1.6",
-        "drupal/menu_link_clone": "^3.2",
         "drupal/menus_attribute": "^1.1",
-        "drupal/metatag": "^1.16",
-        "drupal/migrate_file": "^2.0",
-        "drupal/migrate_plus": "^5.1",
-        "drupal/migrate_tools": "^4.5",
-        "drupal/paragraphs": "^1.12",
-        "drupal/pathauto": "^1.8",
-        "drupal/real_aes": "^2.3",
-        "drupal/redirect": "^1.6",
-        "drupal/search_api": "^1.19",
-        "drupal/search_api_solr": "^4.1",
-        "drupal/services": "^4.0@beta",
-        "drupal/sfweb2lead_webform": "^5.2",
+        "drupal/migrate_tools": "^6.0",
+        "drupal/sfweb2lead_webform": "^6.0",
         "drupal/shortcode": "^2.0",
         "drupal/tb_megamenu": "^1.0@RC",
-        "drupal/tfa": "^1.0@alpha",
-        "drupal/token_filter": "^1.2",
-        "drupal/trailing_slash": "^1.0",
-        "drupal/twig_tweak": "^2.9",
+        "drupal/upgrade_status": "^4.3",
         "drupal/we_megamenu": "^1.11",
         "drupal/webform": "^6.0",
-        "drupal/xmlsitemap": "^1.1",
-        "drush-ops/behat-drush-endpoint": "^9.3",
-        "drush/drush": "^10",
-        "morgan-and-morgan/drupal_ftp_global_vars": "1.0.2",
-        "pantheon-systems/drupal-integrations": "^8",
-        "pantheon-systems/quicksilver-pushback": "^2"
+        "drupal/xmlsitemap": "^1.5",
+        "symfony/http-client": "^6.4",
+        "morgan-and-morgan/mm_drupal_core_d9_shared_infra": "2.0.50"
     },
     "require-dev": {
-        "behat/behat": "^3.1",
-        "behat/mink": "^1.7",
         "behat/mink-extension": "^2.2",
-        "dealerdirect/phpcodesniffer-composer-installer": "^0.7",
-        "dmore/behat-chrome-extension": "^1.3",
-        "drupal/coder": "^8.3.1",
-        "drupal/drupal-extension": "^4.1",
-        "drupal/drupal-driver": "^2.1",
-        "genesis/behat-fail-aid": "^2.1",
-        "jcalderonzumba/mink-phantomjs-driver": "^0.3.1",
-        "mikey179/vfsstream": "^1.2",
-        "phpunit/phpunit": "^6.5",
-        "squizlabs/php_codesniffer": "^3.4.0",
-        "symfony/css-selector": "^2.8"
+        "dmore/behat-chrome-extension": "^1.3"
     },
     "conflict": {
             "drupal/drupal": "*"
     },
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "prefer-stable": true,
     "autoload": {
         "classmap": [
@@ -113,7 +56,8 @@
     "scripts": {
         "build-assets": [
             "@prepare-for-pantheon",
-            "composer install --optimize-autoloader --no-dev"
+            "composer install --optimize-autoloader --no-dev",
+            "@build-theme-dcc"
         ],
         "lint": "find web/modules/custom web/themes/custom -name '*.php' -exec php -l {} \\;",
         "code-sniff": [
@@ -131,7 +75,22 @@
             "DrupalProject\\composer\\ScriptHandler::createRequiredFiles"
         ],
         "post-create-project-cmd": [
-            "DrupalProject\\composer\\ScriptHandler::createRequiredFiles"
+            "DrupalProject\\composer\\ScriptHandler::createRequiredFiles",
+            "@build-theme-dcc"
+        ],
+        "build-theme-dcc": [
+            "cd web/themes/custom/dcc; rm -Rf web/theme/custom/dcc/dist; npm -v; node -v; npm install --unsafe-perm; npm rebuild node-sass; npm run build;"
+        ],
+        "nuke-profile": [
+            "rm -Rf web/profiles/contrib/ vendor/ composer.lock"
+        ],
+        "nuke-site": [
+            "rm -Rf web/profiles/contrib/ vendor/ composer.lock web/themes/contrib web/theme/custom/dcc/dist web/theme/custom/dcc/node_modules"
+        ],
+        "nuke-rebuild": [
+            "composer nuke-site",
+            "composer install",
+            "composer build-theme-dcc"
         ]
     },
     "extra": {
@@ -160,12 +119,6 @@
             "file-mapping": {
                 "[project-root]/.editorconfig": false
             }
-        },
-        "patches": {
-            "drupal/field_states_ui": {
-                "Field_parents key not found": "https://www.drupal.org/files/issues/2021-06-08/3196272-3.patch",
-                "Ajax error": "https://www.drupal.org/files/issues/2020-10-28/3145195-13661358_6.patch"
-            }
         }
     },
     "config": {
@@ -173,7 +126,17 @@
         "preferred-install": "dist",
         "sort-packages": true,
         "platform": {
-            "php": "7.3"
+            "php": "8.1"
+        },
+        "allow-plugins": {
+            "composer/installers": true,
+            "cweagans/composer-patches": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "drupal/core-composer-scaffold": true,
+            "drupal/core-project-message": true,
+            "oomphinc/composer-installers-extender": true,
+            "php-http/discovery": true,
+            "zaporylie/composer-drupal-optimizations": true
         }
     }
 }

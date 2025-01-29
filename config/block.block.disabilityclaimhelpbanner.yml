@@ -3,7 +3,6 @@ langcode: en
 status: true
 dependencies:
   module:
-    - context
     - system
   theme:
     - dcc
@@ -16,32 +15,11 @@ plugin: disability_claim_help_banner
 settings:
   id: disability_claim_help_banner
   label: 'Disability Claim Help - Banner'
-  provider: dcc_general
   label_display: '0'
+  provider: dcc_general
 visibility:
-  user_status:
-    id: user_status
-    user_status:
-      viewing_profile: '0'
-      logged_viewing_profile: '0'
-      own_page_true: '0'
-      field_value: '0'
-    user_fields: uid
-    negate: false
-    context_mapping:
-      user: '@user.current_user_context:current_user'
-  context:
-    id: context
-    values: ''
-    negate: null
-    context_mapping: {  }
-  context_all:
-    id: context_all
-    values: ''
-    negate: null
-    context_mapping: {  }
   request_path:
     id: request_path
-    pages: "/social-security-disability/qualify\r\n/social-security-disability/apply\r\n/social-security-disability/appeal-denial"
     negate: false
     context_mapping: {  }
+    pages: "/social-security-disability/qualify\r\n/social-security-disability/apply\r\n/social-security-disability/appeal-denial"

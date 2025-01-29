@@ -1,6 +1,7 @@
+@use "../modules/breakpoints";
+@use "../modules/colors";
+
 .page-homepage {
-
-
   body {
     background: #EEE;
     font-family: 'Open Sans Condensed', sans-serif;
@@ -18,7 +19,7 @@
 
     .container {
       .row {
-        @media (max-width: $screen-xs-max) {
+        @media (max-width: breakpoints.$screen-xs-max) {
           margin-right: 0;
           margin-left: 0;
         }
@@ -110,7 +111,7 @@
     }
 
     &:hover {
-      border-color: $cardinal;
+      border-color: colors.$cardinal;
     }
   }
 

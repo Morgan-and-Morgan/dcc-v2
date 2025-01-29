@@ -1,30 +1,31 @@
 // Components
-//@import "components/forms.scss";
-@import "components/footer";
-@import "components/header";
-@import "components/nav_menu";
-@import "components/sidebar_form";
-
-// Variables
-@import "variables/colors";
+//@use "components/forms.scss";
+@use "components/footer";
+@use "components/header";
+@use "components/nav_menu";
+@use "components/sidebar_form";
 
 // Modules
-@import "modules/breakpoints";
+@use "modules/breakpoints";
 
 // Pages
-@import "pages/article";
-@import "pages/basic_page";
-@import "pages/front";
-@import "pages/page_404";
-@import "pages/page_2_areas";
-@import "pages/page_4_areas";
-@import "pages/page_4_areas_with_form";
-@import "pages/page_5_areas";
-@import "pages/page_6_areas";
-@import "pages/page_ss";
-@import "pages/page_ssi";
-@import "pages/page_scholarships";
-@import "pages/ss-ssi_thank_you";
+@use "pages/article";
+@use "pages/basic_page";
+@use "pages/front";
+@use "pages/page_404";
+@use "pages/page_2_areas";
+@use "pages/page_4_areas";
+@use "pages/page_4_areas_with_form";
+@use "pages/page_5_areas";
+@use "pages/page_6_areas";
+@use "pages/page_ss";
+@use "pages/page_ssi";
+@use "pages/page_scholarships";
+@use "pages/ss-ssi_thank_you";
+
+// Slick
+@use "lib/slick";
+@use "lib/slick-theme";
 
 
 

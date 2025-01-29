@@ -21,117 +21,117 @@ third_party_settings:
       children:
         - field_section_1_bg
         - field_section_1_text
+      label: 'Section 1'
+      region: content
       parent_name: ''
       weight: 0
       format_type: fieldset
-      region: content
       format_settings:
-        id: ''
         classes: ''
+        id: ''
         description: ''
         required_fields: true
-      label: 'Section 1'
     group_section_2:
       children:
         - field_section_2_title
         - field_section_2_text
+      label: 'Section 2'
+      region: content
       parent_name: ''
       weight: 1
       format_type: fieldset
-      region: content
       format_settings:
-        id: ''
         classes: ''
+        id: ''
         description: ''
         required_fields: true
-      label: 'Section 2'
     group_section_3:
       children:
         - field_section_3_title
         - field_section_3_text
+      label: 'Section 3'
+      region: content
       parent_name: ''
       weight: 2
       format_type: fieldset
-      region: content
       format_settings:
-        id: ''
         classes: ''
+        id: ''
         description: ''
         required_fields: true
-      label: 'Section 3'
     group_section_4:
       children:
         - field_section_4_text
+      label: 'Section 4'
+      region: content
       parent_name: ''
       weight: 3
       format_type: fieldset
-      region: content
       format_settings:
-        id: ''
         classes: ''
+        id: ''
         description: ''
         required_fields: true
-      label: 'Section 4'
 id: paragraph.4_areas_with_form.default
 targetEntityType: paragraph
 bundle: 4_areas_with_form
 mode: default
 content:
   field_section_1_bg:
+    type: media_library_widget
     weight: 4
+    region: content
     settings:
       media_types: {  }
     third_party_settings: {  }
-    type: media_library_widget
-    region: content
   field_section_1_text:
+    type: text_textarea
     weight: 5
+    region: content
     settings:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
-    type: text_textarea
-    region: content
   field_section_2_text:
+    type: text_textarea
     weight: 6
+    region: content
     settings:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
-    type: text_textarea
-    region: content
   field_section_2_title:
+    type: string_textfield
     weight: 5
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
-    region: content
   field_section_3_text:
+    type: text_textarea
     weight: 8
+    region: content
     settings:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
-    type: text_textarea
-    region: content
   field_section_3_title:
+    type: string_textfield
     weight: 7
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
-    region: content
   field_section_4_text:
+    type: text_textarea
     weight: 9
+    region: content
     settings:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
-    type: text_textarea
-    region: content
 hidden:
   created: true
   status: true

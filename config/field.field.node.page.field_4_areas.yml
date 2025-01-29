@@ -21,16 +21,16 @@ default_value_callback: ''
 settings:
   handler: 'default:paragraph'
   handler_settings:
-    negate: 0
     target_bundles:
       4_areas: 4_areas
+    negate: 0
     target_bundles_drag_drop:
       2_areas:
         weight: 6
         enabled: false
       4_areas:
-        enabled: true
         weight: 7
+        enabled: true
       4_areas_with_form:
         weight: 8
         enabled: false

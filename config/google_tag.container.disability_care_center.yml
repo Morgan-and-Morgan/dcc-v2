@@ -5,25 +5,39 @@ dependencies:
   module:
     - context
     - context_entity_field
-    - ctools
-    - webform
 id: disability_care_center
 label: 'Disability Care Center'
 weight: 0
 container_id: GTM-KH52X49
+hostname: www.googletagmanager.com
 data_layer: dataLayer
 include_classes: false
-whitelist_classes: "google\nnonGooglePixels\nnonGoogleScripts\nnonGoogleIframes"
-blacklist_classes: "customScripts\ncustomPixels"
+whitelist_classes: |-
+  google
+  nonGooglePixels
+  nonGoogleScripts
+  nonGoogleIframes
+blacklist_classes: |-
+  customScripts
+  customPixels
 include_environment: false
 environment_id: ''
 environment_token: ''
 path_toggle: 'exclude listed'
-path_list: "/admin*\n/batch*\n/node/add*\n/node/*/edit\n/node/*/delete\n/user/*/edit*\n/user/*/cancel*"
+path_list: |-
+  /admin*
+  /batch*
+  /node/add*
+  /node/*/edit
+  /node/*/delete
+  /user/*/edit*
+  /user/*/cancel*
 role_toggle: 'exclude listed'
 role_list: {  }
 status_toggle: 'exclude listed'
-status_list: "403\n404"
+status_list: |-
+  403
+  404
 conditions:
   'entity_field:node':
     id: 'entity_field:node'
@@ -41,14 +55,10 @@ conditions:
     context_mapping:
       webform_submission: '@webform.webform_submission_route_context:webform_submission'
     negate: 0
-  http_status_code:
-    id: http_status_code
-    status_codes: {  }
-    negate: false
   request_path_exclusion:
     id: request_path_exclusion
-    pages: ''
     negate: null
+    pages: ''
   view_inclusion:
     id: view_inclusion
     negate: null

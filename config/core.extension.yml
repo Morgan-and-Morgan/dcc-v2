@@ -1,3 +1,5 @@
+_core:
+  default_config_hash: R4IF-ClDHXxblLcG0L7MgsLvfBIMAvi_skumNFQwkDc
 module:
   admin_toolbar: 0
   admin_toolbar_tools: 0
@@ -6,8 +8,7 @@ module:
   block: 0
   block_content: 0
   breakpoint: 0
-  ckeditor: 0
-  color: 0
+  ckeditor5: 0
   comment: 0
   config: 0
   config_delete: 0
@@ -18,13 +19,11 @@ module:
   context_ui: 0
   contextual: 0
   ctools: 0
-  custom_sql_migrate_source_plugin: 0
   datetime: 0
   dblog: 0
   dcc_common: 0
   dcc_general: 0
   dcc_migrations: 0
-  drupal_ftp_global_vars: 0
   dynamic_page_cache: 0
   editor: 0
   encrypt: 0
@@ -32,36 +31,36 @@ module:
   entity_reference_revisions: 0
   field: 0
   field_group: 0
-  field_states_ui: 0
   field_ui: 0
   file: 0
   filter: 0
-  ga_login: 0
   google_tag: 0
   help: 0
   history: 0
   honeypot: 0
   image: 0
   key: 0
-  kint: 0
   language: 0
   link: 0
   media: 0
   media_library: 0
-  menu_link_clone: 0
   menu_link_content: 0
   menu_ui: 0
   metatag: 0
   migrate: 0
   migrate_plus: 0
   migrate_tools: 0
+  mm_drupal_security: 0
+  mm_extras: 0
+  mm_ftp_global_vars: 0
+  mysql: 0
   node: 0
   options: 0
   page_cache: 0
   path: 0
   path_alias: 0
-  quickedit: 0
-  rdf: 0
+  phpass: 0
+  profile_switcher: 0
   real_aes: 0
   redirect: 0
   search: 0
@@ -87,14 +86,11 @@ module:
   xmlsitemap: 1
   views: 10
   paragraphs: 11
-  standard: 1000
+  field_states_ui: 200
+  mm_drupal_core_d9_shared_infra: 1000
 theme:
-  stable: 0
-  classy: 0
-  bartik: 0
-  seven: 0
   bootstrap4: 0
   dcc: 0
-profile: standard
-_core:
-  default_config_hash: R4IF-ClDHXxblLcG0L7MgsLvfBIMAvi_skumNFQwkDc
+  claro: 0
+  stable9: 0
+profile: mm_drupal_core_d9_shared_infra

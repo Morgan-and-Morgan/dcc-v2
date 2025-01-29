@@ -1,13 +1,13 @@
+_core:
+  default_config_hash: 2QzULf0zovJQx3J06Y9rufzzfi-CY2CTTlEfJJh2Qyw
 check:
   disabled_extensions: false
   interval_days: 1
 fetch:
-  url: ''
+  url: null
   max_attempts: 2
   timeout: 30
 notification:
   emails:
     - developers@forthepeople.com
   threshold: all
-_core:
-  default_config_hash: 2QzULf0zovJQx3J06Y9rufzzfi-CY2CTTlEfJJh2Qyw

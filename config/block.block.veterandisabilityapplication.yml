@@ -18,14 +18,14 @@ plugin: 'block_content:bd14adc7-817a-488b-82f1-a608888c5513'
 settings:
   id: 'block_content:bd14adc7-817a-488b-82f1-a608888c5513'
   label: 'Veteran Disability application'
-  provider: block_content
   label_display: visible
+  provider: block_content
   status: true
   info: ''
   view_mode: full
 visibility:
   request_path:
     id: request_path
-    pages: ''
     negate: true
     context_mapping: {  }
+    pages: ''
