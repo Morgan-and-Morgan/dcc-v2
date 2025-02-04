@@ -21,6 +21,6 @@ settings:
 visibility:
   request_path:
     id: request_path
-    negate: true
+    negate: false
     context_mapping: {  }
-    pages: "/disability-resources\r\n/disability-resources/disability-guide\r\n/medical-qualifications\r\n/social-security-disability\r\n/social-security-disability/qualify\r\n/social-security-disability/apply\r\n/social-security-disability/appeal-denial\r\n/ssi/thank-you\r\n/ss/thank-you\r\n/social-security-disability\r\n/thank-you\r\n/user\r\n/user/*"
+    pages: "/veterans/*\r\n/veterans"
