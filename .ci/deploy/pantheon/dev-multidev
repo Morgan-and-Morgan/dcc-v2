@@ -30,7 +30,7 @@ fi
 terminus -n drush "$TERMINUS_SITE.$MDE_ENVIRONMENT" -- updatedb -y
 
 # If exported configuration is available, then import it.
-if [ -f "config/sync/system.site.yml" ] ; then
+if [ -f "config/system.site.yml" ] ; then
   terminus -n drush "$TERMINUS_SITE.$MDE_ENVIRONMENT" -- config-import --yes
 fi
 
