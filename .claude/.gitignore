@@ -1,0 +1,14 @@
+# Local settings and configurations that should not be shared
+settings.local.json
+CLAUDE.local.md
+
+# User-specific memory
+memory/
+
+# Local commands (not shared with team)
+commands/pre-pr-review.md
+
+# Temporary files
+*.tmp
+*.bak
+*~

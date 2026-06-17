@@ -2,8 +2,7 @@
 ### GitHub repository .gitignore section
 ###
 
-# Ignore local DDev configs.
-.ddev
+# DDEV: commit the shared project config; .ddev/.gitignore excludes generated files.
 
 # Ignore files only needed on CI
 .bashrc
