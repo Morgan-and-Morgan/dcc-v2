@@ -1,0 +1,152 @@
+name: 🤖 Claude Code
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+  issue_comment:
+    types: [created]
+  pull_request_review_comment:
+    types: [created]
+  issues:
+    types: [opened, assigned]
+  pull_request_review:
+    types: [submitted]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.event.issue.number || github.run_id }}
+
+jobs:
+  claude:
+    name: Review
+    if: |
+      (github.event_name == 'pull_request') ||
+      (github.event_name == 'issue_comment' && contains(github.event.comment.body, '@claude')) ||
+      (github.event_name == 'pull_request_review_comment' && contains(github.event.comment.body, '@claude')) ||
+      (github.event_name == 'pull_request_review' && contains(github.event.review.body, '@claude')) ||
+      (github.event_name == 'issues' && (github.event.action == 'opened' || github.event.action == 'assigned') && contains(github.event.issue.body, '@claude'))
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+    steps:
+      # Write-access gate applies to issue_comment events only. pull_request
+      # events are intentionally ungated: only repo collaborators can open PRs
+      # against this repository, so the trusted-actor requirement is satisfied
+      # by GitHub's own access controls.
+      - name: 🔒 Verify commenter has write access
+        if: github.event_name == 'issue_comment'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          COMMENTER: ${{ github.event.comment.user.login }}
+          REPOSITORY: ${{ github.repository }}
+        run: |
+          permission=$(gh api "repos/$REPOSITORY/collaborators/$COMMENTER/permission" --jq '.permission' 2>/dev/null || echo "none")
+          if [[ "$permission" != "admin" && "$permission" != "write" && "$permission" != "maintain" ]]; then
+            echo "::error::User '$COMMENTER' does not have write access. Aborting to prevent credential exposure."
+            exit 1
+          fi
+
+      - name: 🔍 Resolve PR head ref
+        id: resolve-ref
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          HEAD_REF: ${{ github.event.pull_request.head.ref || github.head_ref || github.ref_name }}
+          EVENT_NAME: ${{ github.event_name }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          REPOSITORY: ${{ github.repository }}
+        run: |
+          if [ "$EVENT_NAME" = "issue_comment" ] && [ -n "$ISSUE_NUMBER" ]; then
+            pr_ref=$(gh api "repos/$REPOSITORY/pulls/$ISSUE_NUMBER" --jq '.head.ref') || {
+              echo "::error::Failed to resolve PR head ref for issue #$ISSUE_NUMBER."
+              exit 1
+            }
+            if [ -z "$pr_ref" ]; then
+              echo "::error::Resolved PR head ref is empty for issue #$ISSUE_NUMBER. The issue may not be a pull request."
+              exit 1
+            fi
+            echo "ref<<EOF" >> "$GITHUB_OUTPUT"
+            echo "$pr_ref" >> "$GITHUB_OUTPUT"
+            echo "EOF" >> "$GITHUB_OUTPUT"
+          else
+            echo "ref=$HEAD_REF" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          ref: ${{ steps.resolve-ref.outputs.ref }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      # Runs automatically on pull_request events — no trigger phrase needed.
+      # Without trigger_phrase, the action executes prompt as the user instruction
+      # and posts the result as a PR comment unconditionally.
+      - name: 🤖 Auto PR Review
+        if: github.event_name == 'pull_request'
+        uses: anthropics/claude-code-action@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          claude_args: "--model claude-opus-4-8 --max-turns 50 --permission-mode bypassPermissions"
+          prompt: |
+            Review this pull request and leave a PR comment using exactly this format:
+
+            ## 🤖 Claude Code Review
+
+            ### ✅ Safe to Merge
+            (or)
+            ### ☠️ Dangerous — Do Not Merge
+
+            > One sentence summary of the overall assessment.
+
+            ---
+
+            ### 📋 Findings
+
+            [Detailed findings here, grouped by category with bold headings e.g. **🐛 Bugs**, **🔒 Security**, **📐 Coding Standards**, **⚙️ PHP Compatibility**, **🗄️ Cache Bypass**. Use bullet points under each. If nothing found in a category, omit it entirely.]
+
+            ---
+
+            ### ✅ Looks Good
+            [Brief bullet list of anything notably well done or clean, if applicable. Omit section if nothing stands out.]
+
+            ---
+
+            Rules:
+            - Choose ✅ Safe to Merge if there are no bugs, security issues, or standard violations that would break functionality or introduce risk.
+            - Choose ☠️ Dangerous — Do Not Merge if you find bugs, security issues, PHP compatibility problems, cache bypass issues, or anything that would cause `composer code-sniff` to fail.
+            - Minor style preferences or out-of-scope suggestions should be omitted entirely.
+            - Do not flag `--permission-mode bypassPermissions` in CI workflow files as a security issue; it is required for unattended operation in GitHub Actions.
+            - Do not flag unpinned action versions (floating tags vs SHA-pinned refs) as a security issue; this risk is accepted.
+            - Do not flag missing `@file` docblocks in PHP files that contain a class, interface, or trait. Per Drupal convention (and what `composer code-sniff` actually enforces), `@file` is reserved for procedural files (`.module`, `.install`, `.theme`, `.inc`, `.profile`) — class files use the class-level docblock instead.
+            - If a category has no findings, omit that section entirely to keep the comment concise.
+            - Check for cache bypass issues and report them under **🗄️ Cache Bypass**. Flag as ☠️ Dangerous if any are found. Specifically look for:
+              Drupal cache:
+              - Render arrays that depend on entities or config but are missing `#cache` metadata (tags, contexts, or max-age)
+              - `#cache['max-age'] = 0` added without clear justification (kills Drupal page/dynamic cache for that response)
+              - `\Drupal::service('page_cache_kill_switch')->trigger()` called unconditionally or in broad request-path code
+              - `drupal_flush_all_caches()` added to runtime code paths (acceptable only in install/update hooks or Drush commands)
+              - `CacheableResponseInterface::addCacheableDependency()` missing on responses that depend on config or entities
+              - Cache tags invalidated too broadly in a request handler (e.g. `Cache::invalidateTags(['node_list'])` on every request)
+              - Config changes (`.yml` files) that set `page_cache_maximum_age` or `cache_lifetime` to 0 without justification
+              Pantheon Varnish / AGCDN cache:
+              - `Cache-Control: no-cache`, `no-store`, or `private` headers set on responses that should be edge-cached
+              - Any `setcookie()` call or `$response->headers->setCookie()` on pages that should be Varnish-cached — Pantheon bypasses Varnish for any response that sets a cookie, including non-session cookies
+              - HTTP response `max-age` set to 0 outside of authenticated or form-submit contexts
+              - Changes to `pantheon.yml` that reduce `default_ttl` or disable caching for paths that were previously cached
+              - Changes to `settings.php` or `settings.local.php` that set `$config['system.performance']['cache']['page']['max_age']` to 0
+              - `.htaccess` or server config changes that add `no-cache`, `private`, or `no-store` directives to previously-cached paths
+              - Event subscribers or middleware that modify `Cache-Control` headers to be more restrictive without justification
+
+      # Runs only when @claude is explicitly mentioned in a comment, review, or issue.
+      # trigger_phrase gates execution; the action responds to the mention content.
+      - name: 🤖 Claude Triggered Response
+        if: github.event_name != 'pull_request'
+        uses: anthropics/claude-code-action@v1
+        with:
+          trigger_phrase: "@claude"
+          assignee_trigger: "claude"
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          claude_args: "--model claude-opus-4-8 --max-turns 50 --permission-mode bypassPermissions"

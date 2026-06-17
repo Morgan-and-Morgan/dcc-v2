@@ -1,0 +1,31 @@
+name: dcc-v2
+type: drupal10
+docroot: web
+php_version: "8.1"
+webserver_type: nginx-fpm
+xdebug_enabled: false
+additional_hostnames: []
+additional_fqdns: []
+database:
+  type: mariadb
+  version: "10.4"
+nodejs_version: "18"
+use_dns_when_possible: true
+composer_version: "2"
+web_environment: []
+
+# This project mirrors the Pantheon stack: PHP 8.1, MariaDB 10.4, web docroot.
+# The dcc theme builds with Node 18 (node-sass) — see `composer build-theme-dcc`.
+#
+# Common workflow:
+#   ddev start
+#   ddev composer install
+#   ddev pull pantheon          # pull DB + files (needs TERMINUS_MACHINE_TOKEN)
+#   ddev composer build-theme-dcc
+#   ddev launch
+#
+# Set your Pantheon machine token once in ~/.ddev/global_config.yaml:
+#   web_environment:
+#     - TERMINUS_MACHINE_TOKEN=<token>
+#
+# See https://ddev.readthedocs.io/ for full configuration reference.

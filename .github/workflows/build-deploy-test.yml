@@ -1,0 +1,173 @@
+name: ⚙️ Build & Deploy
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+
+# =============================================================================
+# Environment variables mapped from GitHub Actions context to the CI_* naming
+# convention used by Pantheon build-tools and the .ci/ scripts.
+# =============================================================================
+env:
+  TZ: "/usr/share/zoneinfo/America/Los_Angeles"
+  ADMIN_USERNAME: admin
+  TERM: dumb
+  NOTIFY: 'scripts/github/add-commit-comment {project} {sha} "Created multidev environment [{site}#{env}]({dashboard-url})." {site-url}'
+
+  # Map GitHub Actions context to CI_* names for .ci/ script compatibility.
+  CI_BRANCH: ${{ github.head_ref || github.ref_name }}
+  CI_BUILD_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+  CI_BUILD_NUMBER: ${{ github.run_number }}
+  CI_REPOSITORY_URL: ${{ github.server_url }}/${{ github.repository }}
+  CI_PROJECT_REPONAME: ${{ github.event.repository.name }}
+  CI_PROJECT_USERNAME: ${{ github.repository_owner }}
+  PR_NUMBER: ${{ github.event.pull_request.number }}
+
+  # Also set CIRCLE_* aliases so set-environment's fallback logic works.
+  CIRCLE_BRANCH: ${{ github.head_ref || github.ref_name }}
+  CIRCLE_BUILD_NUM: ${{ github.run_number }}
+  CIRCLE_PROJECT_REPONAME: ${{ github.event.repository.name }}
+  CIRCLE_BUILD_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+  CIRCLE_REPOSITORY_URL: ${{ github.server_url }}/${{ github.repository }}
+  CIRCLE_WORKING_DIRECTORY: ~/mm_drupal_site
+
+  # Secrets
+  TERMINUS_TOKEN: ${{ secrets.TERMINUS_TOKEN }}
+
+defaults:
+  run:
+    shell: /bin/bash -eo pipefail {0}
+
+jobs:
+  # ===========================================================================
+  # Job 1: Build PHP (composer assets + dcc theme)
+  # Saves build output to cache for the deploy job (faster than artifact
+  # upload/download for large directories).
+  # ===========================================================================
+  build_php:
+    name: Build PHP
+    runs-on: ubuntu-latest
+    container:
+      image: quay.io/pantheon-public/build-tools-ci:8.x-php8.1
+      options: --user root
+      env:
+        HOME: /home/circleci
+        PATH: /home/circleci/.config/composer/vendor/bin:/home/circleci/.composer/vendor/bin:/home/circleci/bin:/home/circleci/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Fix git safe.directory for container
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+
+      - name: Setup SSH for private Composer repos
+        env:
+          SSH_KEY: ${{ secrets.SHARED_INFRA_SSH_KEY }}
+        run: |
+          eval "$(ssh-agent -s)"
+          echo "$SSH_KEY" | ssh-add -
+          mkdir -p /etc/ssh
+          ssh-keyscan github.com >> /etc/ssh/ssh_known_hosts 2>/dev/null
+          echo "SSH_AUTH_SOCK=$SSH_AUTH_SOCK" >> $GITHUB_ENV
+          echo "SSH_AGENT_PID=$SSH_AGENT_PID" >> $GITHUB_ENV
+
+      - name: Cache Composer dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.composer/cache
+          key: composer-cache-${{ hashFiles('composer.lock') }}
+          restore-keys: |
+            composer-cache-
+
+      - name: Cache vendor directory
+        uses: actions/cache@v4
+        with:
+          path: ./vendor
+          key: vendor-${{ hashFiles('composer.lock') }}
+          restore-keys: |
+            vendor-
+
+      - name: Setup environment variables
+        run: |
+          export BASH_ENV=/tmp/bash_env.txt
+          /build-tools-ci/scripts/set-environment
+          if [ -f "$BASH_ENV" ]; then
+            grep '^export ' "$BASH_ENV" | grep -v '^export PATH=' | sed 's/^export //' >> $GITHUB_ENV 2>/dev/null || true
+          fi
+          echo "BASH_ENV=/tmp/bash_env.txt" >> $GITHUB_ENV
+
+      - name: Run PHP build step
+        run: ./.ci/build/php
+
+      - name: Save build output to cache
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            web
+            vendor
+            drush
+          key: build-output-${{ github.sha }}
+
+  # ===========================================================================
+  # Job 2: Deploy to Pantheon
+  # Requires build_php. Restores build output from cache instead of
+  # downloading artifacts (faster, no rsync/permission fix).
+  # ===========================================================================
+  deploy_to_pantheon:
+    name: 🚀 Deploy to Pantheon
+    needs: [build_php]
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    container:
+      image: quay.io/pantheon-public/build-tools-ci:8.x-php8.1
+      options: --user root
+      env:
+        HOME: /home/circleci
+        PATH: /home/circleci/.config/composer/vendor/bin:/home/circleci/.composer/vendor/bin:/home/circleci/bin:/home/circleci/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Fix git safe.directory for container
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+
+      - name: Setup SSH for Pantheon
+        env:
+          SSH_KEY: ${{ secrets.PANTHEON_SSH_KEY }}
+        run: |
+          eval "$(ssh-agent -s)"
+          echo "$SSH_KEY" | ssh-add -
+          mkdir -p /etc/ssh
+          ssh-keyscan -p 2222 codeserver.dev.85f7f5ec-40dd-48c5-9480-daae73fbb6a8.drush.in >> /etc/ssh/ssh_known_hosts 2>/dev/null
+          echo "SSH_AUTH_SOCK=$SSH_AUTH_SOCK" >> $GITHUB_ENV
+          echo "SSH_AGENT_PID=$SSH_AGENT_PID" >> $GITHUB_ENV
+
+      - name: Restore build output from cache
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            web
+            vendor
+            drush
+          key: build-output-${{ github.sha }}
+          fail-on-cache-miss: true
+
+      - name: Setup environment variables
+        run: |
+          export BASH_ENV=/tmp/bash_env.txt
+          /build-tools-ci/scripts/set-environment
+          if [ -f "$BASH_ENV" ]; then
+            grep '^export ' "$BASH_ENV" | grep -v '^export PATH=' | sed 's/^export //' >> $GITHUB_ENV 2>/dev/null || true
+          fi
+          echo "BASH_ENV=/tmp/bash_env.txt" >> $GITHUB_ENV
+
+      - name: Deploy to Pantheon
+        run: ./.ci/deploy/pantheon/dev-multidev
