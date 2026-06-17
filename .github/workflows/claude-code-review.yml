@@ -88,7 +88,7 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
-          claude_args: "--model claude-sonnet-4-6 --max-turns 50 --permission-mode bypassPermissions"
+          claude_args: "--model claude-opus-4-8 --max-turns 50 --permission-mode bypassPermissions"
           prompt: |
             Review this pull request and leave a PR comment using exactly this format:
 
@@ -149,4 +149,4 @@ jobs:
           assignee_trigger: "claude"
           github_token: ${{ secrets.GITHUB_TOKEN }}
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
-          claude_args: "--model claude-sonnet-4-6 --max-turns 50 --permission-mode bypassPermissions"
+          claude_args: "--model claude-opus-4-8 --max-turns 50 --permission-mode bypassPermissions"
