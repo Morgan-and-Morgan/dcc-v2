@@ -61,6 +61,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Fix git safe.directory for container
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+
       - name: Setup SSH for private Composer repos
         env:
           SSH_KEY: ${{ secrets.SHARED_INFRA_SSH_KEY }}
@@ -111,6 +114,9 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: Fix git safe.directory for container
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
 
       - name: Setup SSH for private Composer repos
         env:

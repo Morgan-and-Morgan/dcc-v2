@@ -30,13 +30,6 @@ jobs:
       pull-requests: write
       issues: write
     steps:
-      - name: 🔑 Generate GitHub App token
-        id: app-token
-        uses: actions/create-github-app-token@v2
-        with:
-          app-id: ${{ vars.CLAUDE_APP_CLIENT_ID }}
-          private-key: ${{ secrets.CLAUDE_APP_PRIVATE_KEY }}
-
       # Write-access gate applies to issue_comment events only. pull_request
       # events are intentionally ungated: only repo collaborators can open PRs
       # against this repository, so the trusted-actor requirement is satisfied
@@ -44,7 +37,7 @@ jobs:
       - name: 🔒 Verify commenter has write access
         if: github.event_name == 'issue_comment'
         env:
-          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           COMMENTER: ${{ github.event.comment.user.login }}
           REPOSITORY: ${{ github.repository }}
         run: |
@@ -57,7 +50,7 @@ jobs:
       - name: 🔍 Resolve PR head ref
         id: resolve-ref
         env:
-          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           HEAD_REF: ${{ github.event.pull_request.head.ref || github.head_ref || github.ref_name }}
           EVENT_NAME: ${{ github.event_name }}
           ISSUE_NUMBER: ${{ github.event.issue.number }}
@@ -84,7 +77,7 @@ jobs:
         with:
           fetch-depth: 0
           ref: ${{ steps.resolve-ref.outputs.ref }}
-          token: ${{ steps.app-token.outputs.token }}
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       # Runs automatically on pull_request events — no trigger phrase needed.
       # Without trigger_phrase, the action executes prompt as the user instruction
@@ -93,7 +86,7 @@ jobs:
         if: github.event_name == 'pull_request'
         uses: anthropics/claude-code-action@v1
         with:
-          github_token: ${{ steps.app-token.outputs.token }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
           claude_args: "--model claude-sonnet-4-6 --max-turns 50 --permission-mode bypassPermissions"
           prompt: |
@@ -154,6 +147,6 @@ jobs:
         with:
           trigger_phrase: "@claude"
           assignee_trigger: "claude"
-          github_token: ${{ steps.app-token.outputs.token }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
           claude_args: "--model claude-sonnet-4-6 --max-turns 50 --permission-mode bypassPermissions"

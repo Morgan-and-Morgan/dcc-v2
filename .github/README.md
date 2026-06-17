@@ -96,13 +96,10 @@ These should already exist from CircleCI. Add them as GitHub Actions secrets on 
 |---|---|---|
 | `TERMINUS_TOKEN` | deploy_to_pantheon | Pantheon Dashboard > Account > Machine Tokens |
 | `ANTHROPIC_API_KEY` | claude-code-review | Anthropic Console |
-| `CLAUDE_APP_PRIVATE_KEY` | claude-code-review | Private key of the Claude GitHub App |
-
-| Variable Name | Used By | Notes |
-|---|---|---|
-| `CLAUDE_APP_CLIENT_ID` | claude-code-review | Client/app ID of the Claude GitHub App |
 
 > `GITHUB_TOKEN` is provided automatically by GitHub Actions — no setup needed.
+> The Claude review workflow authenticates with this built-in token, so no
+> GitHub App is required.
 
 ## 5. Repo Permissions
 
@@ -120,7 +117,6 @@ Ensure the repo's Actions permissions allow the workflow to run:
 | `PANTHEON_SSH_KEY` | deploy_to_pantheon | SSH key to push built code to Pantheon's git codeserver |
 | `TERMINUS_TOKEN` | deploy_to_pantheon | Machine token for Terminus API authentication |
 | `ANTHROPIC_API_KEY` | claude-code-review | Anthropic API key for the Claude review action |
-| `CLAUDE_APP_PRIVATE_KEY` | claude-code-review | GitHub App private key (token generation) |
 
 ## Gotchas / Things We Learned
 
