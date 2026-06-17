@@ -221,7 +221,6 @@ Pantheon DB/file sync is configured in `.ddev/providers/pantheon.yaml`.
 Workflows live in `.github/workflows/`:
 
 1. **build-deploy-test.yml** — on push to `master` and on PRs:
-   - `static_tests` — `composer install` → unit tests → PHP lint → `composer code-sniff` (via `.ci/test/static/run`)
    - `build_php` — `composer build-assets` (via `.ci/build/php`)
    - `deploy_to_pantheon` — push built artifact to Pantheon (dev on master, multidev otherwise)
 2. **claude-code-review.yml** — automated Claude review on PRs; `@claude` mention handler on comments/issues.

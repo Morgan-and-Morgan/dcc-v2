@@ -12,7 +12,7 @@ Step-by-step instructions for setting up the GitHub Actions pipeline on this Dru
 
 | File | Purpose |
 |---|---|
-| `build-deploy-test.yml` | Static tests + PHP build, then deploy to Pantheon (dev on `master`, multidev on PR branches) |
+| `build-deploy-test.yml` | PHP build, then deploy to Pantheon (dev on `master`, multidev on PR branches) |
 | `claude-code-review.yml` | Automated Claude review on PRs; `@claude` mention handler on comments/issues |
 
 > Behat acceptance tests and the nightly cron / Slack notifier are intentionally
@@ -113,7 +113,7 @@ Ensure the repo's Actions permissions allow the workflow to run:
 
 | Secret | Used By | Purpose |
 |---|---|---|
-| `SHARED_INFRA_SSH_KEY` | static_tests, build_php | SSH deploy key to clone private Composer dependencies from GitHub |
+| `SHARED_INFRA_SSH_KEY` | build_php | SSH deploy key to clone private Composer dependencies from GitHub |
 | `PANTHEON_SSH_KEY` | deploy_to_pantheon | SSH key to push built code to Pantheon's git codeserver |
 | `TERMINUS_TOKEN` | deploy_to_pantheon | Machine token for Terminus API authentication |
 | `ANTHROPIC_API_KEY` | claude-code-review | Anthropic API key for the Claude review action |
@@ -140,11 +140,8 @@ The workflow sets `CIRCLE_*` env vars alongside `CI_*` vars for backwards compat
 
 ```
 push to master / PR
-  ├── static_tests ──────┐
-  │   (lint, sniff, unit) │
-  │                       ├── deploy_to_pantheon
-  ├── build_php ─────────┘   (dev on master, multidev on PR branches)
-      (composer, dcc theme)
+  build_php ──────────────── deploy_to_pantheon
+  (composer, dcc theme)      (dev on master, multidev on PR branches)
 
 PRs also trigger claude-code-review (auto PR review + @claude handler)
 ```
