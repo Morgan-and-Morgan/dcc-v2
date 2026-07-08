@@ -63,3 +63,58 @@ function dcc_general_update_9001() {
   // Return an informative message.
   return t('Checked and logged modules in the "system.schema" collection.');
 }
+
+/**
+ * Create or update the Privacy Policy page at /privacy-policy/.
+ */
+function dcc_general_update_9002() {
+  $alias = '/privacy-policy';
+  $content_file = __DIR__ . '/content/privacy-policy.html';
+
+  if (!is_readable($content_file)) {
+    throw new \RuntimeException(sprintf('Privacy policy content file not found: %s', $content_file));
+  }
+
+  $body = file_get_contents($content_file);
+  if ($body === FALSE || $body === '') {
+    throw new \RuntimeException(sprintf('Privacy policy content file is empty: %s', $content_file));
+  }
+
+  $path = \Drupal::service('path_alias.manager')->getPathByAlias($alias);
+  $node = NULL;
+
+  if (preg_match('/^\/node\/(\d+)$/', $path, $matches)) {
+    $node = \Drupal::entityTypeManager()->getStorage('node')->load($matches[1]);
+  }
+
+  if ($node instanceof \Drupal\node\NodeInterface) {
+    $node->set('body', [
+      'value' => $body,
+      'format' => 'full_html',
+    ]);
+    $node->save();
+
+    return t('Updated existing Privacy Policy page at @alias.', ['@alias' => $alias]);
+  }
+
+  $node = \Drupal::entityTypeManager()->getStorage('node')->create([
+    'type' => 'page',
+    'title' => 'Privacy Policy',
+    'status' => 1,
+    'promote' => 0,
+    'sticky' => 0,
+    'uid' => 1,
+    'langcode' => 'en',
+    'body' => [
+      'value' => $body,
+      'format' => 'full_html',
+    ],
+    'path' => [
+      'alias' => $alias,
+      'langcode' => 'en',
+    ],
+  ]);
+  $node->save();
+
+  return t('Created Privacy Policy page at @alias.', ['@alias' => $alias]);
+}
