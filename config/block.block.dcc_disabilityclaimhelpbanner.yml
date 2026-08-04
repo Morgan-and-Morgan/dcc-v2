@@ -1,0 +1,25 @@
+uuid: 1c55a643-0aee-4de7-9741-b81eaafeef0a
+langcode: en
+status: true
+dependencies:
+  module:
+    - dcc_general
+    - system
+  theme:
+    - dcc
+id: dcc_disabilityclaimhelpbanner
+theme: dcc
+region: sidebar
+weight: -12
+provider: null
+plugin: disability_claim_help_banner_block
+settings:
+  id: disability_claim_help_banner_block
+  label: 'Disability Claim Help - Banner'
+  label_display: '0'
+  provider: dcc_general
+visibility:
+  request_path:
+    id: request_path
+    negate: true
+    pages: "/veterans/*\r\n/veterans"

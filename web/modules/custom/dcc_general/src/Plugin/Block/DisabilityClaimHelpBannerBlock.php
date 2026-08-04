@@ -10,7 +10,7 @@ use Drupal\Core\Block\BlockBase;
  * @Block(
  *   id = "disability_claim_help_banner_block",
  *   admin_label = @Translation("Disability Claim Help - Banner"),
- *   category = @Translation("Custom")
+ *   category = @Translation("Custom Block")
  * )
  */
 class DisabilityClaimHelpBannerBlock extends BlockBase {

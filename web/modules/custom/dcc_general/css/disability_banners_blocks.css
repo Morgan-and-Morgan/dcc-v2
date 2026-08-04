@@ -1,6 +1,7 @@
 
 .block-disability-evaluation-default-pages-banner-block,
 .block-disability-claim-help-banner-block,
+.path-social-security-disability .block-disability-claim-help-banner-block,
 .page-homepage .block-disability-claim-help-banner-block {
   background-color: #ffffff;
   display: flex;
@@ -28,18 +29,25 @@
 }
 
 .banner-block--wrapper,
+.path-social-security-disability .banner-block--wrapper,
 .page-homepage .banner-block--wrapper {
   display: flex;
   align-items: center;
 }
 
+.path-social-security-disability .banner-block--wrapper {
+  padding-top: 30px;
+}
+
 .banner-block--title-wrapper .banner-block--title,
+.path-social-security-disability .banner-block--title-wrapper .banner-block--title,
 .page-homepage .banner-block--title-wrapper .banner-block--title {
   margin-bottom: 16px;
   display: block;
 }
 
 .dcc-general--banner-block .banner-block--title,
+.path-social-security-disability .dcc-general--banner-block .banner-block--title,
 .page-homepage .dcc-general--banner-block .banner-block--title {
   color: #1A384E;
   font-weight: 700;
@@ -62,6 +70,7 @@
 }
 
 .banner-block--description,
+.path-social-security-disability .banner-block--description,
 .page-homepage .banner-block--description {
   font-size: 16px;
   font-weight: 400;
@@ -78,6 +87,8 @@
 }
 
 .dcc-general--banner-block .banner-block--button-link,
+.dcc-general--banner-block .banner-block--button-link,
+.path-social-security-disability .dcc-general--banner-block .banner-block--button-link,
 .page-homepage .dcc-general--banner-block .banner-block--button-link {
   display: flex;
   justify-content: center;
@@ -95,6 +106,7 @@
 }
 
 .dcc-general--banner-block .banner-block--button-link:hover,
+.path-social-security-disability .banner-block--button-link:hover,
 .page-homepage .banner-block--button-link:hover {
   color: #333;
   background-color: #e6e6e6;
@@ -102,6 +114,7 @@
 }
 
 .dcc-general--banner-block .banner-block--button-link:after,
+.path-social-security-disability .dcc-general--banner-block .banner-block--button-link:after,
 .page-homepage .dcc-general--banner-block .banner-block--button-link:after {
   content: '';
   display: block;
@@ -114,6 +127,7 @@
   margin-top: 3.33px;
 }
 
+.path-social-security-disability .dcc-general--banner-block .banner-block--button-link:hover:after,
 .page-homepage .dcc-general--banner-block .banner-block--button-link:hover:after {
   color: #333;
 }
