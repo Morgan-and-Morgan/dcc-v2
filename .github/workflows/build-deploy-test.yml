@@ -1,4 +1,4 @@
-name: ⚙️ Build & Deploy
+name: ⚙️ Build, Deploy, and Test
 
 on:
   push:
@@ -12,6 +12,13 @@ concurrency:
 # =============================================================================
 # Environment variables mapped from GitHub Actions context to the CI_* naming
 # convention used by Pantheon build-tools and the .ci/ scripts.
+#
+# TERMINUS_SITE needs no repository variable here: this repo is "dcc-v2" and
+# the Pantheon site machine name is also "dcc-v2", so the repo name is the site
+# name. It is still set explicitly rather than left to set-environment's
+# derivation, because the deploy job's codeserver check reads it directly. The
+# CIRCLE_* aliases are kept as a fallback for the values set-environment
+# derives when the CI_* equivalents are absent.
 # =============================================================================
 env:
   TZ: "/usr/share/zoneinfo/America/Los_Angeles"
@@ -19,7 +26,6 @@ env:
   TERM: dumb
   NOTIFY: 'scripts/github/add-commit-comment {project} {sha} "Created multidev environment [{site}#{env}]({dashboard-url})." {site-url}'
 
-  # Map GitHub Actions context to CI_* names for .ci/ script compatibility.
   CI_BRANCH: ${{ github.head_ref || github.ref_name }}
   CI_BUILD_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
   CI_BUILD_NUMBER: ${{ github.run_number }}
@@ -28,13 +34,15 @@ env:
   CI_PROJECT_USERNAME: ${{ github.repository_owner }}
   PR_NUMBER: ${{ github.event.pull_request.number }}
 
-  # Also set CIRCLE_* aliases so set-environment's fallback logic works.
   CIRCLE_BRANCH: ${{ github.head_ref || github.ref_name }}
   CIRCLE_BUILD_NUM: ${{ github.run_number }}
   CIRCLE_PROJECT_REPONAME: ${{ github.event.repository.name }}
   CIRCLE_BUILD_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
   CIRCLE_REPOSITORY_URL: ${{ github.server_url }}/${{ github.repository }}
   CIRCLE_WORKING_DIRECTORY: ~/mm_drupal_site
+
+  # Pantheon site machine name — identical to the GitHub repo name for dcc-v2.
+  TERMINUS_SITE: ${{ github.event.repository.name }}
 
   # Secrets
   TERMINUS_TOKEN: ${{ secrets.TERMINUS_TOKEN }}
@@ -45,19 +53,24 @@ defaults:
 
 jobs:
   # ===========================================================================
-  # Job 1: Build PHP (composer assets + dcc theme)
-  # Saves build output to cache for the deploy job (faster than artifact
-  # upload/download for large directories).
+  # Job 1: Static Tests (lint, code sniff, unit tests)
+  #
+  # A hard gate. Restored here after being removed in 03c00be; it runs four
+  # phpcs passes (Drupal + DrupalPractice over web/modules/custom and
+  # web/themes/custom), all reporting zero errors and warnings, so a failure is
+  # a regression introduced by the branch rather than pre-existing debt.
   # ===========================================================================
-  build_php:
-    name: Build PHP
+  static_tests:
+    name: Static Tests
     runs-on: ubuntu-latest
     container:
-      image: quay.io/pantheon-public/build-tools-ci:8.x-php8.1
+      # PATH is pinned to the standard system directories. Actions sets HOME
+      # itself (/github/home) and the image's own user home is /home/tester,
+      # so there is nothing repo-specific to add here.
+      image: quay.io/pantheon-public/build-tools-ci:8.x-php8.3
       options: --user root
       env:
-        HOME: /home/circleci
-        PATH: /home/circleci/.config/composer/vendor/bin:/home/circleci/.composer/vendor/bin:/home/circleci/bin:/home/circleci/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+        PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -84,6 +97,69 @@ jobs:
           restore-keys: |
             composer-cache-
 
+      - name: Setup environment variables
+        run: |
+          export BASH_ENV=/tmp/bash_env.txt
+          /build-tools-ci/scripts/set-environment
+          if [ -f "$BASH_ENV" ]; then
+            # Skip PATH line — it contains $PATH references that GITHUB_ENV
+            # can't expand. BASH_ENV auto-sourcing handles PATH correctly.
+            grep '^export ' "$BASH_ENV" | grep -v '^export PATH=' | sed 's/^export //' >> $GITHUB_ENV 2>/dev/null || true
+          fi
+          echo "BASH_ENV=/tmp/bash_env.txt" >> $GITHUB_ENV
+
+      - name: Run static tests
+        run: ./.ci/test/static/run
+
+  # ===========================================================================
+  # Job 2: Build PHP (composer assets + dcc theme)
+  #
+  # The theme's gulp build runs as part of `composer build-assets`, which
+  # chains @build-theme-dcc; the build-tools-ci container ships Node, so no
+  # separate Node job is needed.
+  # ===========================================================================
+  build_php:
+    name: Build PHP
+    runs-on: ubuntu-latest
+    container:
+      image: quay.io/pantheon-public/build-tools-ci:8.x-php8.3
+      options: --user root
+      env:
+        PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Fix git safe.directory for container
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+
+      - name: Setup SSH for private Composer repos
+        env:
+          SSH_KEY: ${{ secrets.SHARED_INFRA_SSH_KEY }}
+        run: |
+          eval "$(ssh-agent -s)"
+          echo "$SSH_KEY" | ssh-add -
+          mkdir -p /etc/ssh
+          ssh-keyscan github.com >> /etc/ssh/ssh_known_hosts 2>/dev/null
+          echo "SSH_AUTH_SOCK=$SSH_AUTH_SOCK" >> $GITHUB_ENV
+          echo "SSH_AGENT_PID=$SSH_AGENT_PID" >> $GITHUB_ENV
+
+      - name: Cache Composer dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.composer/cache
+          key: composer-cache-${{ hashFiles('composer.lock') }}
+          restore-keys: |
+            composer-cache-
+
+      - name: Cache npm dependencies (dcc theme)
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: npm-dcc-${{ hashFiles('web/themes/custom/dcc/package-lock.json') }}
+          restore-keys: |
+            npm-dcc-
+
       - name: Cache vendor directory
         uses: actions/cache@v4
         with:
@@ -104,61 +180,127 @@ jobs:
       - name: Run PHP build step
         run: ./.ci/build/php
 
-      - name: Save build output to cache
-        uses: actions/cache/save@v4
+      # dcc.libraries.yml serves dist/css/style.css, dist/css/slick.css and
+      # dist/js/main-min.js, and web/themes/custom/*/dist is gitignored — so a
+      # silently no-op theme build would deploy a site with no CSS or JS.
+      # gulp's assets:build emits all three (sass:build compiles style.scss and
+      # custom/slick.scss into dist/css; js:build-main-js emits dist/js).
+      - name: Verify theme assets were built
+        run: |
+          for f in \
+            web/themes/custom/dcc/dist/css/style.css \
+            web/themes/custom/dcc/dist/css/slick.css \
+            web/themes/custom/dcc/dist/js/main-min.js; do
+            if [ ! -s "$f" ]; then
+              echo "::error::Expected theme asset missing or empty: $f"
+              exit 1
+            fi
+            echo "ok: $f ($(wc -c < "$f") bytes)"
+          done
+
+      # Artifact rather than cache: the cache service intermittently fails to
+      # return a just-saved key, which makes the deploy job's
+      # fail-on-cache-miss restore flaky. Tarred first because upload-artifact
+      # drops executable bits, symlinks and dotfiles from raw directories.
+      - name: Archive build output
+        run: tar -cf build-output.tar web vendor drush
+
+      - name: Upload build output
+        uses: actions/upload-artifact@v4
         with:
-          path: |
-            web
-            vendor
-            drush
-          key: build-output-${{ github.sha }}
+          name: build-output
+          path: build-output.tar
+          retention-days: 1
 
   # ===========================================================================
-  # Job 2: Deploy to Pantheon
-  # Requires build_php. Restores build output from cache instead of
-  # downloading artifacts (faster, no rsync/permission fix).
+  # Job 3: Deploy to Pantheon
   # ===========================================================================
   deploy_to_pantheon:
     name: 🚀 Deploy to Pantheon
-    needs: [build_php]
+    needs: [static_tests, build_php]
     permissions:
       contents: write
     runs-on: ubuntu-latest
     container:
-      image: quay.io/pantheon-public/build-tools-ci:8.x-php8.1
+      image: quay.io/pantheon-public/build-tools-ci:8.x-php8.3
       options: --user root
       env:
-        HOME: /home/circleci
-        PATH: /home/circleci/.config/composer/vendor/bin:/home/circleci/.composer/vendor/bin:/home/circleci/bin:/home/circleci/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+        PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
+          # Terminus build tools need full history to push to Pantheon.
           fetch-depth: 0
 
       - name: Fix git safe.directory for container
         run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
 
+      # ssh expands ~ from the passwd database, not $HOME: this container runs
+      # as root (/root) while Actions sets HOME=/github/home, so a config under
+      # $HOME is silently ignored and auth falls back to the default key list.
+      # IdentityFile rather than ssh-agent, so the key survives across steps
+      # without plumbing SSH_AUTH_SOCK through GITHUB_ENV.
       - name: Setup SSH for Pantheon
         env:
           SSH_KEY: ${{ secrets.PANTHEON_SSH_KEY }}
         run: |
-          eval "$(ssh-agent -s)"
-          echo "$SSH_KEY" | ssh-add -
-          mkdir -p /etc/ssh
-          ssh-keyscan -p 2222 codeserver.dev.85f7f5ec-40dd-48c5-9480-daae73fbb6a8.drush.in >> /etc/ssh/ssh_known_hosts 2>/dev/null
-          echo "SSH_AUTH_SOCK=$SSH_AUTH_SOCK" >> $GITHUB_ENV
-          echo "SSH_AGENT_PID=$SSH_AGENT_PID" >> $GITHUB_ENV
+          SSH_HOME=$(getent passwd "$(id -u)" | cut -d: -f6)
+          SSH_HOME=${SSH_HOME:-$HOME}
+          SSH_DIR="$SSH_HOME/.ssh"
+          mkdir -p "$SSH_DIR" && chmod 700 "$SSH_DIR"
 
-      - name: Restore build output from cache
-        uses: actions/cache/restore@v4
+          # Normalise the secret: a key copied out of a password manager often
+          # arrives CRLF-terminated or without its trailing newline, both of
+          # which make OpenSSH fail with "error in libcrypto".
+          printf '%s\n' "$SSH_KEY" | tr -d '\r' > "$SSH_DIR/pantheon_key"
+          chmod 600 "$SSH_DIR/pantheon_key"
+
+          # PubkeyAcceptedAlgorithms/HostkeyAlgorithms re-enable SHA-1 ssh-rsa,
+          # which OpenSSH 8.8+ disables by default but Pantheon still uses.
+          cat > "$SSH_DIR/config" <<EOF
+          Host *.drush.in
+            IdentityFile $SSH_DIR/pantheon_key
+            IdentitiesOnly yes
+            StrictHostKeyChecking accept-new
+            UserKnownHostsFile $SSH_DIR/known_hosts
+            PubkeyAcceptedAlgorithms +ssh-rsa
+            HostkeyAlgorithms +ssh-rsa
+          EOF
+          chmod 600 "$SSH_DIR/config"
+
+          # Share the resolved paths with later steps.
+          echo "SSH_DIR=$SSH_DIR" >> $GITHUB_ENV
+
+          # Validate the key parses. On failure report structure only - never
+          # key material - so the secret can be fixed from the log alone.
+          if ! ssh-keygen -y -f "$SSH_DIR/pantheon_key" >/dev/null 2>/tmp/keyerr; then
+            echo "::error::PANTHEON_SSH_KEY is not a usable private key."
+            sed 's/^/  ssh-keygen: /' /tmp/keyerr || true
+            echo "  --- structure only, no key material ---"
+            echo "  bytes: $(wc -c < "$SSH_DIR/pantheon_key" | tr -d ' ')"
+            echo "  lines: $(wc -l < "$SSH_DIR/pantheon_key" | tr -d ' ')"
+            if head -c 4 "$SSH_DIR/pantheon_key" | grep -q '^ssh-'; then
+              echo "  NOTE: begins with 'ssh-' - this looks like a PUBLIC key."
+              echo "        The secret must hold the PRIVATE key (no .pub)."
+            fi
+            if [ "$(wc -l < "$SSH_DIR/pantheon_key" | tr -d ' ')" -le 2 ]; then
+              echo "  NOTE: only 1-2 lines - line breaks were likely lost on"
+              echo "        paste. Re-add with: pbcopy < /path/to/private_key"
+            fi
+            exit 1
+          fi
+          echo "PANTHEON_SSH_KEY parsed OK ($(ssh-keygen -lf "$SSH_DIR/pantheon_key" | awk '{print $1" "$4}'))"
+
+      - name: Download build output artifact
+        uses: actions/download-artifact@v4
         with:
-          path: |
-            web
-            vendor
-            drush
-          key: build-output-${{ github.sha }}
-          fail-on-cache-miss: true
+          name: build-output
+
+      - name: Extract build output
+        run: |
+          tar -xf build-output.tar
+          rm build-output.tar
 
       - name: Setup environment variables
         run: |
@@ -169,5 +311,143 @@ jobs:
           fi
           echo "BASH_ENV=/tmp/bash_env.txt" >> $GITHUB_ENV
 
+      # accept-new alone still fails host key verification against the
+      # codeserver, so the key is scanned in explicitly. The UUID is resolved
+      # via Terminus rather than hardcoded — the previous revision of this
+      # workflow pinned the literal UUID
+      # 85f7f5ec-40dd-48c5-9480-daae73fbb6a8 in ssh-keyscan, which silently
+      # rots if the site is ever rebuilt. Failing here is far more diagnosable
+      # than Terminus's `git push -q`, which reports no cause.
+      - name: Trust and verify Pantheon codeserver
+        run: |
+          terminus -n auth:login --machine-token="$TERMINUS_TOKEN" >/dev/null
+          UUID=$(terminus -n site:info "$TERMINUS_SITE" --field=id)
+          if [ -z "$UUID" ]; then
+            echo "::error::Could not resolve a site UUID for '$TERMINUS_SITE'."
+            echo "  TERMINUS_SITE is derived from the repo name, which for this"
+            echo "  repo matches the Pantheon machine name 'dcc-v2'. Note that"
+            echo "  Terminus is case-sensitive on site names."
+            exit 1
+          fi
+          HOST="codeserver.dev.$UUID.drush.in"
+          echo "Codeserver: $HOST"
+
+          mkdir -p /etc/ssh
+          ssh-keyscan -p 2222 "$HOST" 2>/dev/null \
+            | tee -a "$SSH_DIR/known_hosts" >> /etc/ssh/ssh_known_hosts
+          if ! grep -q "$HOST" "$SSH_DIR/known_hosts"; then
+            echo "::error::ssh-keyscan returned no host key for $HOST:2222."
+            exit 1
+          fi
+          echo "Host key recorded."
+
+          echo "Offering key: $(ssh-keygen -lf "$SSH_DIR/pantheon_key" | awk '{print $2}')"
+          set +e
+          OUT=$(ssh -v -o BatchMode=yes -o ConnectTimeout=20 -p 2222 "codeserver.dev.$UUID@$HOST" 2>&1)
+          set -e
+          echo "$OUT" | grep -E "Offering public key|Server accepts key|Authenticated|Permission denied|Host key verification" | sed 's/^/  ssh: /'
+          # The codeserver runs a git-only shell, so a non-zero exit is normal.
+          # Judge on the message, not the exit code.
+          if echo "$OUT" | grep -qiE "permission denied|host key verification failed|connection (timed out|refused|closed)|could not resolve"; then
+            echo "::error::Cannot reach the Pantheon codeserver over SSH (see above)."
+            echo "  If it says 'Permission denied', register this public key at"
+            echo "  Pantheon Dashboard > Account > SSH Keys:"
+            ssh-keygen -y -f "$SSH_DIR/pantheon_key"
+            exit 1
+          fi
+          echo "SSH access to $HOST confirmed."
+
+      # Scoped to this step deliberately: set-environment pipes any
+      # $GITHUB_TOKEN it sees into `composer config github-oauth`, and Composer
+      # rejects the Actions token. Only dev-multidev needs it.
       - name: Deploy to Pantheon
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Surfaces the real SSH failure behind Terminus's `git push -q`.
+          GIT_SSH_COMMAND: ssh -v
         run: ./.ci/deploy/pantheon/dev-multidev
+
+  # ===========================================================================
+  # Job 4: Playwright tests, master only, 4 parallel shards.
+  #
+  # Runs against Pantheon's dev, which the deploy just updated. This is the
+  # site's only end-to-end suite — it replaced Behat, which has been removed.
+  # To cover PRs too, drop the `if` below and point PLAYWRIGHT_BASE_URL at the
+  # branch's multidev, https://<branch>-dcc-v2.pantheonsite.io. Each shard
+  # uploads a blob report for notify_slack.
+  # ===========================================================================
+  playwright_test:
+    name: Playwright (shard ${{ matrix.shard }}/4)
+    needs: [deploy_to_pantheon]
+    if: github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [1, 2, 3, 4]
+    env:
+      PLAYWRIGHT_BASE_URL: 'https://dev-dcc-v2.pantheonsite.io'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Node 24 here is independent of the theme's pinned Node 18: this job
+      # never builds the theme, it only runs Playwright.
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: tests/playwright/package-lock.json
+
+      - name: Install dependencies
+        working-directory: tests/playwright
+        run: npm ci
+
+      - name: Install Playwright browser
+        working-directory: tests/playwright
+        run: npx playwright install --with-deps chromium
+
+      - name: Run Playwright (shard ${{ matrix.shard }}/4)
+        working-directory: tests/playwright
+        run: npx playwright test --shard=${{ matrix.shard }}/4 --reporter=blob
+
+      - name: Upload blob report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-blob-shard-${{ matrix.shard }}
+          path: tests/playwright/blob-report/
+          retention-days: 7
+
+  # ===========================================================================
+  # Job 5: Merge shard reports and post the summary to Slack (master only).
+  #
+  # Only fires on 'success' or 'failure'. 'skipped'/'cancelled' mean no tests
+  # ran, so Slack never gets a report for a suite that did not execute.
+  # ===========================================================================
+  notify_slack:
+    name: Merge Reports & Notify Slack
+    needs: [playwright_test]
+    if: >-
+      !cancelled()
+      && github.ref == 'refs/heads/master'
+      && (needs.playwright_test.result == 'success'
+      || needs.playwright_test.result == 'failure')
+    permissions:
+      contents: write
+      actions: read
+      # Granted to the called workflow so it can resolve the Pages base URL.
+      # Must stay in sync with playwright-notify.yml.
+      pages: read
+    uses: ./.github/workflows/playwright-notify.yml
+    with:
+      status: ${{ needs.playwright_test.result }}
+      run_number: ${{ github.run_number }}
+      run_url: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+      test_suite_name: Playwright Tests
+      site_label: dev-dcc-v2.pantheonsite.io
+      blob_artifact_prefix: playwright-blob-shard
+      slack_channel: cli-slack-bot-testing
+    secrets:
+      SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}

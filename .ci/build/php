@@ -8,5 +8,12 @@ set -eo pipefail
 # need to be persisted to other jobs.
 #
 
-# Build Composer Assets
+# Build Composer Assets.
+#
+# This also builds the dcc theme: build-assets chains @build-theme-dcc, which
+# runs the theme's gulp pipeline to compile dist/css/style.css,
+# dist/css/slick.css and dist/js/main-min.js — the files dcc.libraries.yml
+# serves. web/themes/custom/*/dist is gitignored, so this must run in CI or the
+# deploy ships an unstyled site; the workflow asserts all three are non-empty
+# immediately after this script.
 composer -n build-assets

@@ -2,12 +2,12 @@
 
 namespace Drupal\dcc_migrations\Plugin\migrate\source;
 
-// Use Drupal\migrate_drupal\Plugin\migrate\source\DrupalSqlBase;
+// Use Drupal\migrate_drupal\Plugin\migrate\source\DrupalSqlBase;.
 use Drupal\migrate\Plugin\migrate\source\SqlBase;
 use Drupal\migrate\Row;
 
 /**
- *
+ * Base source plugin sharing the WordPress table prefix lookup.
  */
 class MySqlBase extends SqlBase {
 
@@ -61,21 +61,21 @@ class MySqlBase extends SqlBase {
   }
 
   /**
-   * @inheritDoc
+   * {@inheritDoc}
    */
   public function query() {
     // @todo Implement query() method.
   }
 
   /**
-   * @inheritDoc
+   * {@inheritDoc}
    */
   public function getIds() {
     // @todo Implement getIds() method.
   }
 
   /**
-   * @inheritDoc
+   * {@inheritDoc}
    */
   public function fields() {
     // @todo Implement fields() method.

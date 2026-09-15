@@ -32,16 +32,11 @@ class WordpressContent extends MySqlBase {
         'post_name',
       ]);
     $query->condition('p.post_status', 'publish');
-//    $query->join('wp_33_term_relationships', 'tr', 'tr.object_Id = p.ID');
-//    $query
-//      ->fields('tr', [
-//        'term_taxonomy_id',
-//      ]);
-//    $query->join('wp_33_terms', 'trm', 'trm.term_id = tr.term_id');
-//    $query
-//      ->fields('tr', [
-//        'term_id',
-//      ]);
+    // Taxonomy terms are deliberately not joined in here. Joining
+    // wp_33_term_relationships and wp_33_terms to select term_taxonomy_id and
+    // term_id multiplies the result set by the number of terms per post, which
+    // makes the source yield one row per post/term pair rather than one per
+    // post. Term assignment is handled by a separate migration instead.
     $query->condition('p.post_type', $this->getPostType());
     return $query;
   }
@@ -60,8 +55,8 @@ class WordpressContent extends MySqlBase {
       'post_date'     => $this->t('Created Date'),
       'post_modified' => $this->t('Modified Date'),
       'path_alias'    => $this->t('URL Alias'),
-//      'term_taxonomy_id'    => $this->t('Term Taxonomy ID'),
-//      'term_id'    => $this->t('Term ID'),
+      // No term_taxonomy_id or term_id field: see the note in query() on why
+      // taxonomy is not joined into this source.
     ];
   }
 

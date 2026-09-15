@@ -15,13 +15,16 @@ composer install --no-ansi --no-interaction --optimize-autoloader --no-progress
 # Run unit tests
 composer -n unit-test
 
-# Delete and reset the web directory
-# This is necessary so that third-party
-# dependencies are not tested
-git clean -fdX web
+# The `git clean -fdX web` that used to sit here has been dropped. It removed
+# every gitignored path under web/ — which is the Drupal core,
+# contrib module and contrib theme tree Composer had just installed one step
+# above — purely to keep third-party code out of the sniff. That is already
+# handled by targeting: lint and code-sniff only ever walk web/modules/custom
+# and web/themes/custom, and code-sniff additionally ignores node_modules,
+# vendor and dist.
 
-# Lint php code for syntax errors
+# Lint php code for syntax errors (targets web/modules/custom and web/themes/custom only)
 composer -n lint
 
-# Check coding standards
+# Check coding standards (targets web/modules/custom and web/themes/custom only)
 composer -n code-sniff

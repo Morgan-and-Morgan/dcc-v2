@@ -3,12 +3,21 @@
 ## Project Overview
 
 - **Framework:** Drupal 9/10 (Composer-managed)
-- **Hosting:** Pantheon (site UUID `85f7f5ec-40dd-48c5-9480-daae73fbb6a8`)
-- **CI/CD:** GitHub Actions (`.github/workflows/`)
-- **Local Dev:** DDEV (`.ddev/`) — PHP 8.1, MariaDB 10.4, Node 18
-- **PHP:** 8.1
+- **Site:** https://www.disabilitycarecenter.org
+- **Hosting:** Pantheon — site machine name `dcc-v2` (matches the GitHub repo
+  name, so `TERMINUS_SITE` follows from the repo name and needs no repository
+  variable; note Terminus is case-sensitive on site names)
+- **Environments:** dev → `https://dev-dcc-v2.pantheonsite.io`;
+  feature branches → `https://<branch>-dcc-v2.pantheonsite.io`
+- **CI/CD:** GitHub Actions (`.github/workflows/build-deploy-test.yml`)
+- **Local Dev:** DDEV (`.ddev/`) — PHP 8.3, MariaDB 10.4, Node 18
+- **PHP:** 8.3
 - **Custom Theme:** `dcc` (`web/themes/custom/dcc`, npm/node-sass build)
 - **Shared Infra:** `morgan-and-morgan/mm_drupal_core_d9_shared_infra`
+- **E2E tests:** Playwright (`tests/playwright/`)
+
+> Node stays pinned at 18: the theme's `node-sass` compiles against a specific
+> Node ABI and does not build on current Node. The PHP 8.3 bump does not move it.
 
 ### Key Paths
 
@@ -78,7 +87,7 @@
 - Inherited methods: `{@inheritdoc}`
 
 ### Type Hints & Return Types
-- Use PHP 8.1 type hints for all parameters and return types
+- Use PHP 8.3 type hints for all parameters and return types
 - Trailing commas in multi-line parameter lists
 - Nullable types with `?Type` or union `Type|null`
 

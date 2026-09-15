@@ -8,7 +8,7 @@ use Drupal\migrate\ProcessPluginBase;
 use Drupal\migrate\Row;
 
 /**
- * Return Page id by product Id
+ * Return Page id by product Id.
  *
  * @MigrateProcessPlugin(
  *   id = "page_id_by_product"
@@ -40,4 +40,5 @@ class PageByProduct extends ProcessPluginBase {
       return NULL;
     }
   }
+
 }

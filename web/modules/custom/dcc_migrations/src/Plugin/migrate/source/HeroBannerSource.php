@@ -92,7 +92,13 @@ class HeroBannerSource extends SqlBase {
   }
 
   /**
+   * Returns the hero image file reference for a source post.
    *
+   * @param int|string|null $id
+   *   The WordPress post id to look up.
+   *
+   * @return string|null
+   *   The hero image value, or NULL when the post has none.
    */
   public function getHeroImage($id) {
     if (isset($id)) {
@@ -103,6 +109,10 @@ class HeroBannerSource extends SqlBase {
       $query->addField('meta', 'post_id', 'post_id');
       $query->addField('meta', 'meta_value', 'hero_image_uploader');
       $result = $query->execute()->fetchAll();
+      // Initialised before the loop: a post with no hero_image_uploader row
+      // leaves $value unset, which PHP 8 reports as an undefined variable
+      // warning on return rather than silently yielding NULL.
+      $value = NULL;
       foreach ($result as $item) {
         $value = $item->hero_image_uploader;
       }
@@ -112,28 +122,6 @@ class HeroBannerSource extends SqlBase {
       return NULL;
     }
   }
-
-  // /**
-  //   * Get custom Title.
-  //   */
-  //  public function getCustomTitle($id) {
-  //    if (isset($id)) {
-  //      $con = Database::getConnection('default', 'migrate');
-  //      $query = $con->select('wp_33_postmeta', 'meta', ['target' => 'migrate']);
-  //      $query->condition('meta.post_id', $id);
-  //      $query->condition('meta.meta_key', 'custom_title');
-  //      $query->addField('meta', 'post_id', 'post_id');
-  //      $query->addField('meta', 'meta_value', 'custom_title');
-  //      $result = $query->execute()->fetchAll();
-  //      foreach ($result as $item) {
-  //        $value = $item->custom_title;
-  //      }
-  //      return $value;
-  //    }
-  //    else {
-  //      return NULL;
-  //    }
-  //  }
 
   /**
    * Get custom Title.

@@ -12,21 +12,29 @@ Step-by-step instructions for setting up the GitHub Actions pipeline on this Dru
 
 | File | Purpose |
 |---|---|
-| `build-deploy-test.yml` | PHP build, then deploy to Pantheon (dev on `master`, multidev on PR branches) |
+| `build-deploy-test.yml` | Static tests (hard gate), PHP build, deploy to Pantheon (dev on `master`, multidev on PR branches), then Playwright across 4 shards and a Slack summary (both `master` only) |
+| `playwright-notify.yml` | Reusable; merges the per-shard blob reports and posts the summary to Slack via `scripts/parse-playwright-report.php` |
 | `claude-code-review.yml` | Automated Claude review on PRs; `@claude` mention handler on comments/issues |
 
-> Behat acceptance tests and the nightly cron / Slack notifier are intentionally
-> not included in this repo's pipeline. They can be added later if needed.
+> End-to-end coverage is Playwright (`tests/playwright/`). The Behat suite it
+> replaced has been removed, along with its `.ci/test/behat/` scripts and its
+> `behat/mink-extension` and `dmore/behat-chrome-extension` dev dependencies.
+>
+> There is no scheduled/cron workflow in this repo yet. Adding one needs no
+> change to `playwright-notify.yml` — it is already parameterised.
 
 ## 1. Site-Specific Values
 
-- **Pantheon site UUID** — `85f7f5ec-40dd-48c5-9480-daae73fbb6a8`. Used in the
-  `deploy_to_pantheon` job's `ssh-keyscan` line:
-  ```yaml
-  ssh-keyscan -p 2222 codeserver.dev.85f7f5ec-40dd-48c5-9480-daae73fbb6a8.drush.in >> /etc/ssh/ssh_known_hosts 2>/dev/null
-  ```
-  If the site is ever migrated, find the new UUID in the Pantheon dashboard under
-  Site Settings, or from the site's git clone URL.
+- **Pantheon site machine name** — `dcc-v2`, which matches this repo's name, so
+  `TERMINUS_SITE` is set from `github.event.repository.name` and needs no
+  repository variable. Terminus is case-sensitive on site names.
+- **Pantheon site UUID** — `85f7f5ec-40dd-48c5-9480-daae73fbb6a8`. No longer
+  hardcoded in the workflow: the `deploy_to_pantheon` job resolves it at run
+  time with `terminus site:info "$TERMINUS_SITE" --field=id` and fails with a
+  diagnosable error if it cannot. A literal UUID silently rots if the site is
+  ever rebuilt, so prefer leaving the lookup in place. The value is recorded
+  here only for reference — find it in the Pantheon dashboard under Site
+  Settings, or in the site's git clone URL.
 
 ## 2. Create SSH Key for Private Composer Repos
 

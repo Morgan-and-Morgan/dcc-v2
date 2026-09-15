@@ -22,11 +22,10 @@ class ProcessImageOut extends ProcessPluginBase {
 
     if ($value) {
 
-      return str_replace('https://www.dcc.com/wp-content/uploads/sites/33/', '/sites/default/files/wp-thumbnails/',$value);
+      return str_replace('https://www.dcc.com/wp-content/uploads/sites/33/', '/sites/default/files/wp-thumbnails/', $value);
 
     }
 
   }
 
 }
-

@@ -48,4 +48,5 @@ class ProductType extends ProcessPluginBase {
       return NULL;
     }
   }
+
 }

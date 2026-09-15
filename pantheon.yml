@@ -1,6 +1,9 @@
 api_version: 1
 web_docroot: true
-php_version: 8.1
+# Pantheon only converges platform settings when pantheon.yml itself changes in a
+# commit to an existing environment. A newly created Multidev inherits Dev's
+# settings and ignores this file, so touching it is required to apply php_version.
+php_version: 8.3
 database:
   version: 10.4
 drush_version: 10

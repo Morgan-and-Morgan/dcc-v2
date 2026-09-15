@@ -1,0 +1,294 @@
+name: Playwright Notify (Reusable)
+
+# Reusable workflow called by build-deploy-test.yml after the sharded Playwright
+# jobs finish. Downloads the per-shard blob reports, merges them into a single
+# HTML report + JUnit XML, uploads the HTML report as a CI artifact, then parses
+# the JUnit into a structured Slack message and posts it.
+#
+# A scheduled workflow could call this too; nothing here needs to change to
+# support one.
+on:
+  workflow_call:
+    inputs:
+      status:
+        required: true
+        type: string
+        description: 'Result of the playwright job: success, failure, or cancelled'
+      run_number:
+        required: true
+        type: string
+      run_url:
+        required: true
+        type: string
+      test_suite_name:
+        required: true
+        type: string
+        description: 'Display name, e.g. "Playwright Cron Tests"'
+      site_label:
+        required: true
+        type: string
+        description: 'Short label shown in Slack, e.g. "disabilitycarecenter.org" or "dev-dcc-v2.pantheonsite.io"'
+      blob_artifact_prefix:
+        required: true
+        type: string
+        description: 'Blob artifact name prefix without the trailing "-N", e.g. "playwright-blob-shard"'
+      slack_channel:
+        required: false
+        type: string
+        default: 'cli-slack-bot-testing'
+    secrets:
+      SLACK_BOT_TOKEN:
+        required: true
+
+defaults:
+  run:
+    shell: /bin/bash -eo pipefail {0}
+
+jobs:
+  report_and_notify:
+    name: Merge Reports & Notify Slack
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      actions: read
+      # Needed to resolve the real Pages base URL via the Pages API.
+      pages: read
+    env:
+      STATUS: ${{ inputs.status }}
+      RUN_URL: ${{ inputs.run_url }}
+      RUN_NUMBER: ${{ inputs.run_number }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: tests/playwright/package-lock.json
+
+      # merge-reports only needs the Playwright package, not the browsers.
+      - name: Install Playwright (no browsers)
+        working-directory: tests/playwright
+        run: npm ci
+
+      # Skip artifact download when cancelled — nothing was uploaded.
+      - name: Download blob report shards
+        if: inputs.status != 'cancelled'
+        uses: actions/download-artifact@v4
+        with:
+          pattern: ${{ inputs.blob_artifact_prefix }}-*
+          path: tests/playwright/all-blob-reports
+          merge-multiple: true
+
+      # Merge all shard blobs into a single HTML report + JUnit XML using the
+      # reporters configured in playwright.config.ts (html → playwright-report/,
+      # junit → reports/results.xml).
+      - name: Merge blob reports
+        if: inputs.status != 'cancelled'
+        working-directory: tests/playwright
+        run: |
+          npx playwright merge-reports --config=playwright.config.ts ./all-blob-reports
+          echo "Merged report files:"
+          ls -la reports/ playwright-report/ || true
+
+      - name: Upload merged HTML report
+        if: inputs.status != 'cancelled'
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-html-report
+          path: tests/playwright/playwright-report/
+          retention-days: 7
+
+      # Publish the merged HTML report to GitHub Pages under a per-run
+      # subdirectory (keyed by the globally-unique run id so build and cron
+      # runs never collide), pruning older reports in the same commit.
+      #
+      # Pruning is not optional: each report carries trace zips and failure
+      # videos and runs ~130 MB, while GitHub Pages refuses to build a site
+      # larger than 1 GB. Accumulating reports indefinitely silently breaks
+      # every report link, not just the newest one.
+      - name: Publish HTML report to GitHub Pages
+        id: publish_pages
+        if: inputs.status != 'cancelled'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_PAGES_KEEP: '5'
+          REPORT_DIR: tests/playwright/playwright-report
+          RUN_ID: ${{ github.run_id }}
+        run: |
+          # This repo has no gh-pages branch and Pages is not enabled, so skip
+          # cleanly instead of failing the whole notify job on
+          # `git clone --branch gh-pages`; the Slack message simply omits the
+          # report link (parse-playwright-report.php guards on an empty
+          # PLAYWRIGHT_REPORT_URL) and the HTML report is still available as
+          # the playwright-html-report artifact uploaded above. Create a
+          # gh-pages branch and enable Pages to turn this on - no workflow
+          # change needed.
+          if ! git ls-remote --exit-code --heads origin gh-pages >/dev/null 2>&1; then
+            echo "No gh-pages branch found; skipping HTML report publication."
+            echo "published=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          echo "published=true" >> "$GITHUB_OUTPUT"
+
+          gh_pages=$(mktemp -d)
+          git clone --branch gh-pages --single-branch --depth 1 \
+            "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git" \
+            "$gh_pages"
+
+          rm -rf "${gh_pages:?}/${RUN_ID}"
+          mkdir -p "$gh_pages/$RUN_ID"
+          cp -R "$REPORT_DIR/." "$gh_pages/$RUN_ID/"
+          # Serve the report verbatim rather than running it through Jekyll.
+          touch "$gh_pages/.nojekyll"
+
+          # Run ids increase monotonically, so a reverse numeric sort is
+          # newest-first; drop everything past the newest $GH_PAGES_KEEP.
+          for old in $(ls -1 "$gh_pages" | grep -E '^[0-9]+$' | sort -rn | tail -n "+$((GH_PAGES_KEEP + 1))"); do
+            echo "Pruning superseded report: $old"
+            rm -rf "${gh_pages:?}/${old}"
+          done
+
+          cd "$gh_pages"
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git add -A
+          if git diff --quiet --cached; then
+            echo "No report changes to publish."
+          else
+            git commit -q -m "Publish Playwright report for run ${RUN_ID}"
+            git push origin gh-pages
+          fi
+          echo "Published site size (must stay under 1 GB):"
+          du -sh --exclude=.git .
+
+      # Build the URL of the just-published report. A private repo's Pages site
+      # is served from a randomised *.pages.github.io domain, NOT from
+      # <owner>.github.io/<repo>/, so read the real base URL from the API rather
+      # than assuming the public pattern. Falls back to the public pattern if
+      # the Pages API is unreachable.
+      - name: Compute report URL
+        id: report_url
+        if: inputs.status != 'cancelled' && steps.publish_pages.outputs.published == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          base=$(gh api "repos/${{ github.repository }}/pages" --jq '.html_url' || true)
+          if [ -z "$base" ]; then
+            owner=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')
+            base="https://${owner}.github.io/$(basename "${{ github.repository }}")/"
+            echo "Pages API unavailable; falling back to $base"
+          fi
+          echo "url=${base%/}/${{ github.run_id }}/" >> "$GITHUB_OUTPUT"
+
+      # Wall-clock duration of the test phase: earliest shard start to latest
+      # shard finish, from the Actions API. This reflects real elapsed time
+      # (shards run in parallel), unlike the JUnit times which sum serially.
+      - name: Compute test wall-clock duration
+        id: walltime
+        if: inputs.status != 'cancelled'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          jobs_json=$(gh api "repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/jobs?per_page=100")
+          starts=$(echo "$jobs_json" | jq -r '.jobs[] | select(.name | test("shard [0-9]+/")) | .started_at')
+          ends=$(echo "$jobs_json" | jq -r '.jobs[] | select(.name | test("shard [0-9]+/")) | .completed_at // empty')
+          if [ -z "$starts" ] || [ -z "$ends" ]; then
+            echo "No shard job timings found; skipping wall-clock."
+            echo "seconds=" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          min_start=$(while read -r t; do [ -n "$t" ] && date -d "$t" +%s; done <<< "$starts" | sort -n | head -1)
+          max_end=$(while read -r t; do [ -n "$t" ] && date -d "$t" +%s; done <<< "$ends" | sort -n | tail -1)
+          echo "seconds=$((max_end - min_start))" >> "$GITHUB_OUTPUT"
+          echo "Test wall-clock: $((max_end - min_start))s"
+
+      - name: Setup PHP
+        if: inputs.status != 'cancelled'
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: simplexml
+          tools: none
+
+      - name: Parse reports and generate Slack message
+        if: inputs.status != 'cancelled'
+        env:
+          PLAYWRIGHT_RUN_NUMBER: ${{ inputs.run_number }}
+          PLAYWRIGHT_RUN_URL: ${{ inputs.run_url }}
+          PLAYWRIGHT_SITE_LABEL: ${{ inputs.site_label }}
+          PLAYWRIGHT_REPORT_URL: ${{ steps.report_url.outputs.url }}
+          PLAYWRIGHT_WALL_SECONDS: ${{ steps.walltime.outputs.seconds }}
+        run: |
+          mkdir -p /tmp/playwright-summary
+          # parse-playwright-report.php exits non-zero when tests failed; that is
+          # expected here (we still want to post the summary), so don't fail the step.
+          php scripts/parse-playwright-report.php \
+            tests/playwright/reports \
+            /tmp/playwright-summary \
+            --slack || true
+          echo "--- Text Summary ---"
+          cat /tmp/playwright-summary/summary.txt
+
+      - name: Post Slack notification
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+          SLACK_CHANNEL: ${{ inputs.slack_channel }}
+          SUITE_NAME: ${{ inputs.test_suite_name }}
+          SITE_LABEL: ${{ inputs.site_label }}
+        run: |
+          if [ "$STATUS" = "cancelled" ]; then
+            MESSAGE=":warning:  *${SUITE_NAME}* | ${SITE_LABEL}
+          Run #${RUN_NUMBER} was cancelled.
+          ${RUN_URL}"
+          else
+            MESSAGE=$(cat /tmp/playwright-summary/slack-message.txt)
+          fi
+
+          # Slack would reject an empty/whitespace-only body with no_text, so
+          # catch it here where we can say which message was missing.
+          if [ -z "${MESSAGE//[[:space:]]/}" ]; then
+            echo "::error title=Slack notification failed::Refusing to post an empty message to #${SLACK_CHANNEL}. Check the 'Parse reports and generate Slack message' step."
+            exit 1
+          fi
+
+          REQUEST=$(jq -n \
+            --arg channel "$SLACK_CHANNEL" \
+            --arg text    "$MESSAGE" \
+            '{channel: $channel, text: $text}')
+
+          # chat.postMessage answers HTTP 200 even when it refuses the message,
+          # so the JSON "ok" field is the only reliable signal. Capture the body
+          # instead of piping it straight into jq, so a transport failure and an
+          # API-level rejection can be reported — and failed — separately.
+          CURL_EXIT=0
+          RESPONSE=$(printf '%s' "$REQUEST" | curl -sS --max-time 30 \
+            -w '\n%{http_code}' \
+            -X POST https://slack.com/api/chat.postMessage \
+            -H "Authorization: Bearer $SLACK_BOT_TOKEN" \
+            -H "Content-Type: application/json" \
+            --data @-) || CURL_EXIT=$?
+
+          if [ "$CURL_EXIT" -ne 0 ]; then
+            echo "::error title=Slack notification failed::Could not reach the Slack API (curl exit ${CURL_EXIT}). Intended channel: #${SLACK_CHANNEL}"
+            exit 1
+          fi
+
+          HTTP_CODE=$(printf '%s' "$RESPONSE" | tail -n 1)
+          BODY=$(printf '%s' "$RESPONSE" | sed '$d')
+          echo "Slack HTTP status: ${HTTP_CODE}"
+          echo "Slack response body: ${BODY}"
+
+          OK=$(printf '%s' "$BODY" | jq -r '.ok // false' 2>/dev/null || echo 'false')
+          if [ "$OK" != "true" ]; then
+            ERROR=$(printf '%s' "$BODY" | jq -r '.error // "unparseable_response"' 2>/dev/null || echo 'unparseable_response')
+            DETAIL=$(printf '%s' "$BODY" | jq -r '(.response_metadata.messages // []) | join("; ")' 2>/dev/null || echo '')
+            echo "::error title=Slack notification failed::Slack rejected the message for #${SLACK_CHANNEL}: ${ERROR} ${DETAIL} (HTTP ${HTTP_CODE})"
+            exit 1
+          fi
+
+          POSTED_CHANNEL=$(printf '%s' "$BODY" | jq -r '.channel // "unknown"')
+          POSTED_TS=$(printf '%s' "$BODY" | jq -r '.ts // "unknown"')
+          echo "::notice title=Slack notification sent::Posted to #${SLACK_CHANNEL} (channel id ${POSTED_CHANNEL}, ts ${POSTED_TS})"

@@ -11,7 +11,6 @@ use Thunder\Shortcode\Shortcode\ShortcodeInterface;
 use Thunder\Shortcode\Parser\RegexParser;
 use Thunder\Shortcode\Syntax\Syntax;
 use Thunder\Shortcode\Syntax\SyntaxBuilder;
-use Thunder\Shortcode\Parser\RegularParser;
 
 /**
  * Apply the automatic paragraph filter to content.
@@ -71,8 +70,9 @@ class ShortCodes extends ProcessPluginBase {
     $builder = new SyntaxBuilder();
 
     $doubleSyntax = new Syntax('[', ']', '/', '=', '""');
-    $doubleSyntax = $builder // actually using builder
-    ->setOpeningTag('[')
+    // Actually using builder.
+    $doubleSyntax = $builder
+      ->setOpeningTag('[')
       ->setClosingTag(']')
       ->setClosingTagMarker('/')
       ->setParameterValueSeparator('=')
@@ -80,14 +80,12 @@ class ShortCodes extends ProcessPluginBase {
       ->getSyntax();
 
     $handlers = new HandlerContainer();
-    $handlers->add('button', function(ShortcodeInterface $s) {
-      $thumb = $s->getParameter('thumb') ? 'style="background: url( ' . $s->getParameter('thumb') . ') no-repeat center center / cover;"' : '';
+    $handlers->add('button', function (ShortcodeInterface $s) {
       $href = $s->getParameter('href') ? 'href=' . $s->getParameter('href') . '' : '';
       $content = $s->getContent() ? $s->getContent() : '';
       return '<a ' . $href . ' class="button--generic">' . $content . '</a>';
     });
     $doubleRegex = new Processor(new RegexParser($doubleSyntax), $handlers);
-
 
     return $doubleRegex->process($text);
   }
@@ -99,8 +97,9 @@ class ShortCodes extends ProcessPluginBase {
     $captionbuilder = new SyntaxBuilder();
 
     $captiondoubleSyntax = new Syntax('[', ']', '/', '=', '""');
-    $captiondoubleSyntax = $captionbuilder // actually using builder
-    ->setOpeningTag('[')
+    // Actually using builder.
+    $captiondoubleSyntax = $captionbuilder
+      ->setOpeningTag('[')
       ->setClosingTag(']')
       ->setClosingTagMarker('/')
       ->setParameterValueSeparator('=')
@@ -108,12 +107,12 @@ class ShortCodes extends ProcessPluginBase {
       ->getSyntax();
 
     $captionhandlers = new HandlerContainer();
-    $captionhandlers->add('caption', function(ShortcodeInterface $s) {
+    $captionhandlers->add('caption', function (ShortcodeInterface $s) {
       $id = $s->getParameter('id') ? 'id="' . str_replace('"', '', $s->getParameter('id')) . '"' : "";
       $width = $s->getParameter('width') ? 'style="width: ' . str_replace('"', '', $s->getParameter('width')) . 'px"' : "";
       $align = $s->getParameter('align') ? 'class="wp_caption ' . str_replace('"', '', $s->getParameter('align')) . '"' : '';
       $content = $s->getContent();
-      $exploded_content = explode("/>",$content);
+      $exploded_content = explode("/>", $content);
       $imgdiv = $exploded_content['0'] ? $exploded_content['0'] . "/>" : "";
       $textafterimage = $exploded_content['1'] ? ltrim($exploded_content['1']) : "Caption";
 
@@ -122,14 +121,5 @@ class ShortCodes extends ProcessPluginBase {
     $captiondoubleRegex = new Processor(new RegexParser($captiondoubleSyntax), $captionhandlers);
     return $captiondoubleRegex->process($text);
   }
-
-//
-//  /**
-//   * Decode download shortcode.
-//   */
-//  public function downloadCode($text) {
-//
-//  }
-//
 
 }
