@@ -15,9 +15,9 @@ composer_version: "2"
 web_environment: []
 
 # This project mirrors the Pantheon stack: PHP 8.3, MariaDB 10.4, web docroot.
-# The dcc theme builds with Node 18 (node-sass) — see `composer build-theme-dcc`.
-# Node stays on 18 deliberately: node-sass compiles against a specific Node ABI
-# and does not build on current Node, so the PHP bump must not drag it forward.
+# The dcc theme builds with gulp 5 and dart-sass (the `sass` package) — see
+# `composer build-theme-dcc`. Node 18 is what the project was set up with
+# rather than a hard constraint; nothing in the theme's package.json pins it.
 #
 # Common workflow:
 #   ddev start

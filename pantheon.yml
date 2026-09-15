@@ -3,6 +3,13 @@ web_docroot: true
 # Pantheon only converges platform settings when pantheon.yml itself changes in a
 # commit to an existing environment. A newly created Multidev inherits Dev's
 # settings and ignores this file, so touching it is required to apply php_version.
+#
+# This matters more than it looks: composer.json requires php >=8.3, so
+# Composer's generated vendor/composer/platform_check.php fatals outright on a
+# lower version. A fresh Multidev cut from a Dev still on 8.1 therefore returns
+# 500 on every request until a SECOND push changes this file and converges the
+# environment. Getting Dev to 8.3 first avoids the whole dance, because new
+# Multidevs then inherit 8.3 at creation.
 php_version: 8.3
 database:
   version: 10.4

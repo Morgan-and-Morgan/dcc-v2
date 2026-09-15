@@ -12,12 +12,18 @@
 - **CI/CD:** GitHub Actions (`.github/workflows/build-deploy-test.yml`)
 - **Local Dev:** DDEV (`.ddev/`) — PHP 8.3, MariaDB 10.4, Node 18
 - **PHP:** 8.3
-- **Custom Theme:** `dcc` (`web/themes/custom/dcc`, npm/node-sass build)
+- **Custom Theme:** `dcc` (`web/themes/custom/dcc`, gulp 5 + dart-sass build)
 - **Shared Infra:** `morgan-and-morgan/mm_drupal_core_d9_shared_infra`
 - **E2E tests:** Playwright (`tests/playwright/`)
 
-> Node stays pinned at 18: the theme's `node-sass` compiles against a specific
-> Node ABI and does not build on current Node. The PHP 8.3 bump does not move it.
+> **Platform changes and Multidev:** Pantheon creates a new Multidev with the
+> Dev environment's platform settings and does NOT apply a `pantheon.yml`
+> arriving in the same push. Because `composer.json` requires `php >=8.3`,
+> Composer's generated `vendor/composer/platform_check.php` hard-fatals on a
+> lower version, so a brand-new Multidev off a Dev still on 8.1 returns 500 on
+> every request. Push a second commit that changes `pantheon.yml` to converge
+> the now-existing environment, or get Dev onto 8.3 first so new Multidevs
+> inherit it.
 
 ### Key Paths
 
@@ -42,7 +48,10 @@
 
 ### Theme Build — `dcc`
 
-- **Build:** `composer build-theme-dcc` (`npm install` → `npm rebuild node-sass` → `npm run build` in `web/themes/custom/dcc`)
+- **Build:** `composer build-theme-dcc` (`npm install` → `npm run build` in
+  `web/themes/custom/dcc`). The script also runs `npm rebuild node-sass`, which
+  is vestigial — the theme uses dart-sass (`sass`), not node-sass, so that step
+  is a no-op and can be dropped.
 - **Full production build:** `composer build-assets` (composer install --no-dev → build theme)
 
 ---
