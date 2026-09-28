@@ -4,6 +4,7 @@ php_version: 8.1
 database:
   version: 10.4
 drush_version: 10
+enforce_https: full+subdomains
 workflows:
   sync_code:
     after:
