@@ -7,15 +7,14 @@ use Drupal\migrate\MigrateExecutableInterface;
 use Drupal\migrate\Row;
 
 /**
- * Date to Timetamp conversion.
+ * Date to timestamp conversion.
  *
  * @MigrateProcessPlugin(
  *   id = "date_to_timestamp"
  * )
  *
- * If date is a string without delimiters we pass an argument to convert it to a date
- * If the source value was '19960101' the transformed value would be 1996-01-01.
- *
+ * If the date is a string without delimiters we pass an argument to convert it
+ * to a date. A source value of '19960101' transforms to 1996-01-01.
  */
 class DateToTimestamp extends ProcessPluginBase {
 
@@ -26,7 +25,7 @@ class DateToTimestamp extends ProcessPluginBase {
 
     $fixDate = $this->configuration['fix_date'];
 
-    if ( $fixDate == true ) {
+    if ($fixDate == TRUE) {
       return date("Y-m-d", strtotime($value));
     }
     else {

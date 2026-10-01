@@ -40,7 +40,8 @@ class ProductDescription extends ProcessPluginBase {
       $query->addField('meta', 'meta_value', 'desc');
       $result = $query->execute()->fetchAll();
       return $result[0]->desc;
-    } else {
+    }
+    else {
       return NULL;
     }
 

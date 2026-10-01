@@ -2,7 +2,6 @@
 
 namespace Drupal\dcc_migrations\Plugin\migrate\source;
 
-use Drupal\dcc_migrations\Plugin\migrate\source\MySqlBase;
 use Drupal\migrate\Row;
 
 /**
@@ -30,7 +29,7 @@ class WordpressThumbnail extends MySqlBase {
       ->condition('pm.meta_key', '_thumbnail_id')
       ->condition('pm2.meta_key', '_wp_attached_file')
       ->condition('p.post_status', 'publish');
-    //      ->condition('p.post_type', 'post');
+    // ->condition('p.post_type', 'post');
     return $query;
   }
 
@@ -65,7 +64,7 @@ class WordpressThumbnail extends MySqlBase {
    * @throws \Exception
    */
   public function prepareRow(Row $row) {
-    //    drush_print($row); die();
+    // drush_print($row); die();
     $row->setSourceProperty('filename', basename($row->getSourceProperty('filepath')));
   }
 

@@ -5,6 +5,8 @@
  * Install, update and uninstall functions for the Nationlaw Updates module.
  */
 
+use Drupal\node\NodeInterface;
+
 /**
  * @file
  * Install, update and uninstall functions for the Nationlaw Updates module.
@@ -16,7 +18,7 @@
 function dcc_general_update_9001() {
   $modules_to_remove = [
     'drupal_ftp_global_vars',
-    'kint'
+    'kint',
   ];
 
   $config_name = 'core.extension';
@@ -55,7 +57,8 @@ function dcc_general_update_9001() {
       foreach ($results as $record) {
         \Drupal::logger('mymodule')->info('Module found: @module', ['@module' => $record->name]);
       }
-    } else {
+    }
+    else {
       \Drupal::logger('mymodule')->warning('No modules found in the "system.schema" collection.');
     }
   }
@@ -87,7 +90,7 @@ function dcc_general_update_9002() {
     $node = \Drupal::entityTypeManager()->getStorage('node')->load($matches[1]);
   }
 
-  if ($node instanceof \Drupal\node\NodeInterface) {
+  if ($node instanceof NodeInterface) {
     $node->set('body', [
       'value' => $body,
       'format' => 'full_html',

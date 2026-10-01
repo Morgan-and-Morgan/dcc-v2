@@ -117,7 +117,13 @@ class PageBannerHero extends SqlBase {
   }
 
   /**
+   * Returns the hero image file reference for a source post.
    *
+   * @param int|string|null $post_id
+   *   The WordPress post id to look up.
+   *
+   * @return string|null
+   *   The hero image value, or NULL when the post has none.
    */
   public function getHeroImage($post_id) {
     if (isset($post_id)) {
@@ -128,6 +134,10 @@ class PageBannerHero extends SqlBase {
       $query->addField('meta', 'post_id', 'post_id');
       $query->addField('meta', 'meta_value', 'hero_image_uploader');
       $result = $query->execute()->fetchAll();
+      // Initialised before the loop: a post with no hero_image_uploader row
+      // leaves $value unset, which PHP 8 reports as an undefined variable
+      // warning on return rather than silently yielding NULL.
+      $value = NULL;
       foreach ($result as $item) {
         $value = $item->hero_image_uploader;
       }

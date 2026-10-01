@@ -40,4 +40,5 @@ class AltByImageId extends ProcessPluginBase {
       return NULL;
     }
   }
+
 }

@@ -3,7 +3,6 @@
 namespace Drupal\dcc_migrations\Plugin\migrate\source;
 
 use Drupal\migrate\Plugin\migrate\source\SqlBase;
-use Drupal\migrate\Row;
 
 /**
  * Source plugin for class action articles.
@@ -15,18 +14,11 @@ use Drupal\migrate\Row;
 class Articles extends SqlBase {
 
   /**
-   * -- Get all class action taxonomies
-   * -- class_type is only used in class action hence class_type = class action for this query
-   * SELECT
-   * wpp.ID, post_author, post_date, post_content, post_title, post_excerpt
-   * FROM
-   * wp_33_posts wpp
-   * WHERE
-   * post_type = 'post';
-   */
-
-  /**
    * {@inheritdoc}
+   *
+   * Selects ID, post_author, post_date, post_content, post_title and
+   * post_excerpt from wp_33_posts, restricted to rows whose post_type is
+   * 'post'.
    */
   public function query() {
     $query = $this->select('wp_33_posts', 'wpp');
@@ -66,13 +58,6 @@ class Articles extends SqlBase {
         'alias' => 'wpp',
       ],
     ];
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function prepareRow(Row $row) {
-    return parent::prepareRow($row);
   }
 
 }

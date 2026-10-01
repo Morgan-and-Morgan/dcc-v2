@@ -1,11 +1,27 @@
 <?php
 
+/**
+ * @file
+ * Site-wide hooks for the Disability Care Center site.
+ */
+
+/**
+ * Implements hook_editor_js_settings_alter().
+ *
+ * Points CKEditor at the module's custom configuration file.
+ *
+ * Note that this only applies to text formats whose editor is the CKEditor 4
+ * plugin, which core removed in Drupal 10; formats on this site now report
+ * 'ckeditor5', so the body of the condition is currently inert. It is kept
+ * rather than deleted so the intent survives, and so a format still using the
+ * contrib CKEditor 4 backport would continue to be configured.
+ */
 function dcc_common_editor_js_settings_alter(array &$settings) {
+  $module_path = \Drupal::service('extension.list.module')->getPath('dcc_common');
 
   foreach (array_keys($settings['editor']['formats']) as $text_format_id) {
     if ($settings['editor']['formats'][$text_format_id]['editor'] === 'ckeditor') {
-      $settings['editor']['formats'][$text_format_id]['editorSettings']['customConfig'] =
-        base_path() . drupal_get_path('module', 'dcc_common') . '/js/ckeditor_config.js';
+      $settings['editor']['formats'][$text_format_id]['editorSettings']['customConfig'] = base_path() . $module_path . '/js/ckeditor_config.js';
     }
   }
 }

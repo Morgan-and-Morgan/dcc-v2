@@ -17,10 +17,10 @@ class CustomExplode extends ProcessPluginBase {
 
   /**
    * {@inheritdoc}
-   * We check if meta_value has a value if so we use it otherwise we use
-   * post_name
-   * $value[0] is the first value passed 'meta_value'
-   * $value[1] is the second value passed 'post_name'
+   *
+   * Uses meta_value when it holds a value, and falls back to post_name
+   * otherwise. $value[0] is the first value passed ('meta_value') and
+   * $value[1] is the second ('post_name').
    */
   public function transform($value, MigrateExecutableInterface $migrate_executable, Row $row, $destination_property) {
 
@@ -43,6 +43,5 @@ class CustomExplode extends ProcessPluginBase {
     }
 
   }
-
 
 }

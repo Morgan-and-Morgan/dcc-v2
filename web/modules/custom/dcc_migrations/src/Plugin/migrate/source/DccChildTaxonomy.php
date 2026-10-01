@@ -3,7 +3,6 @@
 namespace Drupal\dcc_migrations\Plugin\migrate\source;
 
 use Drupal\migrate\Plugin\migrate\source\SqlBase;
-use Drupal\migrate\Row;
 
 /**
  * Source plugin for class action.
@@ -15,20 +14,11 @@ use Drupal\migrate\Row;
 class DccChildTaxonomy extends SqlBase {
 
   /**
-   * -- Get all class action taxonomies
-   * -- class_type is only used in class action hence class_type = class action for this query
-   * SELECT
-   * wtt.term_id, taxonomy, count, name
-   * FROM
-   * wp_33_term_taxonomy wtt
-   * INNER JOIN wp_33_terms wt
-   * ON wtt.term_taxonomy_id = wt.term_id
-   * WHERE
-   * taxonomy = 'product_category';
-   */
-
-  /**
    * {@inheritdoc}
+   *
+   * Selects term_id, taxonomy, count and name from wp_33_term_taxonomy
+   * inner-joined to wp_33_terms on term_taxonomy_id = term_id, restricted to
+   * the 'product_category' taxonomy.
    */
   public function query() {
     $query = $this->select('wp_33_term_taxonomy', 'wtt');
@@ -63,13 +53,6 @@ class DccChildTaxonomy extends SqlBase {
         'alias' => 'wt',
       ],
     ];
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function prepareRow(Row $row) {
-    return parent::prepareRow($row);
   }
 
 }

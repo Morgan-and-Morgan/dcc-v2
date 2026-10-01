@@ -17,14 +17,14 @@ function dcc_general_theme() {
     'disability_claim_help__banner_block' => [
       'template' => 'block/disability-claim-help--banner-block',
       'variables' => [
-        'content' => NULL
+        'content' => NULL,
       ],
     ],
     'disability_evaluation_default_pages__banner_block' => [
       'template' => 'block/disability-evaluation-default-pages--banner-block',
       'variables' => [
-        'content' => NULL
+        'content' => NULL,
       ],
-    ]
+    ],
   ];
 }
