@@ -15,6 +15,18 @@
         "bower-asset": {
             "type": "composer",
             "url": "https://asset-packagist.org"
+        },
+        "lazysizes": {
+            "type": "package",
+            "package": {
+                "name": "afarkas/lazysizes",
+                "version": "5.3.1",
+                "type": "drupal-library",
+                "dist": {
+                    "type": "zip",
+                    "url": "https://github.com/aFarkas/lazysizes/archive/refs/tags/5.3.1.zip"
+                }
+            }
         }
     },
     "require": {
@@ -38,7 +50,7 @@
         "drupal/webform": "^6.0",
         "drupal/xmlsitemap": "^1.5",
         "symfony/http-client": "^6.4",
-        "morgan-and-morgan/mm_drupal_core_d9_shared_infra": "2.0.50"
+        "morgan-and-morgan/mm_drupal_core_d9_shared_infra": "2.7.5"
     },
     "require-dev": {
         "drupal/coder": "^8.3.24"
@@ -122,7 +134,6 @@
         }
     },
     "config": {
-        "optimize-autoloader": true,
         "preferred-install": "dist",
         "sort-packages": true,
         "platform": {
