@@ -46,7 +46,7 @@
         "drupal/shortcode": "^2.0",
         "drupal/tb_megamenu": "^1.0@RC",
         "drupal/upgrade_status": "^4.3",
-        "drupal/we_megamenu": "^1.11",
+        "drupal/we_megamenu": "1.16.0",
         "drupal/webform": "^6.0",
         "drupal/xmlsitemap": "^1.5",
         "symfony/http-client": "^6.4",
