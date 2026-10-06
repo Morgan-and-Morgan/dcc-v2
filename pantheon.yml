@@ -18,6 +18,11 @@ drush_version: 10
 # matching the rest of the WEM fleet. Ref: https://docs.pantheon.io/pantheon-yml
 enforce_https: full+subdomains
 workflows:
+  deploy:
+    after:
+      - type: webphp
+        description: Run deployment steps
+        script: private/scripts/drush/drush_deploy_steps.php
   sync_code:
     after:
       - type: webphp
