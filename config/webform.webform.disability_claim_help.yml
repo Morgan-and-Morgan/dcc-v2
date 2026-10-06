@@ -296,6 +296,7 @@ handlers:
       custom_options: ''
       file_data: true
       cast: false
+      check_access: false
       debug: false
       completed_url: 'https://hooks.zapier.com/hooks/catch/1587852/b3a5jor'
       completed_custom_data: "form_id: 1\r\nform_title: Disability Claim Help"
