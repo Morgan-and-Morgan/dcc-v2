@@ -1,0 +1,7 @@
+enabled: true
+settings:
+  client_id: CLIENT_ID_PLACEHOLDER
+  client_secret: ''
+  authorization_endpoint: https://login.microsoftonline.com/TENANT_ID_PLACEHOLDER/oauth2/v2.0/authorize
+  token_endpoint: https://login.microsoftonline.com/TENANT_ID_PLACEHOLDER/oauth2/v2.0/token
+  userinfo_endpoint: https://graph.microsoft.com/oidc/userinfo

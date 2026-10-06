@@ -357,6 +357,23 @@ jobs:
           fi
           echo "SSH access to $HOST confirmed."
 
+      - name: Install 1Password CLI
+        run: |
+          ARCH=amd64
+          OP_VERSION=v2.30.0
+          OP_SHA256=cd5361b074cd40eb2b332885f35a4d61c74369919ced95190c885f4d4f739dc7
+          curl -sSfLo /tmp/op.zip "https://cache.agilebits.com/dist/1P/op2/pkg/${OP_VERSION}/op_linux_${ARCH}_${OP_VERSION}.zip"
+          echo "${OP_SHA256}  /tmp/op.zip" | sha256sum -c - || { echo "op checksum verification FAILED" >&2; exit 1; }
+          unzip -o /tmp/op.zip -d /usr/local/bin op
+          chmod +x /usr/local/bin/op
+          op --version
+
+      - name: Sync Entra OIDC secrets (shared script from installed profile)
+        env:
+          OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
+          PANTHEON_ORG_ID: ${{ secrets.PANTHEON_ORG_ID }}
+        run: ./web/profiles/contrib/mm_drupal_core_d9_shared_infra/ci/entra-secret-sync.sh
+
       # Scoped to this step deliberately: set-environment pipes any
       # $GITHUB_TOKEN it sees into `composer config github-oauth`, and Composer
       # rejects the Actions token. Only dev-multidev needs it.

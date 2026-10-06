@@ -53,10 +53,13 @@ module:
   mm_drupal_security: 0
   mm_extras: 0
   mm_ftp_global_vars: 0
+  mm_sso: 0
   mysql: 0
   node: 0
+  openid_connect: 0
   options: 0
   page_cache: 0
+  pantheon_secrets: 0
   path: 0
   path_alias: 0
   phpass: 0
