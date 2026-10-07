@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c9afda13b722132004540fc535290879",
+    "content-hash": "17a500b7b5514a716ad4d5a81315bdf7",
     "packages": [
         {
             "name": "afarkas/lazysizes",
@@ -127,16 +127,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.398.4",
+            "version": "3.399.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "1dc5a7813aa23b65de0bfb6239b93387971f7143"
+                "reference": "cd7cf43b7d42e49579bf3f09ab58d4724d64152c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/1dc5a7813aa23b65de0bfb6239b93387971f7143",
-                "reference": "1dc5a7813aa23b65de0bfb6239b93387971f7143",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/cd7cf43b7d42e49579bf3f09ab58d4724d64152c",
+                "reference": "cd7cf43b7d42e49579bf3f09ab58d4724d64152c",
                 "shasum": ""
             },
             "require": {
@@ -218,9 +218,9 @@
             "support": {
                 "forum": "https://github.com/aws/aws-sdk-php/discussions",
                 "issues": "https://github.com/aws/aws-sdk-php/issues",
-                "source": "https://github.com/aws/aws-sdk-php/tree/3.398.4"
+                "source": "https://github.com/aws/aws-sdk-php/tree/3.399.1"
             },
-            "time": "2026-09-30T18:20:49+00:00"
+            "time": "2026-10-02T18:16:16+00:00"
         },
         {
             "name": "chi-teck/drupal-code-generator",
@@ -6261,7 +6261,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/imageapi_optimize_webp.git",
-                "reference": "bfd658c838ad5ed4ba8df96f5163b9da0f3dcc14"
+                "reference": "24945e5c4ab4dc3997cf6f926821d2259b014616"
             },
             "require": {
                 "drupal/core": "^10.3 || ^11",
@@ -6273,8 +6273,8 @@
                     "dev-2.1.x": "2.1.x-dev"
                 },
                 "drupal": {
-                    "version": "2.1.x-dev",
-                    "datestamp": "1735852552",
+                    "version": "2.1.1+1-dev",
+                    "datestamp": "1791219028",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Dev releases are not covered by Drupal security advisories."
@@ -12249,30 +12249,30 @@
         },
         {
             "name": "drupal/ui_patterns",
-            "version": "1.15.0",
+            "version": "1.16.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/ui_patterns.git",
-                "reference": "8.x-1.15"
+                "reference": "8.x-1.16"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/ui_patterns-8.x-1.15.zip",
-                "reference": "8.x-1.15",
-                "shasum": "8a56a658ae87ae535b0fcd52806f243b5d3108dd"
+                "url": "https://ftp.drupal.org/files/projects/ui_patterns-8.x-1.16.zip",
+                "reference": "8.x-1.16",
+                "shasum": "062ee3143504c90c45bc149a8d44b0301322a2bd"
             },
             "require": {
                 "drupal/core": "^9 || ^10 || ^11"
             },
             "require-dev": {
                 "drupal/ds": "^3.18",
-                "drupal/field_group": "^4"
+                "drupal/field_group": "^4.1@alpha"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-1.15",
-                    "datestamp": "1775641228",
+                    "version": "8.x-1.16",
+                    "datestamp": "1790936513",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -14630,16 +14630,16 @@
         },
         {
             "name": "google/apiclient-services",
-            "version": "v0.461.0",
+            "version": "v0.462.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/googleapis/google-api-php-client-services.git",
-                "reference": "653eec9b7767d34f0cbe2a702cf2c2b825a4857d"
+                "reference": "da59366999d50aea47215c0834d88dce4ba5323a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/googleapis/google-api-php-client-services/zipball/653eec9b7767d34f0cbe2a702cf2c2b825a4857d",
-                "reference": "653eec9b7767d34f0cbe2a702cf2c2b825a4857d",
+                "url": "https://api.github.com/repos/googleapis/google-api-php-client-services/zipball/da59366999d50aea47215c0834d88dce4ba5323a",
+                "reference": "da59366999d50aea47215c0834d88dce4ba5323a",
                 "shasum": ""
             },
             "require": {
@@ -14668,9 +14668,9 @@
             ],
             "support": {
                 "issues": "https://github.com/googleapis/google-api-php-client-services/issues",
-                "source": "https://github.com/googleapis/google-api-php-client-services/tree/v0.461.0"
+                "source": "https://github.com/googleapis/google-api-php-client-services/tree/v0.462.0"
             },
-            "time": "2026-09-25T22:00:27+00:00"
+            "time": "2026-10-05T01:38:19+00:00"
         },
         {
             "name": "google/auth",
@@ -16423,11 +16423,11 @@
         },
         {
             "name": "morgan-and-morgan/mm_drupal_core_d9_shared_infra",
-            "version": "2.7.5",
+            "version": "2.7.7",
             "source": {
                 "type": "git",
                 "url": "git@github.com:morgan-and-morgan/mm-drupal-core-d9-shared-infra.git",
-                "reference": "fcd92707f422577280f431695ccd77c451c9afbe"
+                "reference": "11462e0b484d86b91acbd95c9461e8d6a2463162"
             },
             "require": {
                 "afarkas/lazysizes": "5.3.1",
@@ -16537,7 +16537,7 @@
                 "drupal/simple_block": "^1.3",
                 "drupal/simple_sitemap": "4.2.2",
                 "drupal/simplify_menu": "3.2.0",
-                "drupal/single_content_sync": "^1.4",
+                "drupal/single_content_sync": "1.4.16",
                 "drupal/slack": "^1.5",
                 "drupal/smart_trim": "^2.1.0",
                 "drupal/sophron": "^2.0",
@@ -16715,7 +16715,7 @@
                 ]
             },
             "description": "Morgan and Morgan Drupal 9 core.",
-            "time": "2026-09-29T21:19:36+00:00"
+            "time": "2026-10-06T17:03:20+00:00"
         },
         {
             "name": "mtdowling/jmespath.php",

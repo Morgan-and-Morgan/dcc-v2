@@ -319,6 +319,7 @@ handlers:
       custom_options: ''
       file_data: true
       cast: false
+      check_access: false
       debug: false
       completed_url: 'https://hooks.zapier.com/hooks/catch/1587852/b3asmef'
       completed_custom_data: "form_id: 12\r\nform_title: \"Step 1: SSI Benefit Application\""

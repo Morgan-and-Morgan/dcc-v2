@@ -329,6 +329,7 @@ handlers:
       custom_options: ''
       file_data: true
       cast: false
+      check_access: false
       debug: false
       completed_url: 'https://hooks.zapier.com/hooks/catch/1587852/b3asy89'
       completed_custom_data: "form_id: 9\r\nform_title: \"Legal Help / Disability Advocate\""

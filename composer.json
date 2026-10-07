@@ -50,7 +50,7 @@
         "drupal/webform": "^6.0",
         "drupal/xmlsitemap": "^1.5",
         "symfony/http-client": "^6.4",
-        "morgan-and-morgan/mm_drupal_core_d9_shared_infra": "2.7.5"
+        "morgan-and-morgan/mm_drupal_core_d9_shared_infra": "2.7.7"
     },
     "require-dev": {
         "drupal/coder": "^8.3.24"

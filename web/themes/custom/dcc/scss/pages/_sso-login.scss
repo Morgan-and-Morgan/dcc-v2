@@ -1,0 +1,90 @@
+// SSO login block styling.
+//
+// Brands the layout-only markup shipped by the mm_sso module
+// (`mm_sso/login` -> `.mm-sso-login`). The module CSS is deliberately
+// layout-only so each site brands it; visual styling lives here, using
+// the DCC theme's own variables (Signika, dark turquoise / dark blue).
+//
+// Scoped under `.mm-sso-login` so nothing leaks site-wide. The module CSS
+// loads after the theme's on this page, so `main .mm-sso-login` is used to
+// outrank its single-class selectors without `!important`.
+@use "../modules/colors";
+
+main .mm-sso-login {
+  max-width: 28rem;
+  margin: 40px auto;
+  padding: 40px 30px;
+  background-color: colors.$white;
+  border: 1px solid colors.$border-grey;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+
+  @media screen and (max-width: 991px) {
+    max-width: none;
+    margin: 20px 15px;
+    padding: 30px 20px;
+  }
+
+  &__title {
+    font-family: 'Signika', sans-serif;
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 1.15;
+    color: colors.$dark-turquoise;
+    margin: 0 0 10px;
+  }
+
+  &__subhead {
+    font-family: 'Signika', sans-serif;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 1.4;
+    color: colors.$text-grey-title;
+    margin: 0 0 25px;
+  }
+
+  &__content {
+    display: block;
+  }
+
+  .openid-connect-login-form {
+    margin: 0;
+
+    > div {
+      margin: 0;
+    }
+  }
+
+  // Microsoft button -> site dark button, full width.
+  .form-submit,
+  #edit-openid-connect-client-generic-login {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 16px 20px;
+    border: none;
+    border-radius: 0;
+    font-family: 'Signika', sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 1.1;
+    text-align: center;
+    text-transform: uppercase;
+    color: colors.$text-white;
+    background: colors.$dark-btg;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background: colors.$dark-turquoise;
+    }
+
+    // Always-visible focus ring; never removed.
+    &:focus,
+    &:focus-visible {
+      outline: 3px solid colors.$text-blue;
+      outline-offset: 2px;
+    }
+  }
+}
