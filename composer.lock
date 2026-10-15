@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7ffe8d70ad9f092682a18ff2cea7c721",
+    "content-hash": "26b1bc7b2ed385e1bb5cf229918b410a",
     "packages": [
         {
             "name": "afarkas/lazysizes",
@@ -16430,11 +16430,11 @@
         },
         {
             "name": "morgan-and-morgan/mm_drupal_core_d9_shared_infra",
-            "version": "2.7.9",
+            "version": "2.7.10",
             "source": {
                 "type": "git",
                 "url": "git@github.com:morgan-and-morgan/mm-drupal-core-d9-shared-infra.git",
-                "reference": "a1d03b10db49fd725a3c9b29cc9e02536a729386"
+                "reference": "250bc2b4b1a134bceef495a2227796da10a562e0"
             },
             "require": {
                 "afarkas/lazysizes": "5.3.1",
@@ -16703,8 +16703,8 @@
                     "find modules themes -name '*.php' -exec php -l {} \\;"
                 ],
                 "code-sniff": [
-                    "./vendor/bin/phpcs --standard=Drupal --extensions=php,module,inc,install,test,profile,theme,css,info,yml --ignore=node_modules,bower_components,vendor,web,drush,dist,config,modules/mm_segment/js/lib ./",
-                    "./vendor/bin/phpcs --standard=DrupalPractice --extensions=php,module,inc,install,test,profile,theme,css,info,yml --ignore=node_modules,bower_components,vendor,web,drush,dist,config,modules/mm_segment/js/lib ./"
+                    "./vendor/bin/phpcs --standard=Drupal --extensions=php,module,inc,install,test,profile,theme,css,info,yml --ignore=node_modules,bower_components,vendor,web,drush,dist,*.min.css,config,modules/mm_segment/js/lib ./",
+                    "./vendor/bin/phpcs --standard=DrupalPractice --extensions=php,module,inc,install,test,profile,theme,css,info,yml --ignore=node_modules,bower_components,vendor,web,drush,dist,*.min.css,config,modules/mm_segment/js/lib ./"
                 ],
                 "code-sniff-fix": [
                     "./vendor/bin/phpcbf --standard=Drupal --extensions=php,module,inc,install,test,profile,theme,css,info,txt,md --ignore=node_modules,bower_components,vendor ./modules",
@@ -16723,7 +16723,7 @@
                 ]
             },
             "description": "Morgan and Morgan Drupal 9 core.",
-            "time": "2026-10-14T17:39:39+00:00"
+            "time": "2026-10-15T17:59:11+00:00"
         },
         {
             "name": "mtdowling/jmespath.php",
