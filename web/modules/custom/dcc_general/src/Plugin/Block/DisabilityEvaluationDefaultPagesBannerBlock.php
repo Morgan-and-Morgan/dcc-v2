@@ -13,7 +13,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * @Block(
  *   id = "disability_evaluation_default_pages_banner_block",
  *   admin_label = @Translation("Disability Evaluation - Default Pages - Banner"),
- *   category = @Translation("Custom")
+ *   category = @Translation("Custom Block")
  * )
  */
 class DisabilityEvaluationDefaultPagesBannerBlock extends BlockBase implements ContainerFactoryPluginInterface {

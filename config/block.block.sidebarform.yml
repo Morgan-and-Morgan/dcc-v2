@@ -13,7 +13,7 @@ dependencies:
 id: sidebarform
 theme: dcc
 region: sidebar
-weight: -8
+weight: -7
 provider: null
 plugin: 'block_content:61c2d4f0-f1cd-49a1-8f35-e91d4b7451c6'
 settings:
