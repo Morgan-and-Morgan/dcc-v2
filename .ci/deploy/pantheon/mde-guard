@@ -1,0 +1,33 @@
+#!/bin/bash
+#
+# WEM-7360: hard guard for deleting a PR multidev. Makes NO terminus call.
+#
+# Usage: mde-guard <env-name>
+# Exit 0 only if <env-name> is a plausible PR multidev name. Exit 1 (with an
+# ::error:: line) for empty, dev, test, live, master, main, or anything that
+# does not match the multidev naming pattern. The deploy job
+# (.ci/deploy/pantheon/dev-multidev) names the multidev exactly after the PR
+# head branch with no truncation, so the PR branch is the env name; the
+# pattern below is the same one solr-parity enforces (Pantheon multidev
+# names: lowercase alphanumerics and dashes, max 11 chars).
+
+set -uo pipefail
+
+ENV_NAME="${1-}"
+
+guard_fail() {
+  echo "::error::mde-guard: $*" >&2
+  exit 1
+}
+
+[[ -n "$ENV_NAME" ]] || guard_fail "empty environment name; refusing."
+
+case "$ENV_NAME" in
+  dev|test|live|master|main)
+    guard_fail "refusing '${ENV_NAME}': dev/test/live/master/main are never deleted by CI." ;;
+esac
+
+[[ "$ENV_NAME" =~ ^[a-z0-9][a-z0-9-]{0,10}$ ]] \
+  || guard_fail "'${ENV_NAME}' does not match the multidev naming pattern; refusing."
+
+echo "mde-guard: '${ENV_NAME}' is an acceptable multidev name."

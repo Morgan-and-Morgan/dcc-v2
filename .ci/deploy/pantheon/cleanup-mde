@@ -1,0 +1,55 @@
+#!/bin/bash
+#
+# WEM-7360: delete the PR multidev when its PR is closed or merged.
+#
+# Env in:
+#   MDE_BRANCH          PR head branch (the multidev name; no truncation, same
+#                       as dev-multidev which uses CI_BRANCH verbatim)
+#   TERMINUS_SITE       Pantheon site (build-tools default = repo name)
+#   TERMINUS_TOKEN      machine token
+#   GITHUB_REPOSITORY, GITHUB_TOKEN   for the "another open PR" check
+#   CLEANUP_DRY_RUN=1   log the delete command instead of running it
+#
+# Order matters: the name guard runs before any terminus call.
+
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+MDE="${MDE_BRANCH-}"
+
+# 1. Hard guard (no terminus yet).
+"${SCRIPT_DIR}/mde-guard" "$MDE"
+
+[[ -n "${TERMINUS_SITE-}" ]] || { echo "::error::cleanup-mde: TERMINUS_SITE is not set." >&2; exit 1; }
+[[ -n "${TERMINUS_TOKEN-}" ]] || { echo "::error::cleanup-mde: TERMINUS_TOKEN is not set." >&2; exit 1; }
+
+# 2. Skip if another OPEN PR still uses this head branch.
+if [[ -n "${GITHUB_REPOSITORY-}" && -n "${GITHUB_TOKEN-}" ]]; then
+  owner="${GITHUB_REPOSITORY%%/*}"
+  open="$(curl -fsS -H "Authorization: Bearer ${GITHUB_TOKEN}" -H "Accept: application/vnd.github+json" \
+    "https://api.github.com/repos/${GITHUB_REPOSITORY}/pulls?state=open&head=${owner}:${MDE}&per_page=1" | tr -d ' \n')"
+  if [[ "$open" != "[]" ]]; then
+    echo "Another open PR still uses head branch '${MDE}'; keeping the multidev."
+    exit 0
+  fi
+else
+  echo "::error::cleanup-mde: GITHUB_REPOSITORY/GITHUB_TOKEN missing; cannot verify no other open PR uses '${MDE}'." >&2
+  exit 1
+fi
+
+# 3. Authenticate and verify the env really is a multidev of this site.
+terminus -n auth:login --machine-token="$TERMINUS_TOKEN" >/dev/null
+
+if ! terminus -n multidev:list "$TERMINUS_SITE" --field=id | grep -qx -- "$MDE"; then
+  echo "'${MDE}' is not a multidev of ${TERMINUS_SITE} (already deleted or never created); nothing to do."
+  exit 0
+fi
+
+# 4. Delete (CI only).
+if [[ "${CLEANUP_DRY_RUN-}" == "1" ]]; then
+  echo "DRY RUN: terminus -n multidev:delete ${TERMINUS_SITE}.${MDE} --delete-branch --yes"
+  exit 0
+fi
+echo "Deleting multidev ${TERMINUS_SITE}.${MDE} and its Pantheon branch."
+terminus -n multidev:delete "${TERMINUS_SITE}.${MDE}" --delete-branch --yes
+echo "Deleted ${TERMINUS_SITE}.${MDE}."

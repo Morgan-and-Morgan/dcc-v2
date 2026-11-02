@@ -1,0 +1,60 @@
+#!/bin/bash
+#
+# WEM-7360: local test for .ci/deploy/pantheon/mde-guard and cleanup-mde.
+# Uses fake terminus/curl on PATH; makes no network or Pantheon calls.
+# Run: .ci/test/mde-guard-test
+
+set -uo pipefail
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
+GUARD="$ROOT/.ci/deploy/pantheon/mde-guard"
+CLEAN="$ROOT/.ci/deploy/pantheon/cleanup-mde"
+fails=0
+
+expect() { # expect <rc> <desc> <cmd...>
+  local want="$1" desc="$2"; shift 2
+  "$@" >/tmp/mde-test.out 2>&1; local rc=$?
+  if [[ "$rc" == "$want" ]]; then echo "ok   - $desc"; else echo "FAIL - $desc (rc=$rc want=$want)"; cat /tmp/mde-test.out; fails=$((fails+1)); fi
+}
+
+for n in dev test live master main "" "DEV" "Live" "cl-wem-73600" "-abc" "cl_wem_7360" "cl-wem-7360/x" "a b"; do
+  expect 1 "guard refuses '$n'" "$GUARD" "$n"
+done
+for n in cl-wem-7360 pr-12 abc 0a; do
+  expect 0 "guard accepts '$n'" "$GUARD" "$n"
+done
+expect 1 "guard refuses with no argument" "$GUARD"
+
+TMP="$(mktemp -d)"; trap 'rm -rf "$TMP"' EXIT
+cat > "$TMP/terminus" <<'EOF'
+#!/bin/bash
+echo "$*" >> "$FAKE_LOG"
+case "$*" in
+  *multidev:list*) printf '%s\n' $FAKE_MDES ;;
+esac
+EOF
+cat > "$TMP/curl" <<'EOF'
+#!/bin/bash
+echo "$FAKE_OPEN_PRS"
+EOF
+chmod +x "$TMP/terminus" "$TMP/curl"
+export PATH="$TMP:$PATH" FAKE_LOG="$TMP/log" TERMINUS_SITE=ftp-v3 TERMINUS_TOKEN=x GITHUB_REPOSITORY=o/r GITHUB_TOKEN=y CLEANUP_DRY_RUN=1
+export FAKE_MDES="cl-wem-7360 cl-wem-1" FAKE_OPEN_PRS="[]"
+
+: > "$FAKE_LOG"; expect 1 "cleanup refuses live" env MDE_BRANCH=live "$CLEAN"
+[[ ! -s "$FAKE_LOG" ]] && echo "ok   - no terminus call for live" || { echo "FAIL - terminus called for live"; fails=$((fails+1)); }
+: > "$FAKE_LOG"; expect 1 "cleanup refuses empty" env MDE_BRANCH= "$CLEAN"
+[[ ! -s "$FAKE_LOG" ]] && echo "ok   - no terminus call for empty" || { echo "FAIL - terminus called for empty"; fails=$((fails+1)); }
+
+: > "$FAKE_LOG"; expect 0 "valid existing mde -> dry-run delete" env MDE_BRANCH=cl-wem-7360 "$CLEAN"
+grep -q "DRY RUN: terminus -n multidev:delete ftp-v3.cl-wem-7360 --delete-branch --yes" /tmp/mde-test.out && echo "ok   - dry-run delete line printed" || { echo "FAIL - no dry-run delete line"; fails=$((fails+1)); }
+grep -q "multidev:delete" "$FAKE_LOG" && { echo "FAIL - real delete invoked in dry run"; fails=$((fails+1)); } || echo "ok   - no real delete in dry run"
+
+: > "$FAKE_LOG"; expect 0 "mde not in list -> exit 0, no delete" env MDE_BRANCH=cl-wem-9999 "$CLEAN"
+grep -q "not a multidev" /tmp/mde-test.out && echo "ok   - logged missing mde" || { echo "FAIL - missing mde not logged"; fails=$((fails+1)); }
+
+FAKE_OPEN_PRS='[{"number":5}]' expect 0 "other open PR on branch -> skipped" env MDE_BRANCH=cl-wem-7360 "$CLEAN"
+grep -q "Another open PR" /tmp/mde-test.out && echo "ok   - skip message printed" || { echo "FAIL - no skip message"; fails=$((fails+1)); }
+
+FAKE_MDES="dev test live" expect 1 "dev refused even if listed" env MDE_BRANCH=dev "$CLEAN"
+
+echo; [[ $fails -eq 0 ]] && echo "ALL PASSED" || { echo "$fails FAILED"; exit 1; }

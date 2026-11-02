@@ -1,0 +1,66 @@
+name: 🧹 Delete PR multidev on close
+
+# WEM-7360: when a PR is closed or merged, delete its Pantheon multidev.
+# The multidev is named after the PR head branch (see
+# .ci/deploy/pantheon/dev-multidev). All safety logic lives in
+# .ci/deploy/pantheon/mde-guard and cleanup-mde. dev/test/live/master/main are
+# refused before any terminus call.
+
+on:
+  pull_request:
+    types: [closed]
+
+# One cleanup at a time per branch; never cancel a delete mid-flight.
+concurrency:
+  group: cleanup-pr-multidev-${{ github.event.pull_request.head.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  pull-requests: read
+
+defaults:
+  run:
+    shell: /bin/bash -eo pipefail {0}
+
+jobs:
+  delete_multidev:
+    name: 🧹 Delete PR multidev
+    # Same-repo PRs only: fork PRs get no secrets and never had a multidev.
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    container:
+      image: quay.io/pantheon-public/build-tools-ci:8.x-php8.3
+      options: --user root
+      env:
+        HOME: /home/circleci
+    env:
+      # Same value the deploy job uses: build-tools defaults TERMINUS_SITE to
+      # the repo name. Not derived from user input.
+      TERMINUS_SITE: ${{ github.event.repository.name }}
+      MDE_BRANCH: ${{ github.event.pull_request.head.ref }}
+      TERMINUS_TOKEN: ${{ secrets.TERMINUS_TOKEN }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - name: Check required secret
+        id: gate
+        run: |
+          if [ -z "$TERMINUS_TOKEN" ]; then
+            echo "TERMINUS_TOKEN is not available; skipping multidev cleanup."
+            echo "run=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      # Scripts come from the repo's default branch, never the PR head.
+      - name: Checkout cleanup scripts
+        if: steps.gate.outputs.run == 'true'
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+          sparse-checkout: .ci/deploy/pantheon
+          fetch-depth: 1
+
+      - name: Delete multidev
+        if: steps.gate.outputs.run == 'true'
+        run: ./.ci/deploy/pantheon/cleanup-mde
