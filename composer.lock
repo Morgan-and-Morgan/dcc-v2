@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "26b1bc7b2ed385e1bb5cf229918b410a",
+    "content-hash": "d7e70adfb1360c92e574fd4685ec869a",
     "packages": [
         {
             "name": "afarkas/lazysizes",
@@ -4544,106 +4544,6 @@
                 }
             ],
             "time": "2026-07-28T09:27:22+00:00"
-        },
-        {
-            "name": "drupal/easy_breadcrumb",
-            "version": "2.0.11",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/easy_breadcrumb.git",
-                "reference": "2.0.11"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/easy_breadcrumb-2.0.11.zip",
-                "reference": "2.0.11",
-                "shasum": "02ff0687f1d6d94238d3e47fdb6cb240fecf2626"
-            },
-            "require": {
-                "drupal/core": "^9.2 || ^10 || ^11"
-            },
-            "require-dev": {
-                "drupal/cva": "^1",
-                "drupal/mercury": "^1.0.5",
-                "drush/drush": "^13"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "drupal": {
-                    "version": "2.0.11",
-                    "datestamp": "1791390966",
-                    "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "Neslee Canil Pinto",
-                    "homepage": "https://www.drupal.org/u/neslee-canil-pinto",
-                    "role": "Maintainer"
-                },
-                {
-                    "name": "Greg Boggs",
-                    "homepage": "https://www.drupal.org/u/greg-boggs",
-                    "role": "Maintainer"
-                },
-                {
-                    "name": "diamondsea",
-                    "homepage": "https://www.drupal.org/user/430714"
-                },
-                {
-                    "name": "greg boggs",
-                    "homepage": "https://www.drupal.org/user/153069"
-                },
-                {
-                    "name": "hmartens",
-                    "homepage": "https://www.drupal.org/user/622826"
-                },
-                {
-                    "name": "loopduplicate",
-                    "homepage": "https://www.drupal.org/user/717290"
-                },
-                {
-                    "name": "neslee canil pinto",
-                    "homepage": "https://www.drupal.org/user/3580850"
-                },
-                {
-                    "name": "nickdickinsonwilde",
-                    "homepage": "https://www.drupal.org/user/3094661"
-                },
-                {
-                    "name": "rakesh.gectcr",
-                    "homepage": "https://www.drupal.org/user/1177822"
-                },
-                {
-                    "name": "renatog",
-                    "homepage": "https://www.drupal.org/user/3326031"
-                },
-                {
-                    "name": "sonemonu",
-                    "homepage": "https://www.drupal.org/user/1667988"
-                },
-                {
-                    "name": "spuky",
-                    "homepage": "https://www.drupal.org/user/209353"
-                },
-                {
-                    "name": "tatarbj",
-                    "homepage": "https://www.drupal.org/user/649590"
-                }
-            ],
-            "description": "Adds configuration to the system breadcrumbs.",
-            "homepage": "https://www.drupal.org/project/easy_breadcrumb",
-            "support": {
-                "source": "https://git.drupalcode.org/project/easy_breadcrumb",
-                "issues": "https://www.drupal.org/project/issues/easy_breadcrumb"
-            }
         },
         {
             "name": "drupal/encrypt",
@@ -11869,29 +11769,26 @@
         },
         {
             "name": "drupal/token",
-            "version": "1.15.0",
+            "version": "1.18.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/token.git",
-                "reference": "8.x-1.15"
+                "reference": "8.x-1.18"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/token-8.x-1.15.zip",
-                "reference": "8.x-1.15",
-                "shasum": "5916fbccc86458a5f51e71f832ac70ff4c84ebdf"
+                "url": "https://ftp.drupal.org/files/projects/token-8.x-1.18.zip",
+                "reference": "8.x-1.18",
+                "shasum": "7db67f644c83136cac78c7c5dbaef29599e7a7d7"
             },
             "require": {
-                "drupal/core": "^9.2 || ^10 || ^11"
-            },
-            "require-dev": {
-                "drupal/book": "*"
+                "drupal/core": "^10.3 || ^11 || ^12"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-1.15",
-                    "datestamp": "1722206211",
+                    "version": "8.x-1.18",
+                    "datestamp": "1793355985",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -16430,11 +16327,11 @@
         },
         {
             "name": "morgan-and-morgan/mm_drupal_core_d9_shared_infra",
-            "version": "2.7.10",
+            "version": "2.7.13",
             "source": {
                 "type": "git",
                 "url": "git@github.com:morgan-and-morgan/mm-drupal-core-d9-shared-infra.git",
-                "reference": "250bc2b4b1a134bceef495a2227796da10a562e0"
+                "reference": "ab21110d08e07c0483ff7778c014c199e3d844a3"
             },
             "require": {
                 "afarkas/lazysizes": "5.3.1",
@@ -16468,7 +16365,6 @@
                 "drupal/devel": "5.3.1",
                 "drupal/devel_kint_extras": "1.1.4",
                 "drupal/devel_php": "1.7",
-                "drupal/easy_breadcrumb": "^2.0",
                 "drupal/encrypt": "^3.0",
                 "drupal/entity_browser": "^2.8",
                 "drupal/entity_clone": "2.1-beta1",
@@ -16555,7 +16451,7 @@
                 "drupal/term_reference_tree": "^2.0.1",
                 "drupal/text_field_formatter": "^2.0",
                 "drupal/tfa": "^2.0@alpha",
-                "drupal/token": "1.15",
+                "drupal/token": "^1.17",
                 "drupal/token_filter": "2.2.1",
                 "drupal/trailing_slash": "^2.0@alpha",
                 "drupal/twig_field_value": "2.0.5",
@@ -16723,7 +16619,7 @@
                 ]
             },
             "description": "Morgan and Morgan Drupal 9 core.",
-            "time": "2026-10-15T17:59:11+00:00"
+            "time": "2026-11-03T16:12:04+00:00"
         },
         {
             "name": "mtdowling/jmespath.php",
