@@ -1,0 +1,15 @@
+{
+    "name": "morgan-and-morgan/composer-plugins-bootstrap",
+    "description": "Pre-installs the Composer plugins that must be active before a lockless resolve (drupal-lenient). Used by the nuke-profile and nuke-site scripts (bootstrap-plugins).",
+    "type": "project",
+    "license": "proprietary",
+    "require": {
+        "mglaman/composer-drupal-lenient": "^1.0"
+    },
+    "config": {
+        "lock": false,
+        "allow-plugins": {
+            "mglaman/composer-drupal-lenient": true
+        }
+    }
+}
