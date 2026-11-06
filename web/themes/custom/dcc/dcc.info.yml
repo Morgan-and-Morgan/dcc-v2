@@ -5,7 +5,10 @@ core: 8.x
 core_version_requirement: ^10 || ^11
 libraries:
   - dcc/global-styling
-  - dcc/bootstrap_cdn
+# dcc/bootstrap_cdn (Bootstrap 4.3.1 JS from maxcdn) is no longer attached: it
+# throws "requires ... jQuery less than v4.0.0" on Drupal 11's jQuery 4. The
+# bootstrap4 base theme already attaches its jQuery 4 compatible Bootstrap
+# 4.6.2 bundle (bootstrap4/bootstrap4-js-latest).
 # Defines the base theme
 base theme: bootstrap4
 regions:
