@@ -36,28 +36,31 @@
         "drupal/context_entity_field": "^2.0@alpha",
         "drupal/default_paragraphs": "^2.0",
         "drupal/field_states_ui": "^3.0",
-        "drupal/fontawesome": "^2.17",
+        "drupal/fontawesome": "^3.0",
         "drupal/honeypot": "^2.0",
         "drupal/key": "^1.14",
         "drupal/menu_block": "^1.6",
         "drupal/menus_attribute": "^1.1",
-        "drupal/migrate_tools": "^6.0",
+        "drupal/migrate_tools": "^6.1.5",
+        "drupal/profile_switcher": "^1.0@alpha",
         "drupal/sfweb2lead_webform": "^6.0",
         "drupal/shortcode": "^2.0",
         "drupal/tb_megamenu": "^1.0@RC",
+        "drupal/tour": "^3.0",
         "drupal/upgrade_status": "^4.3",
-        "drupal/we_megamenu": "1.16.0",
+        "drupal/we_megamenu": "1.17.0",
         "drupal/webform": "^6.0",
-        "drupal/xmlsitemap": "^1.5",
-        "symfony/http-client": "^6.4",
+        "drupal/xmlsitemap": "^2.0",
         "enshrined/svg-sanitize": "1.0.0 as 0.22.1",
-        "morgan-and-morgan/mm_drupal_core_d9_shared_infra": "2.7.14"
+        "mglaman/composer-drupal-lenient": "^1.0",
+        "morgan-and-morgan/mm_drupal_core_d9_shared_infra": "dev-drupal11",
+        "symfony/http-client": "^7.3"
     },
     "require-dev": {
         "drupal/coder": "^8.3.24"
     },
     "conflict": {
-            "drupal/drupal": "*"
+        "drupal/drupal": "*"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
@@ -67,6 +70,13 @@
         ]
     },
     "scripts": {
+        "pre-install-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::rememberLock",
+            "DrupalProject\\composer\\ScriptHandler::checkLocklessMerge"
+        ],
+        "pre-update-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::checkLocklessMerge"
+        ],
         "build-assets": [
             "@prepare-for-pantheon",
             "composer install --optimize-autoloader --no-dev",
@@ -82,10 +92,13 @@
         "unit-test": "echo 'No unit test step defined.'",
         "prepare-for-pantheon": "DrupalProject\\composer\\ScriptHandler::prepareForPantheon",
         "post-install-cmd": [
-            "DrupalProject\\composer\\ScriptHandler::createRequiredFiles"
+            "DrupalProject\\composer\\ScriptHandler::createRequiredFiles",
+            "DrupalProject\\composer\\ScriptHandler::restoreLockAfterInstall",
+            "DrupalProject\\composer\\ScriptHandler::completeLocklessMerge"
         ],
         "post-update-cmd": [
-            "DrupalProject\\composer\\ScriptHandler::createRequiredFiles"
+            "DrupalProject\\composer\\ScriptHandler::createRequiredFiles",
+            "DrupalProject\\composer\\ScriptHandler::completeLocklessMerge"
         ],
         "post-create-project-cmd": [
             "DrupalProject\\composer\\ScriptHandler::createRequiredFiles",
@@ -95,26 +108,43 @@
             "cd web/themes/custom/dcc; rm -Rf web/theme/custom/dcc/dist; npm -v; node -v; npm install --unsafe-perm; npm rebuild node-sass; npm run build;"
         ],
         "nuke-profile": [
-            "rm -Rf web/profiles/contrib/ vendor/ composer.lock"
+            "rm -Rf web/profiles/contrib/ vendor/ composer.lock",
+            "@bootstrap-plugins"
         ],
         "nuke-site": [
-            "rm -Rf web/profiles/contrib/ vendor/ composer.lock web/themes/contrib web/theme/custom/dcc/dist web/theme/custom/dcc/node_modules"
+            "rm -Rf web/profiles/contrib/ vendor/ composer.lock web/themes/contrib web/theme/custom/dcc/dist web/theme/custom/dcc/node_modules",
+            "@bootstrap-plugins"
         ],
         "nuke-rebuild": [
             "composer nuke-site",
             "composer install",
             "composer build-theme-dcc"
-        ]
+        ],
+        "bootstrap-plugins": "COMPOSER_VENDOR_DIR=\"$PWD/vendor\" composer --working-dir=scripts/composer/plugins-bootstrap install --no-interaction --no-progress"
     },
     "extra": {
         "installer-paths": {
-            "web/core": ["type:drupal-core"],
-            "web/libraries/{$name}": ["type:drupal-library"],
-            "web/modules/contrib/{$name}": ["type:drupal-module"],
-            "web/profiles/contrib/{$name}": ["type:drupal-profile"],
-            "web/themes/contrib/{$name}": ["type:drupal-theme"],
-            "drush/Commands/contrib/{$name}": ["type:drupal-drush"],
-            "web/private/scripts/quicksilver/{$name}/": ["type:quicksilver-script"]
+            "web/core": [
+                "type:drupal-core"
+            ],
+            "web/libraries/{$name}": [
+                "type:drupal-library"
+            ],
+            "web/modules/contrib/{$name}": [
+                "type:drupal-module"
+            ],
+            "web/profiles/contrib/{$name}": [
+                "type:drupal-profile"
+            ],
+            "web/themes/contrib/{$name}": [
+                "type:drupal-theme"
+            ],
+            "drush/Commands/contrib/{$name}": [
+                "type:drupal-drush"
+            ],
+            "web/private/scripts/quicksilver/{$name}/": [
+                "type:quicksilver-script"
+            ]
         },
         "build-env": {
             "install-cms": [
@@ -132,6 +162,22 @@
             "file-mapping": {
                 "[project-root]/.editorconfig": false
             }
+        },
+        "patches": {
+            "drupal/field_states_ui": {
+                "Drupal 11 compatibility (https://www.drupal.org/project/field_states_ui/issues/3430531, MR !12)": "patches/field_states_ui-d11-compat-3430531.patch"
+            },
+            "drupal/menus_attribute": {
+                "Drupal 11 compatibility (https://www.drupal.org/project/menus_attribute/issues/3433358, MR !18)": "patches/menus_attribute-d11-compat-3433358.patch"
+            }
+        },
+        "drupal-lenient": {
+            "allowed-list": [
+                "drupal/field_states_ui",
+                "drupal/menus_attribute",
+                "drupal/profile_switcher",
+                "drupal/views_complex_grouping"
+            ]
         }
     },
     "config": {
@@ -148,7 +194,11 @@
             "drupal/core-project-message": true,
             "oomphinc/composer-installers-extender": true,
             "php-http/discovery": true,
-            "zaporylie/composer-drupal-optimizations": true
+            "zaporylie/composer-drupal-optimizations": true,
+            "mglaman/composer-drupal-lenient": true,
+            "drupal/core-recipe-unpack": true,
+            "symfony/runtime": true,
+            "tbachert/spi": true
         }
     }
 }

@@ -1,0 +1,17 @@
+Drupal 11 compatibility for menus_attribute 8.x-1.3 (core_version_requirement only).
+Same change as https://git.drupalcode.org/project/menus_attribute/-/merge_requests/18
+(https://www.drupal.org/project/menus_attribute/issues/3433358), rebased on the
+drupal.org dist info.yml so it applies with its packaging lines.
+
+diff --git a/menus_attribute.info.yml b/menus_attribute.info.yml
+--- a/menus_attribute.info.yml
++++ b/menus_attribute.info.yml
+@@ -2,7 +2,7 @@
+ type: module
+ description: 'Attributes for menu links'
+ core: 8.x
+-core_version_requirement: ^8 || ^9 || ^10
++core_version_requirement: ^8 || ^9 || ^10 || ^11
+ 
+ # Information added by Drupal.org packaging script on 2023-05-15
+ version: '8.x-1.3'
