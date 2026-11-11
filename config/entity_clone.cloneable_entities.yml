@@ -39,6 +39,9 @@ cloneable_entities:
   - tour
   - user_role
   - user
+  - webform_options
+  - webform_submission
+  - webform
   - xmlsitemap
   - view
   - paragraphs_type

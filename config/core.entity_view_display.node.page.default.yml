@@ -12,6 +12,7 @@ dependencies:
     - field.field.node.page.field_featured_image
     - field.field.node.page.field_meta_tags
     - field.field.node.page.field_page_template
+    - field.field.node.page.field_ss_ssi_webform
     - node.type.page
   module:
     - entity_reference_revisions
@@ -106,4 +107,5 @@ content:
     weight: 101
     region: content
 hidden:
+  field_ss_ssi_webform: true
   langcode: true
