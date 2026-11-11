@@ -13,7 +13,6 @@ dependencies:
     - field.field.node.page.field_featured_image
     - field.field.node.page.field_meta_tags
     - field.field.node.page.field_page_template
-    - field.field.node.page.field_ss_ssi_webform
     - node.type.page
   module:
     - text
@@ -45,5 +44,4 @@ hidden:
   field_featured_image: true
   field_meta_tags: true
   field_page_template: true
-  field_ss_ssi_webform: true
   langcode: true

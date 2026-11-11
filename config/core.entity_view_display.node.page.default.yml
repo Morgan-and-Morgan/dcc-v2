@@ -12,7 +12,6 @@ dependencies:
     - field.field.node.page.field_featured_image
     - field.field.node.page.field_meta_tags
     - field.field.node.page.field_page_template
-    - field.field.node.page.field_ss_ssi_webform
     - node.type.page
   module:
     - entity_reference_revisions
@@ -20,7 +19,6 @@ dependencies:
     - options
     - text
     - user
-    - webform
 _core:
   default_config_hash: g1S3_GLaxq4l3I9RIca5Mlz02MxI2KmOquZpHw59akM
 id: node.page.default
@@ -101,14 +99,6 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 104
-    region: content
-  field_ss_ssi_webform:
-    type: webform_entity_reference_entity_view
-    label: above
-    settings:
-      source_entity: true
-    third_party_settings: {  }
-    weight: 110
     region: content
   links:
     settings: {  }
