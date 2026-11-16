@@ -52,8 +52,8 @@ function dcc_preprocess_paragraph(&$variables) {
 /**
  * Implements hook_library_info_alter().
  *
- * we_megamenu 8.x-1.17 replaced the Bootstrap 3 CSS bundled in its frontend
- * library with Bootstrap 5.3.3 from a CDN. The header mega menu markup
+ * Release 8.x-1.17 of we_megamenu replaced the Bootstrap 3 CSS bundled in its
+ * frontend library with Bootstrap 5.3.3 from a CDN. The header mega menu markup
  * (.navbar-toggle, .icon-bar, .navbar-default) and the dcc theme styles were
  * built against Bootstrap 3, so with Bootstrap 5 the nav lost its layout and
  * the mobile hamburger icon. Put back the Bootstrap 3 file the module still
