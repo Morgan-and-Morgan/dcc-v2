@@ -3,10 +3,7 @@ langcode: en
 status: true
 dependencies:
   module:
-    - context
-    - node
     - system
-    - webform
 id: disability_care_center
 label: 'Disability Care Center'
 weight: 0
@@ -30,26 +27,6 @@ advanced_settings:
       environment_token: ''
 dimensions_metrics: {  }
 conditions:
-  'entity_field:node':
-    id: 'entity_field:node'
-    field_name: body
-    field_state: filled
-    field_value: ''
-    context_mapping:
-      node: '@node.node_route_context:node'
-    negate: 0
-  'entity_field:webform_submission':
-    id: 'entity_field:webform_submission'
-    field_name: changed
-    field_state: filled
-    field_value: ''
-    context_mapping:
-      webform_submission: '@webform.webform_submission_route_context:webform_submission'
-    negate: 0
-  request_path_exclusion:
-    id: request_path_exclusion
-    negate: null
-    pages: ''
   request_path:
     id: request_path
     negate: true
