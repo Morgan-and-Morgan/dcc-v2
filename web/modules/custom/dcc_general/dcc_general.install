@@ -121,3 +121,53 @@ function dcc_general_update_9002() {
 
   return t('Created Privacy Policy page at @alias.', ['@alias' => $alias]);
 }
+
+/**
+ * Implements hook_update_dependencies().
+ */
+function dcc_general_update_dependencies(): array {
+  // Contrib tour (required only so it can be uninstalled) has pending updates
+  // on the live database. Let them finish before update_11001 uninstalls
+  // tour, otherwise they fail with tour no longer installed. Ignored when
+  // tour has no pending updates or its code is absent.
+  $dependencies['dcc_general'][11001] = [
+    'tour' => 10311,
+  ];
+  return $dependencies;
+}
+
+/**
+ * WEM-7114: Uninstall tour, profile_switcher, env_libraries and ckeditor.
+ *
+ * - tour: removed from core in Drupal 11.
+ * - profile_switcher, env_libraries: dropped from shared infra drupal11, no
+ *   Drupal 11 release.
+ * - ckeditor: CKEditor 4, no Drupal 11 release; no text format uses it.
+ *
+ * The site requires tour and profile_switcher (lenient) only so this update
+ * can uninstall them. Safe to re-run. If a module's code is already gone,
+ * only its core.extension entry is removed.
+ */
+function dcc_general_update_11001(): string {
+  $module_handler = \Drupal::moduleHandler();
+  $module_list = \Drupal::service('extension.list.module');
+  $messages = [];
+  foreach (['tour', 'profile_switcher', 'env_libraries', 'ckeditor'] as $module) {
+    if (!$module_handler->moduleExists($module)) {
+      $messages[] = $module . ' is not installed.';
+      continue;
+    }
+    if ($module_list->exists($module)) {
+      \Drupal::service('module_installer')->uninstall([$module]);
+      $messages[] = $module . ' uninstalled.';
+      continue;
+    }
+    // Code already removed: drop the stale core.extension entry.
+    \Drupal::configFactory()->getEditable('core.extension')
+      ->clear('module.' . $module)
+      ->save();
+    \Drupal::keyValue('system.schema')->delete($module);
+    $messages[] = $module . ' removed from core.extension (code missing).';
+  }
+  return implode(' ', $messages);
+}

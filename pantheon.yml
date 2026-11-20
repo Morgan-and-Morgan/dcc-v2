@@ -12,7 +12,7 @@ web_docroot: true
 # Multidevs then inherit 8.3 at creation.
 php_version: 8.3
 database:
-  version: 10.4
+  version: 10.6
 drush_version: 10
 # 301 HTTP->HTTPS plus HSTS (max-age=31622400; includeSubDomains; preload),
 # matching the rest of the WEM fleet. Ref: https://docs.pantheon.io/pantheon-yml
