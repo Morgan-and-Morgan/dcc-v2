@@ -55,6 +55,7 @@ module:
   mm_extras: 0
   mm_ftp_global_vars: 0
   mm_languages: 0
+  mm_privacy: 0
   mm_sso: 0
   mysql: 0
   node: 0

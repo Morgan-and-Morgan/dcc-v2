@@ -121,3 +121,13 @@ function dcc_general_update_9002() {
 
   return t('Created Privacy Policy page at @alias.', ['@alias' => $alias]);
 }
+
+/**
+ * Set the OneTrust domain script ID used by the mm_privacy module.
+ */
+function dcc_general_update_9003() {
+  \Drupal::service('state')
+    ->set('mm_privacy.domain_script', '656b37c8-3ec3-4879-a474-c6dcf8ce79f0');
+  // Pages cached before this value existed were rendered without OneTrust.
+  \Drupal::service('cache_tags.invalidator')->invalidateTags(['mm_privacy_settings']);
+}
