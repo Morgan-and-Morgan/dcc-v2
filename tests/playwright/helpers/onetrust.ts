@@ -1,4 +1,4 @@
-import { type Locator, type Page } from '@playwright/test';
+import { type Page } from '@playwright/test';
 
 /**
  * OneTrust (cookie consent) helpers.
@@ -12,9 +12,10 @@ import { type Locator, type Page } from '@playwright/test';
  *      the OneTrust domain script ID in `data-domain-script`,
  *   3. an inline `function OptanonWrapper()` callback.
  *
- * The domain script ID is State, not config, so a fresh database or a lost
- * State value removes the banner without any error. Asserting the attribute
- * catches that as well as the module being uninstalled.
+ * The checks read the HTML as served by Drupal, not the live DOM: a tag
+ * manager can inject the same SDK at runtime, which would hide the server-side
+ * attachment going missing. The domain script ID is State, not config, so a
+ * fresh database or a lost State value removes the SDK without any error.
  */
 
 /** OneTrust domain script ID for disabilitycarecenter.org (all environments). */
@@ -23,38 +24,52 @@ export const ONETRUST_DOMAIN_SCRIPT_ID = '656b37c8-3ec3-4879-a474-c6dcf8ce79f0';
 /** URL fragment that identifies the OneTrust SDK loader script. */
 export const ONETRUST_SDK_STUB = 'cdn.cookielaw.org/scripttemplates/otSDKStub.js';
 
-/**
- * The OneTrust SDK loader <script> element(s) in the page.
- *
- * @param page
- *   The page to search.
- */
-export function oneTrustSdkScript(page: Page): Locator {
-  return page.locator(`script[src*="${ONETRUST_SDK_STUB}"]`);
+/** What the server-rendered HTML says about the OneTrust head scripts. */
+export interface OneTrustMarkup {
+  /** data-domain-script of every otSDKStub.js script in the document. */
+  sdkDomainScripts: (string | null)[];
+  /** Index among the document's scripts of the consent default, or -1. */
+  consentDefault: number;
+  /** Index among the document's scripts of the first SDK loader, or -1. */
+  sdkStub: number;
+  /** Index among the document's scripts of OptanonWrapper, or -1. */
+  optanonWrapper: number;
 }
 
 /**
- * Positions of the three OneTrust head scripts, in document order.
+ * Inspects the OneTrust scripts in server-rendered HTML.
  *
- * Each value is the index of the matching <script> among all scripts in the
- * document, or -1 when it is missing.
+ * The HTML is parsed with DOMParser, which never executes scripts, so nothing
+ * added at runtime can satisfy the checks.
  *
  * @param page
- *   The already-navigated page.
+ *   Any open page; used only to run DOMParser.
+ * @param html
+ *   The document HTML as returned by the server.
  */
-export async function oneTrustScriptOrder(
+export async function oneTrustMarkup(
   page: Page,
-): Promise<{ consentDefault: number; sdkStub: number; optanonWrapper: number }> {
-  return page.evaluate((stub) => {
-    const scripts = Array.from(document.querySelectorAll('script'));
-    const find = (match: (s: HTMLScriptElement) => boolean): number =>
-      scripts.findIndex(match);
-    return {
-      consentDefault: find((s) =>
-        /gtag\(\s*['"]consent['"]\s*,\s*['"]default['"]/.test(s.text),
-      ),
-      sdkStub: find((s) => (s.getAttribute('src') || '').includes(stub)),
-      optanonWrapper: find((s) => /function\s+OptanonWrapper\s*\(/.test(s.text)),
-    };
-  }, ONETRUST_SDK_STUB);
+  html: string,
+): Promise<OneTrustMarkup> {
+  return page.evaluate(
+    ({ source, stub }) => {
+      const doc = new DOMParser().parseFromString(source, 'text/html');
+      const scripts = Array.from(doc.querySelectorAll('script'));
+      const isStub = (s: HTMLScriptElement): boolean =>
+        (s.getAttribute('src') || '').includes(stub);
+      return {
+        sdkDomainScripts: scripts
+          .filter(isStub)
+          .map((s) => s.getAttribute('data-domain-script')),
+        consentDefault: scripts.findIndex((s) =>
+          /gtag\(\s*['"]consent['"]\s*,\s*['"]default['"]/.test(s.text),
+        ),
+        sdkStub: scripts.findIndex(isStub),
+        optanonWrapper: scripts.findIndex((s) =>
+          /function\s+OptanonWrapper\s*\(/.test(s.text),
+        ),
+      };
+    },
+    { source: html, stub: ONETRUST_SDK_STUB },
+  );
 }
